@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { BRAND } from "@/constants/brand";
 import { marketingNav } from "@/constants/navigation";
 import { Logo } from "@/components/ui/Logo";
@@ -10,13 +10,13 @@ export function Footer() {
       <Container className="py-10">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
-            <Logo imageClassName="h-20" showText={false} />
+            <Logo imageClassName="h-24" showText={false} />
             <p className="mt-4 max-w-sm text-sm text-brand-gray">
-              {BRAND.tagline}. Quality English instruction across Addis Ababa and online.
+              {BRAND.tagline} — Quality English instruction for Afaan Oromo speakers across Addis Ababa and online.
             </p>
           </div>
           <div>
-            <p className="font-display font-semibold text-brand-navy">Quick Links</p>
+            <p className="font-heading font-semibold text-brand-navy">Quick Links</p>
             <ul className="mt-3 space-y-2">
               {marketingNav.map((item) => (
                 <li key={item.href}>
@@ -28,7 +28,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="font-display font-semibold text-brand-navy">Contact</p>
+            <p className="font-heading font-semibold text-brand-navy">Contact</p>
             <ul className="mt-3 space-y-2 text-sm text-brand-gray">
               <li>{BRAND.phone}</li>
               <li>{BRAND.email}</li>

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -17,9 +17,9 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white shadow-sm">
       <Container>
-        <div className="flex h-14 items-center justify-between md:h-16">
-          <Logo imageClassName="h-14 md:h-16" showText={false} />
-          <nav className="hidden items-center gap-6 md:flex">
+        <div className="flex h-16 items-center justify-between md:h-[4.5rem]">
+          <Logo imageClassName="h-16 md:h-[4.5rem]" showText={false} />
+          <nav className="hidden items-center gap-6 lg:flex">
             {marketingNav.map((item) => (
               <Link
                 key={item.href}
@@ -36,12 +36,15 @@ export function Navbar() {
               <Button size="sm">Register Now</Button>
             </Link>
           </nav>
-          <button type="button" className="md:hidden" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
+          <button type="button" className="lg:hidden" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
         {open ? (
-          <nav className="flex flex-col gap-3 border-t border-slate-100 py-4 md:hidden">
+          <nav className="flex flex-col gap-3 border-t border-slate-100 py-4 lg:hidden">
+            <div className="flex justify-center pb-2">
+              <Logo imageClassName="h-14" showText={false} href={false} />
+            </div>
             {marketingNav.map((item) => (
               <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="text-sm font-medium text-brand-navy">
                 {item.label}

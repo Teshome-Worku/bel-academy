@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,7 +13,7 @@ export function AdminSidebar() {
     <aside className="hidden w-64 shrink-0 lg:block">
       <div className="rounded-2xl bg-white p-4 shadow-lg">
         <div className="mb-6 flex justify-center border-b border-slate-100 pb-4">
-          <Logo imageClassName="h-16" showText={false} />
+          <Logo imageClassName="h-20" showText={false} />
         </div>
         <nav className="space-y-1">
           {adminNav.map((item) => {
