@@ -1,0 +1,14 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/(marketing)/page": "app/(marketing)/page.js",
+  "/(admin)/admin/branches/page": "app/(admin)/admin/branches/page.js",
+  "/(admin)/admin/page": "app/(admin)/admin/page.js",
+  "/(admin)/admin/programs/page": "app/(admin)/admin/programs/page.js",
+  "/(admin)/admin/registrations/page": "app/(admin)/admin/registrations/page.js",
+  "/(admin)/admin/students/page": "app/(admin)/admin/students/page.js",
+  "/(marketing)/about/page": "app/(marketing)/about/page.js",
+  "/(marketing)/branches/page": "app/(marketing)/branches/page.js",
+  "/(marketing)/contact/page": "app/(marketing)/contact/page.js",
+  "/(marketing)/programs/page": "app/(marketing)/programs/page.js",
+  "/(marketing)/register/page": "app/(marketing)/register/page.js"
+}
