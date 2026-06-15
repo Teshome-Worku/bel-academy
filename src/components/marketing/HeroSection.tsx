@@ -50,7 +50,7 @@ export function HeroSection() {
       <div className="absolute -bottom-20 -right-20 h-60 w-60 rounded-full bg-brand-gold/10 blur-3xl" />
 
       {/* ── Main Content ────────────────────────────── */}
-      <Container className="relative z-10 flex flex-1 flex-col justify-center py-10 sm:py-14 md:py-16 lg:py-16">
+      <Container className="relative z-10 flex flex-1 flex-col justify-start md:justify-center pt-12 pb-6 sm:py-14 md:py-16 lg:py-16">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -68,7 +68,7 @@ export function HeroSection() {
           <motion.h1
             custom={1}
             variants={fadeUp}
-            className="mt-4 font-display text-[2rem] font-extrabold leading-[1.1] text-white sm:mt-5 sm:text-5xl md:text-6xl lg:text-7xl"
+            className="mt-0 font-display text-[2rem] font-extrabold leading-[1.25] text-white sm:mt-5 sm:leading-[1.1] sm:text-5xl md:text-6xl lg:text-7xl"
           >
             Master English
             <br />
@@ -79,7 +79,7 @@ export function HeroSection() {
           <motion.p
             custom={2}
             variants={fadeUp}
-            className="mt-4 max-w-xl text-sm leading-relaxed text-slate-300 sm:mt-5 sm:text-lg md:text-xl"
+            className="mt-2 max-w-xl text-sm leading-relaxed text-slate-300 sm:mt-5 sm:text-lg md:text-xl"
           >
             Join thousands of learners at our Buraayyuu and Jamoo Furii
             branches—or study online with expert instructors.
@@ -89,7 +89,7 @@ export function HeroSection() {
           <motion.div
             custom={3}
             variants={fadeUp}
-            className="mt-6 flex gap-3 sm:mt-8 sm:gap-4"
+            className="mt-3 flex gap-3 sm:mt-8 sm:gap-4"
           >
             <Link href="/register" className="flex-1 sm:flex-none">
               <button
@@ -119,7 +119,7 @@ export function HeroSection() {
         initial="hidden"
         animate="visible"
         variants={scaleIn}
-        className="relative z-10 px-4 pb-6 sm:px-6 sm:pb-8 lg:px-8 lg:pb-10"
+        className="relative z-10 px-4 -mt-12 md:mt-0 pb-4 sm:px-6 sm:pb-8 lg:px-8 lg:pb-10"
       >
         <div className="mx-auto max-w-5xl">
           <div className="glass rounded-2xl px-5 py-5 shadow-2xl sm:px-10 sm:py-7">
