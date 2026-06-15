@@ -2,10 +2,10 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import { isAuthenticated } from "@/lib/auth";
 import { LoginBrandingPanel } from "@/components/auth/LoginBrandingPanel";
 import { LoginForm } from "@/components/auth/LoginForm";
-import { Logo } from "@/components/ui/Logo";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,22 +17,23 @@ export default function LoginPage() {
   }, [router]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-brand-navy">
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-navy via-brand-blue to-brand-navy" />
-      <div className="absolute -left-32 top-20 h-96 w-96 rounded-full bg-brand-gold/10 blur-3xl" />
-      <div className="absolute -right-32 bottom-20 h-96 w-96 rounded-full bg-brand-blue/30 blur-3xl" />
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#F8FAFC] px-4 py-8">
+      <div className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-brand-navy/5 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-brand-gold/5 blur-3xl" />
 
-      <div className="relative z-10 flex min-h-screen flex-col lg:grid lg:grid-cols-2">
-        <div className="hidden lg:block">
-          <LoginBrandingPanel />
-        </div>
-        <div className="flex flex-col items-center justify-center px-6 py-10 lg:px-12">
-          <div className="mb-8 lg:hidden">
-            <Logo imageClassName="h-20" showText={false} href={false} />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="relative w-full max-w-[920px]"
+      >
+        <div className="overflow-hidden rounded-3xl shadow-[0_25px_60px_-12px_rgba(15,23,42,0.15)] ring-1 ring-slate-200/80">
+          <div className="flex flex-col lg:flex-row">
+            <LoginBrandingPanel />
+            <LoginForm />
           </div>
-          <LoginForm />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
