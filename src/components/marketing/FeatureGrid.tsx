@@ -3,6 +3,7 @@
 import { BookOpen, Globe, Users, Award } from "lucide-react";
 import { motion } from "framer-motion";
 import { Section } from "@/components/layout/Section";
+import { SMOOTH_EASE } from "./animation";
 
 const features = [
   {
@@ -36,7 +37,7 @@ const headingVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.5, ease: SMOOTH_EASE },
   },
 };
 
@@ -48,7 +49,7 @@ const cardVariants = {
     transition: {
       delay: 0.1 + i * 0.1,
       duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
+      ease: SMOOTH_EASE,
     },
   }),
 };

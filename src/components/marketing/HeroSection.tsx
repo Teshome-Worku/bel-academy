@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { BRAND } from "@/constants/brand";
 import { Container } from "@/components/layout/Container";
 import { CountUpStats } from "./CountUpStats";
+import { SMOOTH_EASE } from "./animation";
 
 /* ── Framer Motion variants ───────────────────────── */
 const fadeUp = {
@@ -14,7 +15,7 @@ const fadeUp = {
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.12, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: i * 0.12, duration: 0.5, ease: SMOOTH_EASE },
   }),
 };
 
@@ -24,7 +25,7 @@ const scaleIn = {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { delay: 0.55, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: 0.55, duration: 0.6, ease: SMOOTH_EASE },
   },
 };
 

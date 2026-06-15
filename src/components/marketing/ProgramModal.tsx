@@ -5,6 +5,7 @@ import { X, Clock, BarChart3, MapPin, CheckCircle2, BookOpen, Briefcase, Graduat
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import type { Program } from "@/types/program";
+import { SMOOTH_EASE } from "./animation";
 
 /* ── Icon resolver ────────────────────────────────── */
 const iconMap: Record<string, React.ElementType> = {
@@ -72,7 +73,7 @@ export function ProgramModal({ program, onClose }: { program: Program | null; on
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.3, ease: SMOOTH_EASE }}
             className="fixed inset-4 z-[90] m-auto flex max-h-[90vh] max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-2xl sm:inset-auto sm:left-1/2 sm:top-1/2 sm:w-full sm:-translate-x-1/2 sm:-translate-y-1/2"
           >
             {/* Header with accent gradient */}
