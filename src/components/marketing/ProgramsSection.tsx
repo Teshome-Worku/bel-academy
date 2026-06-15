@@ -36,10 +36,18 @@ const cardVariants = {
 
 export function ProgramsSection() {
   const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   return (
     <>
-      <Section className="bg-slate-50">
+      <Section className="bg-[#F8FAFC] relative overflow-hidden">
+        {/* decorative soft shapes */}
+        <div className="pointer-events-none absolute left-1/4 top-0 -translate-y-1/2">
+          <div style={{ width: 320, height: 320, background: 'radial-gradient(circle at 30% 30%, rgba(29,78,216,0.08), transparent 40%)' }} className="rounded-full blur-3xl opacity-80" />
+        </div>
+        <div className="pointer-events-none absolute right-1/4 bottom-0 translate-y-1/3">
+          <div style={{ width: 240, height: 240, background: 'radial-gradient(circle at 70% 70%, rgba(245,158,11,0.06), transparent 40%)' }} className="rounded-full blur-3xl opacity-80" />
+        </div>
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -60,6 +68,14 @@ export function ProgramsSection() {
           <p className="mt-3 text-brand-gray">
             Find the learning path that matches your goals—from everyday English to exam preparation.
           </p>
+
+          {/* animated underline */}
+          <motion.div
+            initial={{ scaleX: 0, opacity: 0 }}
+            animate={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.6, ease: SMOOTH_EASE }}
+            className="mx-auto mt-6 h-1 w-28 origin-left rounded-full bg-gradient-to-r from-[#1D4ED8] via-[#F59E0B] to-[#059669]"
+          />
 
           {/* Accent line */}
           <div className="mx-auto mt-5 flex items-center justify-center gap-1.5">
@@ -82,7 +98,11 @@ export function ProgramsSection() {
             >
               <ProgramCard
                 program={p}
-                onViewDetails={() => setSelectedProgram(p)}
+                index={i}
+                onViewDetails={() => {
+                  setSelectedProgram(p);
+                  setSelectedIndex(i);
+                }}
               />
             </motion.div>
           ))}
@@ -109,7 +129,11 @@ export function ProgramsSection() {
       {/* Program details modal */}
       <ProgramModal
         program={selectedProgram}
-        onClose={() => setSelectedProgram(null)}
+        accentIndex={selectedIndex}
+        onClose={() => {
+          setSelectedProgram(null);
+          setSelectedIndex(null);
+        }}
       />
     </>
   );

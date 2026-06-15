@@ -31,7 +31,7 @@ const accentMap: Record<string, { bg: string; color: string; lightBg: string }> 
 
 const defaultAccent = { bg: "bg-brand-blue", color: "text-brand-blue", lightBg: "bg-blue-50" };
 
-export function ProgramModal({ program, onClose }: { program: Program | null; onClose: () => void }) {
+export function ProgramModal({ program, accentIndex, onClose }: { program: Program | null; accentIndex?: number | null; onClose: () => void }) {
   /* Lock body scroll when open */
   useEffect(() => {
     if (program) {
@@ -52,7 +52,16 @@ export function ProgramModal({ program, onClose }: { program: Program | null; on
   }, [onClose]);
 
   const Icon = program ? (iconMap[program.iconName] || BookOpen) : BookOpen;
-  const accent = program ? (accentMap[program.title] || defaultAccent) : defaultAccent;
+  const PALETTES = [
+    { start: "#1D4ED8", end: "#60A5FA" },
+    { start: "#F59E0B", end: "#FDE68A" },
+    { start: "#312E81", end: "#6366F1" },
+    { start: "#059669", end: "#34D399" },
+    { start: "#1D4ED8", end: "#F59E0B" },
+    { start: "#312E81", end: "#1D4ED8" },
+    { start: "#F59E0B", end: "#059669" },
+  ];
+  const palette = typeof accentIndex === "number" && program ? PALETTES[accentIndex % PALETTES.length] : { start: "#1D4ED8", end: "#60A5FA" };
 
   return (
     <AnimatePresence>
@@ -78,7 +87,7 @@ export function ProgramModal({ program, onClose }: { program: Program | null; on
           >
             <div className="w-full max-w-lg max-h-[90vh] overflow-hidden rounded-2xl bg-white shadow-2xl">
               {/* Header with accent gradient */}
-              <div className={`relative ${accent.bg} px-6 pb-6 pt-5`}>
+              <div style={{ background: `linear-gradient(135deg, ${palette.start} 0%, ${palette.end} 100%)` }} className="relative px-6 pb-6 pt-5">
                 {/* Close button */}
                 <button
                   type="button"
@@ -148,7 +157,7 @@ export function ProgramModal({ program, onClose }: { program: Program | null; on
                   <ul className="mt-3 space-y-2.5">
                     {program.outcomes.map((outcome) => (
                       <li key={outcome} className="flex items-start gap-2.5 text-sm text-brand-gray">
-                        <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${accent.color}`} />
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" style={{ color: palette.start }} />
                         {outcome}
                       </li>
                     ))}
@@ -161,9 +170,10 @@ export function ProgramModal({ program, onClose }: { program: Program | null; on
                 <Link href="/register" onClick={onClose}>
                   <button
                     type="button"
-                    className="group flex w-full items-center justify-center gap-2 rounded-xl bg-brand-blue py-3 text-sm font-bold text-white shadow-md shadow-brand-blue/20 transition-all duration-200 hover:bg-blue-800 hover:shadow-lg"
+                    className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white py-3 text-sm font-bold text-black shadow-md transition-all duration-200 hover:translate-y-[-2px]"
+                    style={{ color: palette.start }}
                   >
-                    Enroll in {program.title}
+                    Register Now
                     <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </button>
                 </Link>
