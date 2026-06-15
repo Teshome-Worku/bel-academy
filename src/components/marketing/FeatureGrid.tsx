@@ -56,7 +56,7 @@ const cardVariants = {
 
 export function FeatureGrid() {
   return (
-    <Section className="bg-white">
+    <Section className="bg-gradient-to-b from-white to-slate-50">
       {/* Animated heading */}
       <motion.div
         initial="hidden"
