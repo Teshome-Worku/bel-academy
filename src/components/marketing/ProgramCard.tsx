@@ -17,13 +17,13 @@ const iconMap: Record<string, React.ElementType> = {
 
 /* ── Color accent per program for visual variety ──── */
 const accentMap: Record<string, { iconBg: string; iconColor: string; hoverBorder: string }> = {
-  "General English":     { iconBg: "bg-blue-50",    iconColor: "text-brand-blue",  hoverBorder: "hover:border-brand-blue/40" },
-  "Business English":    { iconBg: "bg-amber-50",   iconColor: "text-amber-600",   hoverBorder: "hover:border-amber-400/40" },
-  "IELTS Preparation":   { iconBg: "bg-emerald-50", iconColor: "text-emerald-600", hoverBorder: "hover:border-emerald-400/40" },
-  "TOEFL Preparation":   { iconBg: "bg-purple-50",  iconColor: "text-purple-600",  hoverBorder: "hover:border-purple-400/40" },
-  "Kids English":        { iconBg: "bg-pink-50",    iconColor: "text-pink-600",    hoverBorder: "hover:border-pink-400/40" },
-  "Conversation Club":   { iconBg: "bg-sky-50",     iconColor: "text-sky-600",     hoverBorder: "hover:border-sky-400/40" },
-  "Academic Writing":    { iconBg: "bg-orange-50",  iconColor: "text-orange-600",  hoverBorder: "hover:border-orange-400/40" },
+  "General English": { iconBg: "bg-blue-50", iconColor: "text-brand-blue", hoverBorder: "hover:border-brand-blue/40" },
+  "Business English": { iconBg: "bg-amber-50", iconColor: "text-amber-600", hoverBorder: "hover:border-amber-400/40" },
+  "IELTS Preparation": { iconBg: "bg-emerald-50", iconColor: "text-emerald-600", hoverBorder: "hover:border-emerald-400/40" },
+  "TOEFL Preparation": { iconBg: "bg-purple-50", iconColor: "text-purple-600", hoverBorder: "hover:border-purple-400/40" },
+  "Kids English": { iconBg: "bg-pink-50", iconColor: "text-pink-600", hoverBorder: "hover:border-pink-400/40" },
+  "Conversation Club": { iconBg: "bg-sky-50", iconColor: "text-sky-600", hoverBorder: "hover:border-sky-400/40" },
+  "Academic Writing": { iconBg: "bg-orange-50", iconColor: "text-orange-600", hoverBorder: "hover:border-orange-400/40" },
 };
 
 const defaultAccent = { iconBg: "bg-blue-50", iconColor: "text-brand-blue", hoverBorder: "hover:border-brand-blue/40" };
@@ -34,7 +34,11 @@ export function ProgramCard({ program, onViewDetails }: { program: Program; onVi
 
   return (
     <div
-      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 ${accent.hoverBorder}`}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 p-6 transition-all duration-300 hover:-translate-y-1 ${accent.hoverBorder}`}
+      style={{
+        background: `linear-gradient(180deg, rgba(255,255,255,1) 0%, ${accent.iconBg.includes('bg-') ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,1)'} 55%), linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%)`,
+        boxShadow: '0 8px 24px rgba(15,23,42,0.06), inset 0 1px 0 rgba(255,255,255,0.6)'
+      }}
     >
       {/* Popular badge */}
       {program.featured && (
@@ -47,7 +51,7 @@ export function ProgramCard({ program, onViewDetails }: { program: Program; onVi
       )}
 
       {/* Icon */}
-      <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${accent.iconBg} transition-transform duration-300 group-hover:scale-110`}>
+      <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${accent.iconBg} transition-transform duration-300 group-hover:scale-110 ring-1 ring-white/30`}>
         <Icon className={`h-6 w-6 ${accent.iconColor}`} />
       </div>
 
