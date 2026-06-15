@@ -18,13 +18,18 @@ export function Logo({
 }: LogoProps) {
   const content = (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <span className={cn("relative block aspect-square h-16 shrink-0 overflow-hidden", imageClassName)}>
+      <span
+        className={cn(
+          "block h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 shrink-0 overflow-hidden",
+          imageClassName
+        )}
+      >
         <Image
           src={LOGO_PATH}
           alt={`${BRAND.name} logo`}
-          fill
+          width={160}
+          height={160}
           quality={100}
-          sizes="(max-width: 640px) 96px, 224px"
           className="object-contain"
           priority
         />

@@ -56,6 +56,35 @@ export function Navbar() {
     { label: "Afaan Oromo", code: "om" },
   ];
 
+  // Apply language selection to state, localStorage and document
+  const applyLanguage = (label: string, code: string) => {
+    setSelectedLang(label);
+    try {
+      localStorage.setItem('selectedLang', label);
+    } catch (e) {
+      // ignore
+    }
+    if (typeof document !== 'undefined' && document.documentElement) {
+      document.documentElement.lang = code;
+    }
+  };
+
+  // initialize from localStorage if available
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('selectedLang');
+      if (saved) {
+        const found = languages.find((l) => l.label === saved);
+        if (found) {
+          setSelectedLang(found.label);
+          document.documentElement.lang = found.code;
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
+  }, []);
+
   return (
     <header
       className={cn(
@@ -105,74 +134,120 @@ export function Navbar() {
           </nav>
 
           {/* ── RIGHT: Language Dropdown + Register Button ── */}
-          <div className="hidden items-center gap-3 lg:flex">
-            {/* Language Dropdown */}
-            <div className="relative" ref={langRef}>
-              <button
-                type="button"
-                onClick={() => setLangOpen((v) => !v)}
-                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-blue/30 hover:bg-blue-50"
-              >
-                <Globe className="h-4 w-4 text-brand-gray" />
-                <span>{selectedLang}</span>
-                <ChevronDown
-                  className={cn(
-                    "h-3.5 w-3.5 text-brand-gray transition-transform duration-200",
-                    langOpen && "rotate-180",
-                  )}
-                />
-              </button>
+          <div ref={langRef} className="flex items-center gap-3">
+            {/* Desktop language + register (visible on lg+) */}
+            <div className="hidden items-center gap-3 lg:flex">
+              {/* Language Dropdown */}
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setLangOpen((v) => !v)}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-blue/30 hover:bg-blue-50"
+                >
+                  <Globe className="h-4 w-4 text-brand-gray" />
+                  <span>{selectedLang}</span>
+                  <ChevronDown
+                    className={cn(
+                      "h-3.5 w-3.5 text-brand-gray transition-transform duration-200",
+                      langOpen && "rotate-180",
+                    )}
+                  />
+                </button>
 
-              {langOpen && (
-                <div className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-xl border border-slate-100 bg-white py-1.5 shadow-xl">
-                  {languages.map((lang) => (
-                    <button
-                      key={lang.code}
-                      type="button"
-                      onClick={() => {
-                        setSelectedLang(lang.label);
-                        setLangOpen(false);
-                      }}
-                      className={cn(
-                        "flex w-full items-center gap-2 px-4 py-2.5 text-sm transition-colors",
-                        selectedLang === lang.label
-                          ? "bg-blue-50 font-medium text-brand-blue"
-                          : "text-brand-navy hover:bg-slate-50",
-                      )}
-                    >
-                      {lang.label}
-                      {selectedLang === lang.label && (
-                        <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-blue" />
-                      )}
-                    </button>
-                  ))}
-                </div>
-              )}
+                {langOpen && (
+                  <div className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-xl border border-slate-100 bg-white py-1.5 shadow-xl">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        type="button"
+                        onClick={() => {
+                          applyLanguage(lang.label, lang.code);
+                          setLangOpen(false);
+                        }}
+                        className={cn(
+                          "flex w-full items-center gap-2 px-4 py-2.5 text-sm transition-colors",
+                          selectedLang === lang.label
+                            ? "bg-blue-50 font-medium text-brand-blue"
+                            : "text-brand-navy hover:bg-slate-50",
+                        )}
+                      >
+                        {lang.label}
+                        {selectedLang === lang.label && (
+                          <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-blue" />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Register Now Button */}
+              <Link href="/register">
+                <button
+                  type="button"
+                  className="group inline-flex items-center gap-2 rounded-lg bg-brand-blue px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-brand-blue/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-lg hover:shadow-brand-blue/30 active:translate-y-0"
+                >
+                  Register Now
+                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                </button>
+              </Link>
             </div>
 
-            {/* Register Now Button */}
-            <Link href="/register">
-              <button
-                type="button"
-                className="group inline-flex items-center gap-2 rounded-lg bg-brand-blue px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-brand-blue/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-lg hover:shadow-brand-blue/30 active:translate-y-0"
-              >
-                Register Now
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-              </button>
-            </Link>
+            {/* Mobile language popup triggered by the hamburger-adjacent button — moved next to hamburger below */}
           </div>
 
           {/* ── MOBILE: Hamburger (only shows when menu is closed) ── */}
           {!mobileOpen ? (
-            <button
-              type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-slate-100 lg:hidden"
-              onClick={() => setMobileOpen(true)}
-              aria-label="Open menu"
-            >
-              <Menu className="h-6 w-6 text-brand-navy" />
-            </button>
+            <div className="flex items-center gap-2 lg:hidden">
+              {/* Compact language shorthand near hamburger */}
+              <button
+                type="button"
+                onClick={() => setLangOpen((v) => !v)}
+                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-blue/30 hover:bg-blue-50"
+                aria-label="Language"
+              >
+                <Globe className="h-4 w-4 text-brand-gray" />
+                <span className="ml-1 text-sm font-semibold">{selectedLang === 'English' ? 'EN' : 'OR'}</span>
+              </button>
+
+              <button
+                type="button"
+                className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-slate-100"
+                onClick={() => setMobileOpen(true)}
+                aria-label="Open menu"
+              >
+                <Menu className="h-6 w-6 text-brand-navy" />
+              </button>
+            </div>
           ) : null}
+
+          {/* Mobile language menu popup (shared with mobile button) */}
+          {langOpen && (
+            <div className="fixed right-4 top-[4.5rem] z-[80] w-44 overflow-hidden rounded-xl border border-slate-100 bg-white py-1.5 shadow-xl lg:hidden">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  type="button"
+                  onClick={() => {
+                    applyLanguage(lang.label, lang.code);
+                    setLangOpen(false);
+                  }}
+                  className={cn(
+                    "flex w-full items-center gap-2 px-4 py-2.5 text-sm transition-colors",
+                    selectedLang === lang.label
+                      ? "bg-blue-50 font-medium text-brand-blue"
+                      : "text-brand-navy hover:bg-slate-50",
+                  )}
+                >
+                  <Globe className="mr-2.5 h-4 w-4 text-brand-gray" />
+                  {lang.label}
+                  {selectedLang === lang.label && (
+                    <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-blue" />
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </Container>
 
@@ -241,7 +316,10 @@ export function Navbar() {
                 <button
                   key={lang.code}
                   type="button"
-                  onClick={() => setSelectedLang(lang.label)}
+                  onClick={() => {
+                    applyLanguage(lang.label, lang.code);
+                    setMobileOpen(false);
+                  }}
                   className={cn(
                     "flex min-h-11 w-full items-center rounded-lg px-3.5 py-2.5 text-sm transition-colors",
                     selectedLang === lang.label
