@@ -101,10 +101,10 @@ export function Navbar() {
         >
           {/* ── LEFT: Logo + Brand Name ──────────────────── */}
           <Logo
-            className="sm:gap-3"
+            className="sm:gap-2"
             imageClassName={cn(
               "transition-all duration-300",
-              scrolled ? "h-[3.75rem] md:h-[4.25rem]" : "h-16 md:h-[4.75rem]",
+              scrolled ? "h-[4rem] md:h-[4.5rem]" : "h-16 md:h-20",
             )}
             showText
           />

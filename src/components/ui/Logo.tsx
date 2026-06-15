@@ -19,16 +19,16 @@ export function Logo({
   const content = (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <span
-        className={cn(
-          "block h-20 w-20 sm:h-24 sm:w-24 md:h-28 md:w-28 lg:h-32 lg:w-32 shrink-0 overflow-hidden",
+        className={
           imageClassName
-        )}
+            ? cn("relative block aspect-square shrink-0 overflow-hidden", imageClassName)
+            : "relative block aspect-square shrink-0 overflow-hidden h-16 w-16 sm:h-20 sm:w-20 md:h-22 md:w-22"
+        }
       >
         <Image
           src={LOGO_PATH}
           alt={`${BRAND.name} logo`}
-          width={160}
-          height={160}
+          fill
           quality={100}
           className="object-contain"
           priority
