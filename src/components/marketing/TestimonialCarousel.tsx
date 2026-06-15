@@ -71,17 +71,17 @@ export function TestimonialCarousel() {
                 </div>
 
                 <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} className="mt-8 relative">
-                    <button onClick={prev} aria-label="Previous" className="absolute left-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white p-2 shadow-md">
+                    <button onClick={prev} aria-label="Previous" className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white p-2 shadow-md">
                         <ChevronLeft className="h-5 w-5" />
                     </button>
                     <div className="overflow-x-auto" ref={scrollerRef} style={{ WebkitOverflowScrolling: 'touch' }} onTouchStart={() => setPaused(true)} onTouchEnd={() => setPaused(false)}>
-                        <div className="flex gap-6 px-6" style={{ touchAction: 'pan-y' }}>
+                        <div className="flex gap-6 px-4" style={{ touchAction: 'pan-y' }}>
                             {testimonials.map((t, i) => {
                                 const distance = Math.abs(i - index);
                                 const isActive = i === index;
                                 const isVisible = distance <= 2 || distance === testimonials.length - 1; // show neighbors
                                 return (
-                                    <motion.div key={t.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: isVisible ? 1 : 0.4, y: isActive ? 0 : 8 }} transition={{ duration: 0.45 }} className={`min-w-[280px] flex-shrink-0 sm:min-w-[320px] md:min-w-[360px] ${isActive ? 'scale-105' : 'scale-100'} transition-transform`}>
+                                    <motion.div key={t.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: isVisible ? 1 : 0.4, y: isActive ? 0 : 8 }} transition={{ duration: 0.45 }} className={`w-[calc(100%-48px)] flex-shrink-0 sm:min-w-[320px] md:min-w-[360px] ${isActive ? 'scale-105' : 'scale-100'} transition-transform`} style={{ boxSizing: 'border-box' }}>
                                         <div className={`rounded-[24px] p-6`} style={{ background: 'rgba(255,255,255,0.95)', boxShadow: isActive ? '0 20px 50px rgba(15,23,42,0.12)' : '0 8px 24px rgba(15,23,42,0.06)' }}>
                                             <div className="flex items-center gap-4">
                                                 <Avatar name={t.name} accent={palette[i % palette.length]} />
@@ -95,9 +95,11 @@ export function TestimonialCarousel() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="mt-4 text-[#0F172A] text-sm whitespace-normal break-words">
-                                                <Quote className="h-5 w-5 text-[#1D4ED8] float-left mr-3" />
-                                                &ldquo;{t.quote}&rdquo;
+                                            <div className="mt-4 text-[#0F172A] text-sm">
+                                                <div className="flex items-start">
+                                                    <Quote className="h-5 w-5 text-[#1D4ED8] flex-shrink-0 mr-3" />
+                                                    <p className="whitespace-normal leading-relaxed" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>&ldquo;{t.quote}&rdquo;</p>
+                                                </div>
                                             </div>
                                             <div className="mt-4 text-xs text-[#64748B] flex items-center gap-2">
                                                 <span className="inline-flex items-center gap-1 rounded-full bg-[#F8FAFC] px-2 py-1 text-xs">BEL Academy</span>
@@ -108,9 +110,19 @@ export function TestimonialCarousel() {
                             })}
                         </div>
                     </div>
-                    <button onClick={next} aria-label="Next" className="absolute right-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white p-2 shadow-md">
+                    <button onClick={next} aria-label="Next" className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white p-2 shadow-md">
                         <ChevronRight className="h-5 w-5" />
                     </button>
+
+                    {/* Mobile controls: show buttons under carousel for small screens */}
+                    <div className="mt-4 flex justify-center gap-4 md:hidden">
+                        <button onClick={prev} aria-label="Previous" className="rounded-full bg-white p-2 shadow-md">
+                            <ChevronLeft className="h-5 w-5" />
+                        </button>
+                        <button onClick={next} aria-label="Next" className="rounded-full bg-white p-2 shadow-md">
+                            <ChevronRight className="h-5 w-5" />
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
