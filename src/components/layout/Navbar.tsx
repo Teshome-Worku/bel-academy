@@ -72,7 +72,7 @@ export function Navbar() {
         >
           {/* ── LEFT: Logo + Brand Name ──────────────────── */}
           <Logo
-            className="-ml-1 sm:gap-3"
+            className=" sm:gap-3"
             imageClassName={cn(
               "transition-all duration-300",
               scrolled ? "h-[3.75rem] md:h-[4.25rem]" : "h-16 md:h-[4.75rem]",

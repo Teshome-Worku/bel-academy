@@ -1,31 +1,107 @@
-﻿import { MapPin, Phone, Clock } from "lucide-react";
+"use client";
+
+import { MapPin, Phone, Clock, Navigation, ExternalLink, Wifi, ArrowRight } from "lucide-react";
+import Link from "next/link";
 import type { Branch } from "@/types/branch";
-import { Card, CardContent } from "@/components/ui/Card";
-import { Badge } from "@/components/ui/Badge";
 
 export function BranchCard({ branch }: { branch: Branch }) {
+  const isOnline = branch.isOnline;
+
   return (
-    <Card>
-      <CardContent>
-        <div className="flex items-center justify-between gap-2">
-          <h3 className="font-display text-lg font-semibold text-brand-navy">{branch.name}</h3>
-          {branch.isOnline ? <Badge className="bg-brand-gold/20 text-brand-navy">Online</Badge> : null}
+    <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50">
+      {/* Top accent stripe */}
+      <div className={`h-1.5 w-full ${isOnline ? "bg-gradient-to-r from-brand-gold to-amber-400" : "bg-gradient-to-r from-brand-blue to-blue-500"}`} />
+
+      <div className="flex flex-1 flex-col p-6">
+        {/* Header */}
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex items-center gap-3">
+            {/* Icon */}
+            <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${isOnline ? "bg-brand-gold/10" : "bg-brand-blue/10"}`}>
+              {isOnline ? (
+                <Wifi className="h-5 w-5 text-brand-gold" />
+              ) : (
+                <MapPin className="h-5 w-5 text-brand-blue" />
+              )}
+            </div>
+            <h3 className="font-display text-lg font-bold text-brand-navy">{branch.name}</h3>
+          </div>
+
+          {isOnline && (
+            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-emerald-600">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
+              Live
+            </span>
+          )}
         </div>
-        <ul className="mt-4 space-y-3 text-sm text-brand-gray">
-          <li className="flex items-start gap-2">
-            <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand-blue" />
-            {branch.address}
+
+        {/* Info rows */}
+        <ul className="mt-5 flex-1 space-y-3">
+          <li className="flex items-center gap-3 text-sm text-brand-gray">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50">
+              <MapPin className="h-4 w-4 text-brand-blue" />
+            </div>
+            <span>{branch.address}</span>
           </li>
-          <li className="flex items-center gap-2">
-            <Phone className="h-4 w-4 shrink-0 text-brand-blue" />
-            {branch.phone}
+          <li className="flex items-center gap-3 text-sm text-brand-gray">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50">
+              <Phone className="h-4 w-4 text-brand-blue" />
+            </div>
+            <span className="font-medium text-brand-navy">{branch.phone}</span>
           </li>
-          <li className="flex items-center gap-2">
-            <Clock className="h-4 w-4 shrink-0 text-brand-blue" />
-            {branch.hours}
+          <li className="flex items-center gap-3 text-sm text-brand-gray">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-slate-50">
+              <Clock className="h-4 w-4 text-brand-blue" />
+            </div>
+            <span>{branch.hours}</span>
           </li>
         </ul>
-      </CardContent>
-    </Card>
+
+        {/* Action buttons */}
+        <div className="mt-5 flex gap-2 border-t border-slate-100 pt-5">
+          {isOnline ? (
+            <>
+              <Link href="/register" className="flex-1">
+                <button
+                  type="button"
+                  className="group/btn flex w-full items-center justify-center gap-2 rounded-xl bg-brand-gold py-2.5 text-sm font-semibold text-brand-navy shadow-sm transition-all duration-200 hover:bg-amber-500 hover:shadow-md"
+                >
+                  Join Online
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover/btn:translate-x-0.5" />
+                </button>
+              </Link>
+              <Link href="/programs" className="flex-1">
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 py-2.5 text-sm font-medium text-brand-navy transition-all duration-200 hover:border-brand-blue/30 hover:bg-blue-50 hover:text-brand-blue"
+                >
+                  <ExternalLink className="h-3.5 w-3.5" />
+                  Learn More
+                </button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <a href={`tel:${branch.phone}`} className="flex-1">
+                <button
+                  type="button"
+                  className="group/btn flex w-full items-center justify-center gap-2 rounded-xl bg-brand-blue py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:bg-blue-800 hover:shadow-md hover:shadow-brand-blue/20"
+                >
+                  <Phone className="h-3.5 w-3.5" />
+                  Call Branch
+                </button>
+              </a>
+              <button
+                type="button"
+                className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-slate-200 py-2.5 text-sm font-medium text-brand-navy transition-all duration-200 hover:border-brand-blue/30 hover:bg-blue-50 hover:text-brand-blue"
+              >
+                <Navigation className="h-3.5 w-3.5" />
+                Directions
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

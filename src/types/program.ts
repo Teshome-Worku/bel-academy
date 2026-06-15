@@ -1,4 +1,4 @@
-﻿export type ProgramLevel = "beginner" | "intermediate" | "advanced" | "all-levels";
+export type ProgramLevel = "beginner" | "intermediate" | "advanced" | "all-levels";
 
 export interface Program {
   id: string;
@@ -9,4 +9,7 @@ export interface Program {
   level: ProgramLevel;
   schedule: string;
   featured?: boolean;
+  iconName: string;
+  outcomes: string[];
+  deliveryMode: string;
 }

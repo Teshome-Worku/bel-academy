@@ -1,4 +1,4 @@
-﻿import type { Program } from "@/types/program";
+import type { Program } from "@/types/program";
 
 export const programs: Program[] = [
   {
@@ -10,6 +10,15 @@ export const programs: Program[] = [
     level: "all-levels",
     schedule: "Morning & Evening",
     featured: true,
+    iconName: "BookOpen",
+    deliveryMode: "On-Campus & Online",
+    outcomes: [
+      "Confident daily English communication",
+      "Reading & writing proficiency",
+      "Listening comprehension skills",
+      "Grammar & vocabulary expansion",
+      "Presentation & public speaking basics",
+    ],
   },
   {
     id: "prog-2",
@@ -20,6 +29,15 @@ export const programs: Program[] = [
     level: "intermediate",
     schedule: "Evening",
     featured: true,
+    iconName: "Briefcase",
+    deliveryMode: "On-Campus & Online",
+    outcomes: [
+      "Professional email & report writing",
+      "Meeting & negotiation language",
+      "Business presentation skills",
+      "Industry-specific vocabulary",
+      "Cross-cultural communication",
+    ],
   },
   {
     id: "prog-3",
@@ -30,6 +48,15 @@ export const programs: Program[] = [
     level: "intermediate",
     schedule: "Weekend",
     featured: true,
+    iconName: "GraduationCap",
+    deliveryMode: "On-Campus",
+    outcomes: [
+      "All 4 IELTS modules covered",
+      "Weekly full mock tests",
+      "Personalized band score feedback",
+      "Time management strategies",
+      "Speaking interview practice",
+    ],
   },
   {
     id: "prog-4",
@@ -39,6 +66,15 @@ export const programs: Program[] = [
     duration: "8 weeks",
     level: "advanced",
     schedule: "Afternoon",
+    iconName: "Award",
+    deliveryMode: "On-Campus",
+    outcomes: [
+      "Integrated reading-listening tasks",
+      "Academic writing & essay structure",
+      "Note-taking & summarization",
+      "Computer-based test familiarity",
+      "Score-boosting strategies",
+    ],
   },
   {
     id: "prog-5",
@@ -48,6 +84,15 @@ export const programs: Program[] = [
     duration: "16 weeks",
     level: "beginner",
     schedule: "Morning",
+    iconName: "School",
+    deliveryMode: "On-Campus",
+    outcomes: [
+      "Fun & interactive learning activities",
+      "Basic vocabulary & sentence building",
+      "Phonics & pronunciation",
+      "Social English for daily life",
+      "Creative storytelling skills",
+    ],
   },
   {
     id: "prog-6",
@@ -57,6 +102,15 @@ export const programs: Program[] = [
     duration: "Ongoing",
     level: "all-levels",
     schedule: "Evening",
+    iconName: "MessageCircle",
+    deliveryMode: "On-Campus & Online",
+    outcomes: [
+      "Real-world conversational fluency",
+      "Accent & pronunciation improvement",
+      "Debate & discussion skills",
+      "Cultural exchange activities",
+      "Confidence in spoken English",
+    ],
   },
   {
     id: "prog-7",
@@ -66,5 +120,14 @@ export const programs: Program[] = [
     duration: "6 weeks",
     level: "advanced",
     schedule: "Weekend",
+    iconName: "PenTool",
+    deliveryMode: "On-Campus & Online",
+    outcomes: [
+      "Essay & thesis structuring",
+      "Academic citation formats (APA, MLA)",
+      "Research methodology basics",
+      "Critical analysis writing",
+      "Scholarship application essays",
+    ],
   },
 ];
