@@ -6,4 +6,5 @@ export const BRAND = {
   phone: "0942412500",
   email: "info@belacademy.et",
   address: "Addis Ababa, Ethiopia",
+  developer: "Walin Technologies"
 } as const;

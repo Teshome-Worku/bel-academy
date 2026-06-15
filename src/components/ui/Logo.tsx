@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { LOGO_PATH, BRAND } from "@/constants/brand";
 import { cn } from "@/lib/utils";
@@ -17,19 +17,28 @@ export function Logo({
   href = "/",
 }: LogoProps) {
   const content = (
-    <span className={cn("inline-flex items-center gap-3", className)}>
-      <Image
-        src={LOGO_PATH}
-        alt={`${BRAND.name} logo`}
-        width={160}
-        height={64}
-        className={cn("h-full w-auto object-contain", imageClassName)}
-        priority
-      />
+    <span className={cn("inline-flex items-center gap-2.5", className)}>
+      <span className={cn("relative block aspect-square h-16 shrink-0 overflow-hidden", imageClassName)}>
+        <Image
+          src={LOGO_PATH}
+          alt={`${BRAND.name} logo`}
+          fill
+          quality={100}
+          sizes="(max-width: 640px) 72px, 96px"
+          className="object-contain scale-[1.48] transform-gpu"
+          priority
+        />
+      </span>
       {showText ? (
         <span className="hidden flex-col leading-tight sm:flex">
-          <span className="font-display text-lg font-semibold text-brand-navy">{BRAND.name}</span>
-          <span className="text-xs text-brand-gray">English Language Center</span>
+          <span className="whitespace-nowrap font-display text-[1.2rem] font-bold text-brand-navy md:text-[1.3rem]">
+            {BRAND.name}
+          </span>
+          <span className="flex items-center gap-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-brand-gray lg:text-[10px]">
+            <span className="inline-block h-px w-3 bg-brand-gold" />
+            {BRAND.tagline}
+            <span className="inline-block h-px w-3 bg-brand-gold" />
+          </span>
         </span>
       ) : null}
     </span>

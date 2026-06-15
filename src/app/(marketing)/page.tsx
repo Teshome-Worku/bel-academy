@@ -1,9 +1,8 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { programs } from "@/data/programs";
 import { branches } from "@/data/branches";
 import { testimonials } from "@/data/testimonials";
 import { HeroSection } from "@/components/marketing/HeroSection";
-import { StatsBar } from "@/components/marketing/StatsBar";
 import { FeatureGrid } from "@/components/marketing/FeatureGrid";
 import { ProgramCard } from "@/components/marketing/ProgramCard";
 import { BranchCard } from "@/components/marketing/BranchCard";
@@ -17,7 +16,6 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <StatsBar />
       <FeatureGrid />
       <Section>
         <SectionHeading eyebrow="Programs" title="Seven paths to fluency" description="From kids classes to IELTS prep—find the right fit." align="center" />

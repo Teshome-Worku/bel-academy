@@ -39,6 +39,11 @@ export function Footer() {
         <p className="mt-10 border-t border-slate-100 pt-6 text-center text-sm text-brand-gray">
           © {new Date().getFullYear()} {BRAND.name}. All rights reserved.
         </p>
+        <p className="text-center text-xs text-brand-gray">
+          Developed with ❤️ by <Link href="https://walin-tech.vercel.app" className="text-brand-blue hover:underline" target="_blank" title="Walin Technologies">
+            {BRAND.developer}
+          </Link>
+        </p>
       </Container>
     </footer>
   );
