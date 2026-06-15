@@ -4,6 +4,7 @@ import { FeatureGrid } from "@/components/marketing/FeatureGrid";
 import { ProgramsSection } from "@/components/marketing/ProgramsSection";
 import { BranchesSection } from "@/components/marketing/BranchesSection";
 import { TestimonialCard } from "@/components/marketing/TestimonialCard";
+import TestimonialCarousel from "@/components/marketing/TestimonialCarousel";
 import { CommunityCTA } from "@/components/marketing/CommunityCTA";
 import { FAQSection } from "@/components/marketing/FAQSection";
 import { CommunitySection } from "@/components/marketing/CommunitySection";
@@ -20,14 +21,7 @@ export default function HomePage() {
       <BranchesSection />
       <FAQSection />
       <CommunitySection />
-      <Section>
-        <SectionHeading eyebrow="Stories" title="What students say" align="center" />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {testimonials.map((t) => (
-            <TestimonialCard key={t.id} testimonial={t} />
-          ))}
-        </div>
-      </Section>
+      <TestimonialCarousel />
       <CommunityCTA />
       <CTABanner />
     </>
