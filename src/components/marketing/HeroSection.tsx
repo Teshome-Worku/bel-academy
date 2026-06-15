@@ -79,9 +79,9 @@ export function HeroSection() {
           <motion.p
             custom={2}
             variants={fadeUp}
-            className="mt-2 max-w-xl text-sm leading-relaxed text-slate-300 sm:mt-5 sm:text-lg md:text-xl"
+            className="mt-2 max-w-xl text-sm leading-relaxed text-slate-300 sm:mt-5 sm:text-lg md:text-xl mb-2"
           >
-            Join thousands of learners at our Buraayyuu and Jamoo Furii
+            Join thousands of learners at our Burayu and Jamoo Furii
             branches—or study online with expert instructors.
           </motion.p>
 
@@ -112,21 +112,21 @@ export function HeroSection() {
             </Link>
           </motion.div>
         </motion.div>
-      </Container>
 
-      {/* ── Floating Statistics Card ─────────────────── */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={scaleIn}
-        className="relative z-10 px-4 -mt-12 md:mt-0 pb-4 sm:px-6 sm:pb-8 lg:px-8 lg:pb-10"
-      >
-        <div className="mx-auto max-w-5xl">
-          <div className="glass rounded-2xl px-5 py-5 shadow-2xl sm:px-10 sm:py-7">
-            <CountUpStats />
+        {/* ── Floating Statistics Card (anchored inside Container for consistent mobile spacing) ─────────────────── */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={scaleIn}
+          className="absolute left-0 right-0 -bottom-8 sm:-bottom-10 md:-bottom-12 z-10 px-4 pb-4 sm:px-6 sm:pb-8 lg:px-8 lg:pb-10"
+        >
+          <div className="mx-auto max-w-5xl">
+            <div className="glass rounded-2xl px-5 py-5 shadow-2xl sm:px-10 sm:py-7">
+              <CountUpStats />
+            </div>
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </Container>
     </section>
   );
 }

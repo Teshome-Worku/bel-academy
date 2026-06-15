@@ -17,7 +17,7 @@ export function Logo({
   href = "/",
 }: LogoProps) {
   const content = (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
+    <span className={cn("inline-flex items-center gap-1.5 sm:gap-1", className)}>
       <span
         className={
           imageClassName
@@ -35,11 +35,11 @@ export function Logo({
         />
       </span>
       {showText ? (
-        <span className="hidden flex-col leading-tight sm:flex">
-          <span className="whitespace-nowrap font-display text-[1.2rem] font-bold text-brand-navy md:text-[1.3rem]">
+        <span className="flex flex-col leading-tight">
+          <span className="whitespace-nowrap font-display text-sm sm:text-[1.2rem] font-bold text-brand-navy md:text-[1.3rem]">
             {BRAND.name}
           </span>
-          <span className="flex items-center gap-1 text-[9px] font-semibold uppercase tracking-[0.18em] text-brand-gray lg:text-[10px]">
+          <span className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-gray">
             <span className="inline-block h-px w-3 bg-brand-gold" />
             {BRAND.tagline}
             <span className="inline-block h-px w-3 bg-brand-gold" />

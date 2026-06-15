@@ -92,7 +92,7 @@ export function Navbar() {
         scrolled ? "shadow-lg" : "shadow-sm",
       )}
     >
-      <Container className="px-2.5 sm:px-4 lg:px-5 xl:px-6">
+      <Container className="pl-2 pr-2.5 sm:pl-4 sm:pr-4 lg:pl-3 lg:pr-6 xl:pl-4 xl:pr-6">
         <div
           className={cn(
             "flex items-center justify-between transition-all duration-300",
@@ -101,7 +101,7 @@ export function Navbar() {
         >
           {/* ── LEFT: Logo + Brand Name ──────────────────── */}
           <Logo
-            className="sm:gap-2"
+            className="sm:gap-0.5"
             imageClassName={cn(
               "transition-all duration-300",
               scrolled ? "h-[4rem] md:h-[4.5rem]" : "h-16 md:h-20",
@@ -269,7 +269,7 @@ export function Navbar() {
       >
         {/* Drawer Header — single close button */}
         <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
-          <Logo imageClassName="h-14" showText={false} href={false} />
+          <Logo imageClassName="h-14" showText href={false} />
           <button
             type="button"
             className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-slate-100"
