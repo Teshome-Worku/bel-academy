@@ -1,12 +1,16 @@
-﻿import { BranchManagementTable } from "@/components/admin/BranchManagementTable";
+﻿import { BranchManagementCards } from "@/components/admin/BranchManagementCards";
+import { PageHeader } from "@/components/admin/shell/PageHeader";
 
 export const metadata = { title: "Branches" };
 
 export default function AdminBranchesPage() {
   return (
-    <div className="space-y-4">
-      <h2 className="font-display text-xl font-semibold text-brand-navy">Branches</h2>
-      <BranchManagementTable />
+    <div className="space-y-6">
+      <PageHeader
+        title="Branches"
+        description="Manage academy branches and locations"
+      />
+      <BranchManagementCards />
     </div>
   );
 }

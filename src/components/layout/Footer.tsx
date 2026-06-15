@@ -25,6 +25,11 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link href="/login" className="text-sm text-brand-gray hover:text-brand-blue">
+                  Admin Login
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="md:text-left text-center">
