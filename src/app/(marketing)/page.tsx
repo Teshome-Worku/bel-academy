@@ -5,6 +5,8 @@ import { ProgramsSection } from "@/components/marketing/ProgramsSection";
 import { BranchesSection } from "@/components/marketing/BranchesSection";
 import { TestimonialCard } from "@/components/marketing/TestimonialCard";
 import { CommunityCTA } from "@/components/marketing/CommunityCTA";
+import { FAQSection } from "@/components/marketing/FAQSection";
+import { CommunitySection } from "@/components/marketing/CommunitySection";
 import { CTABanner } from "@/components/marketing/CTABanner";
 import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -16,6 +18,8 @@ export default function HomePage() {
       <FeatureGrid />
       <ProgramsSection />
       <BranchesSection />
+      <FAQSection />
+      <CommunitySection />
       <Section>
         <SectionHeading eyebrow="Stories" title="What students say" align="center" />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
