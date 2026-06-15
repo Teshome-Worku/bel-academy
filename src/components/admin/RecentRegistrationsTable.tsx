@@ -21,7 +21,7 @@ export function RecentRegistrationsTable() {
   return (
     <div className="space-y-4">
       <Input placeholder="Search recent..." value={query} onChange={(e) => setQuery(e.target.value)} className="max-w-xs" />
-      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
         <table className="min-w-full text-left text-sm">
           <thead className="bg-slate-50 text-brand-gray">
             <tr>

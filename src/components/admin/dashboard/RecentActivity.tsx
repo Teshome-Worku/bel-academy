@@ -34,10 +34,10 @@ export function RecentActivity() {
                   <Icon className="h-4 w-4" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium text-brand-navy">
+                  <p className="text-sm font-medium text-brand-navy dark:text-slate-100">
                     {activity.message}
                   </p>
-                  <p className="text-xs text-brand-gray">
+                  <p className="text-xs text-brand-gray dark:text-slate-400">
                     {formatDate(activity.timestamp)}
                   </p>
                 </div>

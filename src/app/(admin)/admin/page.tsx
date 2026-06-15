@@ -17,7 +17,7 @@ export default function AdminDashboardPage() {
       />
       <PremiumStatGrid />
       <div>
-        <h2 className="mb-3 font-heading text-sm font-semibold uppercase tracking-wide text-brand-gray">
+        <h2 className="mb-3 font-heading text-sm font-semibold uppercase tracking-wide text-brand-gray dark:text-slate-400">
           Quick Actions
         </h2>
         <QuickActions />

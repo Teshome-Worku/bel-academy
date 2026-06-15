@@ -101,7 +101,7 @@ export function StudentsTable() {
         </Select>
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm">
             <thead className="sticky top-0 bg-slate-50 text-brand-gray">

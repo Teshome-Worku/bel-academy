@@ -24,7 +24,7 @@ export function PremiumStatCard({
     <motion.div
       whileHover={{ scale: 1.02, y: -2 }}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+      className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-shadow hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
     >
       <div
         className={cn(
@@ -34,8 +34,8 @@ export function PremiumStatCard({
       />
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm font-medium text-brand-gray">{label}</p>
-          <p className="mt-2 font-heading text-3xl font-bold text-brand-navy">
+          <p className="text-sm font-medium text-brand-gray dark:text-slate-400">{label}</p>
+          <p className="mt-2 font-heading text-3xl font-bold text-brand-navy dark:text-slate-100">
             {value}
           </p>
           {trend ? (

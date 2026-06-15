@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { adminNavItems, adminLogoutItem } from "@/constants/navigation";
+import { BRAND, LOGO_PATH } from "@/constants/brand";
 import { logout } from "@/lib/auth";
 import { cn } from "@/lib/utils";
-import { Logo } from "@/components/ui/Logo";
 
 type AdminSidebarProps = {
   collapsed: boolean;
@@ -15,7 +16,60 @@ type AdminSidebarProps = {
   onMobileClose: () => void;
 };
 
-export function AdminSidebar({ collapsed, mobileOpen, onMobileClose }: AdminSidebarProps) {
+function AdminBrandHeader({ collapsed }: { collapsed: boolean }) {
+  return (
+    <div
+      className={cn(
+        "shrink-0 border-b border-slate-200 px-3 py-4 dark:border-slate-700",
+        collapsed ? "flex justify-center" : "px-4",
+      )}
+    >
+      <Link
+        href="/admin"
+        className={cn(
+          "flex w-full flex-col items-center rounded-xl bg-white p-4 shadow-sm transition hover:shadow-md dark:bg-slate-800",
+          collapsed && "p-2",
+        )}
+      >
+        <div
+          className={cn(
+            "relative w-full shrink-0",
+            collapsed ? "h-12 w-12" : "h-20 w-full max-w-[200px]",
+          )}
+        >
+          <Image
+            src={LOGO_PATH}
+            alt={`${BRAND.name} logo`}
+            fill
+            quality={100}
+            sizes={collapsed ? "48px" : "200px"}
+            className="object-contain object-center"
+            priority
+          />
+        </div>
+        {!collapsed && (
+          <div className="mt-3 w-full text-center">
+            <p className="font-heading text-sm font-bold text-brand-navy dark:text-slate-100">
+              {BRAND.name}
+            </p>
+            <p className="mt-0.5 text-xs font-medium tracking-wide text-brand-gold">
+              {BRAND.tagline}
+            </p>
+            <p className="mt-1 text-[11px] text-brand-gray dark:text-slate-400">
+              Admin Portal
+            </p>
+          </div>
+        )}
+      </Link>
+    </div>
+  );
+}
+
+export function AdminSidebar({
+  collapsed,
+  mobileOpen,
+  onMobileClose,
+}: AdminSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -32,22 +86,9 @@ export function AdminSidebar({ collapsed, mobileOpen, onMobileClose }: AdminSide
   const LogOutIcon = adminLogoutItem.icon;
 
   const sidebarContent = (
-  <>
-      <div
-        className={cn(
-          "flex items-center border-b border-slate-100 px-3 py-4",
-          collapsed ? "justify-center" : "justify-center",
-        )}
-      >
-        <div className="rounded-xl bg-white p-2 shadow-sm">
-          <Logo
-            imageClassName={collapsed ? "h-10" : "h-16"}
-            showText={false}
-            href="/admin"
-          />
-        </div>
-      </div>
-      <nav className="flex-1 space-y-1 p-3">
+    <>
+      <AdminBrandHeader collapsed={collapsed} />
+      <nav className="min-h-0 flex-1 space-y-1 overflow-y-auto p-3">
         {adminNavItems.map((item) => {
           const active = isActive(item.href);
           const Icon = item.icon;
@@ -61,7 +102,7 @@ export function AdminSidebar({ collapsed, mobileOpen, onMobileClose }: AdminSide
                 "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition",
                 active
                   ? "bg-brand-blue text-white shadow-sm"
-                  : "text-brand-navy hover:bg-slate-100",
+                  : "text-brand-navy hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800",
                 collapsed && "justify-center px-2",
               )}
             >
@@ -71,13 +112,13 @@ export function AdminSidebar({ collapsed, mobileOpen, onMobileClose }: AdminSide
           );
         })}
       </nav>
-      <div className="border-t border-slate-100 p-3">
+      <div className="mt-auto shrink-0 border-t border-slate-200 p-3 dark:border-slate-700">
         <button
           type="button"
           onClick={handleLogout}
           title={collapsed ? adminLogoutItem.label : undefined}
           className={cn(
-            "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-600 transition hover:bg-red-50",
+            "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-600 transition hover:bg-red-50 dark:text-red-400 dark:hover:bg-red-950/40",
             collapsed && "justify-center px-2",
           )}
         >
@@ -88,19 +129,17 @@ export function AdminSidebar({ collapsed, mobileOpen, onMobileClose }: AdminSide
     </>
   );
 
+  const sidebarClasses = cn(
+    "flex h-screen shrink-0 flex-col border-r border-slate-200 bg-white transition-all duration-300 dark:border-slate-700 dark:bg-slate-900",
+    collapsed ? "w-[72px]" : "w-64",
+  );
+
   return (
     <>
-      {/* Desktop sidebar */}
-      <aside
-        className={cn(
-          "hidden shrink-0 flex-col border-r border-slate-200 bg-white transition-all duration-300 lg:flex",
-          collapsed ? "w-[72px]" : "w-64",
-        )}
-      >
+      <aside className={cn("sticky top-0 hidden lg:flex", sidebarClasses)}>
         {sidebarContent}
       </aside>
 
-      {/* Mobile drawer */}
       <AnimatePresence>
         {mobileOpen && (
           <>
@@ -116,12 +155,12 @@ export function AdminSidebar({ collapsed, mobileOpen, onMobileClose }: AdminSide
               animate={{ x: 0 }}
               exit={{ x: -280 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="fixed inset-y-0 left-0 z-50 flex w-72 flex-col bg-white shadow-xl lg:hidden"
+              className={cn("fixed inset-y-0 left-0 z-50 flex w-72 flex-col lg:hidden", sidebarClasses)}
             >
               <button
                 type="button"
                 onClick={onMobileClose}
-                className="absolute right-3 top-3 rounded-lg p-2 text-brand-gray hover:bg-slate-100"
+                className="absolute right-3 top-3 z-10 rounded-lg p-2 text-brand-gray hover:bg-slate-100 dark:hover:bg-slate-800"
                 aria-label="Close menu"
               >
                 <X className="h-5 w-5" />

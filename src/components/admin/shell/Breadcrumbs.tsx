@@ -11,8 +11,8 @@ export function Breadcrumbs() {
 
   if (segments.length <= 1) {
     return (
-      <nav className="flex items-center text-sm text-brand-gray">
-        <span className="font-medium text-brand-navy">Dashboard</span>
+      <nav className="flex items-center text-sm text-brand-gray dark:text-slate-400">
+        <span className="font-medium text-brand-navy dark:text-slate-100">Dashboard</span>
       </nav>
     );
   }
@@ -25,15 +25,19 @@ export function Breadcrumbs() {
   });
 
   return (
-    <nav className="flex items-center gap-1 text-sm text-brand-gray">
-      <Link href="/admin" className="hover:text-brand-blue">Dashboard</Link>
+    <nav className="flex items-center gap-1 text-sm text-brand-gray dark:text-slate-400">
+      <Link href="/admin" className="hover:text-brand-blue dark:hover:text-blue-400">
+        Dashboard
+      </Link>
       {crumbs.slice(1).map((crumb) => (
         <span key={crumb.href} className="flex items-center gap-1">
           <ChevronRight className="h-3.5 w-3.5" />
           {crumb.isLast ? (
-            <span className="font-medium text-brand-navy">{crumb.label}</span>
+            <span className="font-medium text-brand-navy dark:text-slate-100">
+              {crumb.label}
+            </span>
           ) : (
-            <Link href={crumb.href} className="hover:text-brand-blue">
+            <Link href={crumb.href} className="hover:text-brand-blue dark:hover:text-blue-400">
               {crumb.label}
             </Link>
           )}

@@ -17,9 +17,9 @@ export default function LoginPage() {
   }, [router]);
 
   return (
-    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#F8FAFC] px-4 py-8">
-      <div className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-brand-navy/5 blur-3xl" />
-      <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-brand-gold/5 blur-3xl" />
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-brand-navy via-[#0a1628] to-brand-navy px-4 py-8">
+      <div className="pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-brand-gold/10 blur-3xl" />
+      <div className="pointer-events-none absolute -right-24 top-0 h-72 w-72 rounded-full bg-brand-blue/15 blur-3xl" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
