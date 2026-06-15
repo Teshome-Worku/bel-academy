@@ -8,14 +8,14 @@ export function Footer() {
   return (
     <footer className="border-t border-slate-200 bg-white">
       <Container className="py-10">
-        <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-          <div>
-            <Logo imageClassName="h-24" showText={false} />
-            <p className="mt-4 max-w-sm text-sm text-brand-gray">
+        <div className="flex flex-col gap-8 items-center text-center md:flex-row md:items-start md:justify-between md:text-left">
+          <div className="md:text-left text-center">
+            <Logo imageClassName="h-32 md:h-44" showText={false} />
+            <p className="mt-4 max-w-sm text-sm text-brand-gray mx-auto md:mx-0">
               {BRAND.tagline} — Quality English instruction for Afaan Oromo speakers across Addis Ababa and online.
             </p>
           </div>
-          <div>
+          <div className="md:text-left text-center">
             <p className="font-heading font-semibold text-brand-navy">Quick Links</p>
             <ul className="mt-3 space-y-2">
               {marketingNav.map((item) => (
@@ -27,7 +27,7 @@ export function Footer() {
               ))}
             </ul>
           </div>
-          <div>
+          <div className="md:text-left text-center">
             <p className="font-heading font-semibold text-brand-navy">Contact</p>
             <ul className="mt-3 space-y-2 text-sm text-brand-gray">
               <li>{BRAND.phone}</li>
