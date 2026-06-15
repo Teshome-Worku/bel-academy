@@ -30,6 +30,21 @@ export function TestimonialCarousel() {
     const prev = () => setIndex((i) => (i - 1 + len) % len);
     const next = () => setIndex((i) => (i + 1) % len);
 
+    const scrollerRef = useRef<HTMLDivElement | null>(null);
+
+    // scroll active slide into view when index changes
+    useEffect(() => {
+        const container = scrollerRef.current;
+        if (!container) return;
+        const flex = container.querySelector('.flex');
+        if (!flex) return;
+        const slides = Array.from(flex.children) as HTMLElement[];
+        const slide = slides[index];
+        if (!slide) return;
+        const left = slide.offsetLeft - Math.max(0, (container.clientWidth - slide.clientWidth) / 2);
+        container.scrollTo({ left, behavior: 'smooth' });
+    }, [index]);
+
     const palette = ["#1D4ED8", "#F59E0B", "#312E81", "#059669", "#1D4ED8", "#312E81"];
 
     return (
@@ -59,7 +74,7 @@ export function TestimonialCarousel() {
                     <button onClick={prev} aria-label="Previous" className="absolute left-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white p-2 shadow-md">
                         <ChevronLeft className="h-5 w-5" />
                     </button>
-                    <div className="overflow-hidden">
+                    <div className="overflow-x-auto" ref={scrollerRef} style={{ WebkitOverflowScrolling: 'touch' }} onTouchStart={() => setPaused(true)} onTouchEnd={() => setPaused(false)}>
                         <div className="flex gap-6 px-6" style={{ touchAction: 'pan-y' }}>
                             {testimonials.map((t, i) => {
                                 const distance = Math.abs(i - index);
@@ -67,7 +82,7 @@ export function TestimonialCarousel() {
                                 const isVisible = distance <= 2 || distance === testimonials.length - 1; // show neighbors
                                 return (
                                     <motion.div key={t.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: isVisible ? 1 : 0.4, y: isActive ? 0 : 8 }} transition={{ duration: 0.45 }} className={`min-w-[280px] flex-shrink-0 sm:min-w-[320px] md:min-w-[360px] ${isActive ? 'scale-105' : 'scale-100'} transition-transform`}>
-                                        <div className={`rounded-[24px] p-6`} style={{ background: 'rgba(255,255,255,0.85)', boxShadow: isActive ? '0 20px 50px rgba(15,23,42,0.12)' : '0 8px 24px rgba(15,23,42,0.06)' }}>
+                                        <div className={`rounded-[24px] p-6`} style={{ background: 'rgba(255,255,255,0.95)', boxShadow: isActive ? '0 20px 50px rgba(15,23,42,0.12)' : '0 8px 24px rgba(15,23,42,0.06)' }}>
                                             <div className="flex items-center gap-4">
                                                 <Avatar name={t.name} accent={palette[i % palette.length]} />
                                                 <div className="flex-1 text-left">
@@ -80,7 +95,7 @@ export function TestimonialCarousel() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="mt-4 text-[#0F172A] text-sm">
+                                            <div className="mt-4 text-[#0F172A] text-sm whitespace-normal break-words">
                                                 <Quote className="h-5 w-5 text-[#1D4ED8] float-left mr-3" />
                                                 &ldquo;{t.quote}&rdquo;
                                             </div>
