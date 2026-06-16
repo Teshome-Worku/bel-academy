@@ -11,7 +11,7 @@ export function PageHeader({ title, description, className, children }: PageHead
   return (
     <div className={cn("flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between", className)}>
       <div>
-        <h1 className="font-heading text-2xl font-bold text-brand-navy dark:text-slate-100">
+        <h1 className="font-heading text-xl font-bold text-brand-navy dark:text-slate-100 sm:text-2xl">
           {title}
         </h1>
         {description ? (

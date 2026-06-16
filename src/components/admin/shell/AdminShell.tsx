@@ -25,13 +25,13 @@ function AdminShellInner({ children }: { children: React.ReactNode }) {
   }, [mobileOpen]);
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
+    <div className="flex min-h-screen w-full overflow-x-hidden bg-slate-50 dark:bg-slate-950">
       <AdminSidebar
         collapsed={collapsed}
         mobileOpen={mobileOpen}
         onMobileClose={() => setMobileOpen(false)}
       />
-      <div className="flex min-h-screen min-w-0 flex-1 flex-col">
+      <div className="flex min-h-screen w-full min-w-0 flex-1 flex-col">
         <AdminTopBar
           collapsed={collapsed}
           onToggleCollapse={() => setCollapsed((v) => !v)}

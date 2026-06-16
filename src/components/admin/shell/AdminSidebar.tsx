@@ -16,60 +16,83 @@ type AdminSidebarProps = {
   onMobileClose: () => void;
 };
 
-function AdminBrandHeader({ collapsed }: { collapsed: boolean }) {
+function AdminBrandHeader({
+  collapsed,
+  onClose,
+}: {
+  collapsed: boolean;
+  onClose?: () => void;
+}) {
   return (
     <div
       className={cn(
-        "shrink-0 border-b border-slate-200 px-3 py-4 dark:border-slate-700",
-        collapsed ? "flex justify-center" : "px-4",
+        "shrink-0 border-b border-slate-200 dark:border-slate-700",
+        collapsed ? "flex justify-center px-3 py-4" : "px-4 py-4",
       )}
     >
-      <Link
-        href="/admin"
-        className={cn(
-          "flex w-full flex-col items-center rounded-xl bg-white p-4 shadow-sm transition hover:shadow-md dark:bg-slate-800",
-          collapsed && "p-2",
-        )}
-      >
-        <div
+      <div className="flex w-full items-start gap-2">
+        <Link
+          href="/admin"
+          onClick={onClose}
           className={cn(
-            "relative w-full shrink-0",
-            collapsed ? "h-12 w-12" : "h-20 w-full max-w-[200px]",
+            "flex min-w-0 flex-1 flex-col items-center rounded-xl bg-white p-4 shadow-sm transition hover:shadow-md dark:bg-slate-800",
+            collapsed && "p-2",
           )}
         >
-          <Image
-            src={LOGO_PATH}
-            alt={`${BRAND.name} logo`}
-            fill
-            quality={100}
-            sizes={collapsed ? "48px" : "200px"}
-            className="object-contain object-center"
-            priority
-          />
-        </div>
-        {!collapsed && (
-          <div className="mt-3 w-full text-center">
-            <p className="font-heading text-sm font-bold text-brand-navy dark:text-slate-100">
-              {BRAND.name}
-            </p>
-            <p className="mt-0.5 text-xs font-medium tracking-wide text-brand-gold">
-              {BRAND.tagline}
-            </p>
-            <p className="mt-1 text-[11px] text-brand-gray dark:text-slate-400">
-              Admin Portal
-            </p>
+          <div
+            className={cn(
+              "relative w-full shrink-0",
+              collapsed ? "h-12 w-12" : "h-20 w-full max-w-[200px]",
+            )}
+          >
+            <Image
+              src={LOGO_PATH}
+              alt={`${BRAND.name} logo`}
+              fill
+              quality={100}
+              sizes={collapsed ? "48px" : "200px"}
+              className="object-contain object-center"
+              priority
+            />
           </div>
-        )}
-      </Link>
+          {!collapsed && (
+            <div className="mt-3 w-full text-center">
+              <p className="font-heading text-sm font-bold text-brand-navy dark:text-slate-100">
+                {BRAND.name}
+              </p>
+              <p className="mt-0.5 text-xs font-medium tracking-wide text-brand-gold">
+                {BRAND.tagline}
+              </p>
+              <p className="mt-1 text-[11px] text-brand-gray dark:text-slate-400">
+                Admin Portal
+              </p>
+            </div>
+          )}
+        </Link>
+        {onClose ? (
+          <button
+            type="button"
+            onClick={onClose}
+            className="shrink-0 rounded-lg p-2 text-brand-gray hover:bg-slate-100 dark:hover:bg-slate-800"
+            aria-label="Close menu"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        ) : null}
+      </div>
     </div>
   );
 }
 
-export function AdminSidebar({
+function SidebarContent({
   collapsed,
-  mobileOpen,
-  onMobileClose,
-}: AdminSidebarProps) {
+  onNavClick,
+  showCloseButton,
+}: {
+  collapsed: boolean;
+  onNavClick?: () => void;
+  showCloseButton?: boolean;
+}) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -85,9 +108,12 @@ export function AdminSidebar({
 
   const LogOutIcon = adminLogoutItem.icon;
 
-  const sidebarContent = (
+  return (
     <>
-      <AdminBrandHeader collapsed={collapsed} />
+      <AdminBrandHeader
+        collapsed={collapsed}
+        onClose={showCloseButton ? onNavClick : undefined}
+      />
       <nav className="min-h-0 flex-1 space-y-1 overflow-y-auto p-3">
         {adminNavItems.map((item) => {
           const active = isActive(item.href);
@@ -96,7 +122,7 @@ export function AdminSidebar({
             <Link
               key={item.href}
               href={item.href}
-              onClick={onMobileClose}
+              onClick={onNavClick}
               title={collapsed ? item.label : undefined}
               className={cn(
                 "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition",
@@ -128,16 +154,27 @@ export function AdminSidebar({
       </div>
     </>
   );
+}
 
-  const sidebarClasses = cn(
-    "flex h-screen shrink-0 flex-col border-r border-slate-200 bg-white transition-all duration-300 dark:border-slate-700 dark:bg-slate-900",
+export function AdminSidebar({
+  collapsed,
+  mobileOpen,
+  onMobileClose,
+}: AdminSidebarProps) {
+  const sidebarSurfaceClasses = cn(
+    "h-screen shrink-0 flex-col border-r border-slate-200 bg-white transition-all duration-300 dark:border-slate-700 dark:bg-slate-900",
     collapsed ? "w-[72px]" : "w-64",
   );
 
   return (
     <>
-      <aside className={cn("sticky top-0 hidden lg:flex", sidebarClasses)}>
-        {sidebarContent}
+      <aside
+        className={cn(
+          "sticky top-0 z-20 hidden h-screen shrink-0 flex-col lg:flex",
+          sidebarSurfaceClasses,
+        )}
+      >
+        <SidebarContent collapsed={collapsed} />
       </aside>
 
       <AnimatePresence>
@@ -155,17 +192,13 @@ export function AdminSidebar({
               animate={{ x: 0 }}
               exit={{ x: -280 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className={cn("fixed inset-y-0 left-0 z-50 flex w-72 flex-col lg:hidden", sidebarClasses)}
+              className="fixed inset-y-0 left-0 z-50 flex w-[min(100vw,18rem)] flex-col border-r border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900 lg:hidden"
             >
-              <button
-                type="button"
-                onClick={onMobileClose}
-                className="absolute right-3 top-3 z-10 rounded-lg p-2 text-brand-gray hover:bg-slate-100 dark:hover:bg-slate-800"
-                aria-label="Close menu"
-              >
-                <X className="h-5 w-5" />
-              </button>
-              {sidebarContent}
+              <SidebarContent
+                collapsed={false}
+                onNavClick={onMobileClose}
+                showCloseButton
+              />
             </motion.aside>
           </>
         )}

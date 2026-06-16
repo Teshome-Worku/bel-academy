@@ -26,11 +26,11 @@ export function AdminTopBar({
 
   return (
     <header className="sticky top-0 z-30 shrink-0 border-b border-slate-200 bg-white/95 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/95">
-      <div className="flex h-16 items-center gap-4 px-4 lg:px-6">
+      <div className="flex h-16 items-center gap-2 px-3 lg:gap-4 lg:px-6">
         <button
           type="button"
           onClick={onOpenMobile}
-          className="rounded-lg p-2 text-brand-navy hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 lg:hidden"
+          className="shrink-0 rounded-lg p-2 text-brand-navy hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 lg:hidden"
           aria-label="Open menu"
         >
           <Menu className="h-5 w-5" />
@@ -38,7 +38,7 @@ export function AdminTopBar({
         <button
           type="button"
           onClick={onToggleCollapse}
-          className="hidden rounded-lg p-2 text-brand-navy hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 lg:block"
+          className="hidden shrink-0 rounded-lg p-2 text-brand-navy hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800 lg:block"
           aria-label="Toggle sidebar"
         >
           {collapsed ? (
@@ -52,6 +52,10 @@ export function AdminTopBar({
           <Breadcrumbs />
         </div>
 
+        <div className="min-w-0 flex-1 truncate lg:hidden">
+          <Breadcrumbs />
+        </div>
+
         <div className="relative hidden max-w-xs flex-1 md:block">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-gray dark:text-slate-500" />
           <Input
@@ -61,21 +65,21 @@ export function AdminTopBar({
           />
         </div>
 
-        <div className="ml-auto flex items-center gap-2 sm:gap-3">
+        <div className="ml-auto flex shrink-0 items-center gap-1 sm:gap-2 lg:gap-3">
           <span className="hidden text-xs text-brand-gray dark:text-slate-400 sm:block">
             {today}
           </span>
           <button
             type="button"
             onClick={toggleTheme}
-            className="rounded-lg p-2 text-brand-navy hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+            className="shrink-0 rounded-lg p-2 text-brand-navy hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
             aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
           >
             {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
           <button
             type="button"
-            className="relative rounded-lg p-2 text-brand-navy hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
+            className="relative shrink-0 rounded-lg p-2 text-brand-navy hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
             aria-label="Notifications"
           >
             <Bell className="h-5 w-5" />
@@ -83,7 +87,7 @@ export function AdminTopBar({
               3
             </span>
           </button>
-          <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 py-1 pl-1 pr-3 dark:border-slate-600 dark:bg-slate-800">
+          <div className="flex shrink-0 items-center gap-2 rounded-full border border-slate-200 bg-slate-50 py-1 pl-1 pr-2 dark:border-slate-600 dark:bg-slate-800 sm:pr-3">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-blue text-xs font-bold text-white">
               A
             </div>

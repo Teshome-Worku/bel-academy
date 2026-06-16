@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   Area,
   AreaChart,
@@ -24,6 +25,20 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 const PIE_COLORS = ["#0D47A1", "#F5A623", "#64748B"];
 
 export function AnalyticsSection() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 639px)");
+    const update = () => setIsMobile(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
+  const barAxisWidth = isMobile ? 72 : 100;
+  const pieRadius = isMobile ? 80 : 100;
+  const axisFontSize = isMobile ? 10 : 12;
+
   return (
     <div className="grid gap-6 lg:grid-cols-2">
       <Card>
@@ -41,8 +56,8 @@ export function AnalyticsSection() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                <XAxis dataKey="month" tick={{ fontSize: 12 }} />
-                <YAxis tick={{ fontSize: 12 }} />
+                <XAxis dataKey="month" tick={{ fontSize: axisFontSize }} />
+                <YAxis tick={{ fontSize: axisFontSize }} />
                 <Tooltip />
                 <Area
                   type="monotone"
@@ -66,12 +81,12 @@ export function AnalyticsSection() {
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={programEnrollmentData} layout="vertical">
                 <CartesianGrid strokeDasharray="3 3" horizontal={false} />
-                <XAxis type="number" tick={{ fontSize: 12 }} />
+                <XAxis type="number" tick={{ fontSize: axisFontSize }} />
                 <YAxis
                   dataKey="name"
                   type="category"
-                  width={100}
-                  tick={{ fontSize: 11 }}
+                  width={barAxisWidth}
+                  tick={{ fontSize: isMobile ? 10 : 11 }}
                 />
                 <Tooltip />
                 <Bar dataKey="students" fill="#0D47A1" radius={[0, 4, 4, 0]} />
@@ -95,7 +110,7 @@ export function AnalyticsSection() {
                   nameKey="name"
                   cx="50%"
                   cy="50%"
-                  outerRadius={100}
+                  outerRadius={pieRadius}
                   label={({ name, percent }) =>
                     `${name} ${((percent ?? 0) * 100).toFixed(0)}%`
                   }
