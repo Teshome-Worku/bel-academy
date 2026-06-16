@@ -4,129 +4,148 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { testimonials } from "@/data/testimonials";
+import { Section } from "@/components/layout/Section";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 
-function Avatar({ name, accent }: { name: string; accent: string }) {
-    const initials = name.split(" ").map((n) => n[0]).slice(0, 2).join("");
-    return (
-        <div style={{ background: accent }} className="h-14 w-14 flex items-center justify-center rounded-full text-white font-bold">
-            {initials}
-        </div>
-    );
+function Avatar({ name }: { name: string }) {
+  const initials = name
+    .split(" ")
+    .map((n) => n[0])
+    .slice(0, 2)
+    .join("");
+  return (
+    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue text-sm font-bold text-white">
+      {initials}
+    </div>
+  );
 }
 
 export function TestimonialCarousel() {
-    const [index, setIndex] = useState(0);
-    const len = testimonials.length;
-    const timerRef = useRef<number | null>(null);
-    const [paused, setPaused] = useState(false);
-    const [animateCounts, setAnimateCounts] = useState(false);
+  const [index, setIndex] = useState(0);
+  const len = testimonials.length;
+  const timerRef = useRef<number | null>(null);
+  const [paused, setPaused] = useState(false);
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
-        if (paused) return;
-        timerRef.current = window.setInterval(() => setIndex((i) => (i + 1) % len), 4500);
-        return () => { if (timerRef.current) window.clearInterval(timerRef.current); };
-    }, [len, paused]);
+  useEffect(() => {
+    if (paused) return;
+    timerRef.current = window.setInterval(() => setIndex((i) => (i + 1) % len), 5000);
+    return () => {
+      if (timerRef.current) window.clearInterval(timerRef.current);
+    };
+  }, [len, paused]);
 
-    const prev = () => setIndex((i) => (i - 1 + len) % len);
-    const next = () => setIndex((i) => (i + 1) % len);
+  const prev = () => setIndex((i) => (i - 1 + len) % len);
+  const next = () => setIndex((i) => (i + 1) % len);
 
-    const scrollerRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    const container = scrollerRef.current;
+    if (!container) return;
+    const flex = container.querySelector(".flex");
+    if (!flex) return;
+    const slides = Array.from(flex.children) as HTMLElement[];
+    const slide = slides[index];
+    if (!slide) return;
+    const left =
+      slide.offsetLeft -
+      Math.max(0, (container.clientWidth - slide.clientWidth) / 2);
+    container.scrollTo({ left, behavior: "smooth" });
+  }, [index]);
 
-    // scroll active slide into view when index changes
-    useEffect(() => {
-        const container = scrollerRef.current;
-        if (!container) return;
-        const flex = container.querySelector('.flex');
-        if (!flex) return;
-        const slides = Array.from(flex.children) as HTMLElement[];
-        const slide = slides[index];
-        if (!slide) return;
-        const left = slide.offsetLeft - Math.max(0, (container.clientWidth - slide.clientWidth) / 2);
-        container.scrollTo({ left, behavior: 'smooth' });
-    }, [index]);
+  return (
+    <Section variant="white">
+      <SectionHeading
+        align="center"
+        eyebrow="Success Stories"
+        title="Trusted by students across Ethiopia"
+        description="Hear how BEL Academy learners improved their confidence, speaking skills, and career opportunities."
+      />
 
-    const palette = ["#1D4ED8", "#F59E0B", "#312E81", "#059669", "#1D4ED8", "#312E81"];
+      <div
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        className="relative mx-auto mt-12 max-w-4xl"
+      >
+        <button
+          type="button"
+          onClick={prev}
+          aria-label="Previous"
+          className="absolute left-0 top-1/2 z-20 hidden -translate-y-1/2 rounded-full border border-slate-200 bg-white p-2 shadow-md md:block"
+        >
+          <ChevronLeft className="h-5 w-5 text-brand-navy" />
+        </button>
 
-    return (
-        <section className="py-16">
-            <div className="mx-auto max-w-4xl text-center">
-                <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                    <div className="text-sm font-bold text-[#1D4ED8]">SUCCESS STORIES</div>
-                    <h2 className="mt-3 font-display text-3xl font-bold text-[#0F172A]">Trusted by Students Across Ethiopia</h2>
-                    <p className="mt-2 text-[#64748B]">Hear how BEL Academy students improved their English confidence, speaking skills, and career opportunities.</p>
-                </motion.div>
-
-                <div className="mt-6 flex items-center justify-center gap-6">
-                    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.1 }} className="text-sm">
-                        <div className="text-3xl font-bold">1,200+</div>
-                        <div className="text-xs text-[#64748B]">Trusted students</div>
-                    </motion.div>
-                    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.2 }} className="text-sm">
-                        <div className="flex items-center justify-center gap-2">
-                            <div className="text-2xl font-bold">4.9</div>
-                            <div className="text-sm text-[#F59E0B]">★★★★★</div>
+        <div
+          ref={scrollerRef}
+          className="overflow-x-auto scroll-smooth"
+          style={{ WebkitOverflowScrolling: "touch" }}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+        >
+          <div className="flex gap-4 px-2 md:gap-6 md:px-4">
+            {testimonials.map((t, i) => {
+              const isActive = i === index;
+              return (
+                <div
+                  key={t.id}
+                  className="w-[calc(100%-2rem)] flex-shrink-0 sm:min-w-[320px] md:min-w-[360px]"
+                >
+                  <div
+                    className={`rounded-2xl border border-slate-200/80 bg-white p-6 transition-shadow ${
+                      isActive ? "shadow-lg" : "shadow-sm opacity-80"
+                    }`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <Avatar name={t.name} />
+                      <div className="min-w-0 flex-1 text-left">
+                        <p className="font-semibold text-brand-navy">{t.name}</p>
+                        <p className="text-xs text-brand-gray">{t.role}</p>
+                        <div className="mt-1 flex text-brand-gold">
+                          {Array.from({ length: t.rating }).map((_, j) => (
+                            <Star key={j} className="h-3.5 w-3.5 fill-current" />
+                          ))}
                         </div>
-                        <div className="text-xs text-[#64748B]">Student satisfaction</div>
-                    </motion.div>
-                </div>
-
-                <div onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} className="mt-8 relative">
-                    <button onClick={prev} aria-label="Previous" className="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white p-2 shadow-md">
-                        <ChevronLeft className="h-5 w-5" />
-                    </button>
-                    <div className="overflow-x-auto" ref={scrollerRef} style={{ WebkitOverflowScrolling: 'touch' }} onTouchStart={() => setPaused(true)} onTouchEnd={() => setPaused(false)}>
-                        <div className="flex gap-6 px-4" style={{ touchAction: 'pan-y' }}>
-                            {testimonials.map((t, i) => {
-                                const distance = Math.abs(i - index);
-                                const isActive = i === index;
-                                const isVisible = distance <= 2 || distance === testimonials.length - 1; // show neighbors
-                                return (
-                                    <motion.div key={t.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: isVisible ? 1 : 0.4, y: isActive ? 0 : 8 }} transition={{ duration: 0.45 }} className={`w-[calc(100%-48px)] flex-shrink-0 sm:min-w-[320px] md:min-w-[360px] ${isActive ? 'scale-105' : 'scale-100'} transition-transform`} style={{ boxSizing: 'border-box' }}>
-                                        <div className={`rounded-[24px] p-6`} style={{ background: 'rgba(255,255,255,0.95)', boxShadow: isActive ? '0 20px 50px rgba(15,23,42,0.12)' : '0 8px 24px rgba(15,23,42,0.06)' }}>
-                                            <div className="flex items-center gap-4">
-                                                <Avatar name={t.name} accent={palette[i % palette.length]} />
-                                                <div className="flex-1 text-left">
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="font-semibold text-[#0F172A]">{t.name}</div>
-                                                        <div className="text-xs text-[#64748B]">{t.role}</div>
-                                                    </div>
-                                                    <div className="mt-2 text-[#F59E0B] flex items-center gap-1 text-sm">
-                                                        {Array.from({ length: t.rating }).map((_, j) => (<Star key={j} className="h-4 w-4" />))}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="mt-4 text-[#0F172A] text-sm">
-                                                <div className="flex items-start">
-                                                    <Quote className="h-5 w-5 text-[#1D4ED8] flex-shrink-0 mr-3" />
-                                                    <p className="whitespace-normal leading-relaxed" style={{ wordBreak: 'break-word', overflowWrap: 'break-word' }}>&ldquo;{t.quote}&rdquo;</p>
-                                                </div>
-                                            </div>
-                                            <div className="mt-4 text-xs text-[#64748B] flex items-center gap-2">
-                                                <span className="inline-flex items-center gap-1 rounded-full bg-[#F8FAFC] px-2 py-1 text-xs">BEL Academy</span>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                );
-                            })}
-                        </div>
+                      </div>
                     </div>
-                    <button onClick={next} aria-label="Next" className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 z-20 rounded-full bg-white p-2 shadow-md">
-                        <ChevronRight className="h-5 w-5" />
-                    </button>
-
-                    {/* Mobile controls: show buttons under carousel for small screens */}
-                    <div className="mt-4 flex justify-center gap-4 md:hidden">
-                        <button onClick={prev} aria-label="Previous" className="rounded-full bg-white p-2 shadow-md">
-                            <ChevronLeft className="h-5 w-5" />
-                        </button>
-                        <button onClick={next} aria-label="Next" className="rounded-full bg-white p-2 shadow-md">
-                            <ChevronRight className="h-5 w-5" />
-                        </button>
+                    <div className="mt-4 flex items-start gap-2 text-sm leading-relaxed text-brand-navy">
+                      <Quote className="mt-0.5 h-4 w-4 shrink-0 text-brand-blue" />
+                      <p>&ldquo;{t.quote}&rdquo;</p>
                     </div>
+                  </div>
                 </div>
-            </div>
-        </section>
-    );
+              );
+            })}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={next}
+          aria-label="Next"
+          className="absolute right-0 top-1/2 z-20 hidden -translate-y-1/2 rounded-full border border-slate-200 bg-white p-2 shadow-md md:block"
+        >
+          <ChevronRight className="h-5 w-5 text-brand-navy" />
+        </button>
+
+        <div className="mt-4 flex justify-center gap-4 md:hidden">
+          <button
+            type="button"
+            onClick={prev}
+            aria-label="Previous"
+            className="rounded-full border border-slate-200 bg-white p-2 shadow-md"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            type="button"
+            onClick={next}
+            aria-label="Next"
+            className="rounded-full border border-slate-200 bg-white p-2 shadow-md"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+      </div>
+    </Section>
+  );
 }
-
-export default TestimonialCarousel;

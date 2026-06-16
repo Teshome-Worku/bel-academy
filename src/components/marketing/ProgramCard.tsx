@@ -18,18 +18,15 @@ const iconMap: Record<string, React.ElementType> = {
   UserCheck,
 };
 
-/* ── Color palettes (index-based rotation) ───────── */
+/* ── Color palettes (brand-only rotation) ───────── */
 const PALETTES = [
-  { start: "#1D4ED8", end: "#60A5FA", stripe: "#1D4ED8" }, // Blue
-  { start: "#F59E0B", end: "#FDE68A", stripe: "#F59E0B" }, // Gold
-  { start: "#312E81", end: "#6366F1", stripe: "#312E81" }, // Indigo
-  { start: "#059669", end: "#34D399", stripe: "#059669" }, // Emerald
-  { start: "#1D4ED8", end: "#F59E0B", stripe: "#1D4ED8" }, // Blue-Gold
-  { start: "#312E81", end: "#1D4ED8", stripe: "#312E81" }, // Indigo-Blue
-  { start: "#F59E0B", end: "#059669", stripe: "#F59E0B" }, // Gold-Emerald
+  { start: "#0D47A1", end: "#1565C0", stripe: "#0D47A1" },
+  { start: "#0F172A", end: "#0D47A1", stripe: "#0F172A" },
+  { start: "#F5A623", end: "#FFB74D", stripe: "#F5A623" },
+  { start: "#0D47A1", end: "#F5A623", stripe: "#0D47A1" },
 ];
 
-const defaultAccent = { start: "#1D4ED8", end: "#60A5FA", stripe: "#1D4ED8" };
+const defaultAccent = { start: "#0D47A1", end: "#1565C0", stripe: "#0D47A1" };
 
 export function ProgramCard({ program, index, onViewDetails }: { program: Program; index?: number; onViewDetails: () => void }) {
   const Icon = iconMap[program.iconName] || BookOpen;
@@ -40,7 +37,7 @@ export function ProgramCard({ program, index, onViewDetails }: { program: Progra
 
   return (
     <div
-      className={`group relative flex h-full flex-col overflow-hidden rounded-[24px] px-6 py-6 pl-10 transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl`}
+      className="group relative flex h-full flex-col overflow-hidden rounded-[24px] px-6 py-6 pl-10 transition-shadow duration-300 hover:shadow-2xl"
       style={{
         background: `linear-gradient(135deg, ${start} 0%, ${end} 100%)`,
         boxShadow: "0 12px 30px rgba(15,23,42,0.08)",

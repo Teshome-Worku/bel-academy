@@ -88,7 +88,7 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 bg-white transition-all duration-300",
+        "sticky top-0 z-50 bg-white/90 backdrop-blur-md transition-all duration-300",
         scrolled ? "shadow-lg" : "shadow-sm",
       )}
     >
@@ -185,7 +185,7 @@ export function Navbar() {
               <Link href="/register">
                 <button
                   type="button"
-                  className="group inline-flex items-center gap-2 rounded-lg bg-brand-blue px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-brand-blue/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-800 hover:shadow-lg hover:shadow-brand-blue/30 active:translate-y-0"
+                  className="group inline-flex items-center gap-2 rounded-xl bg-brand-gold px-5 py-2.5 text-sm font-bold text-brand-navy shadow-md shadow-brand-gold/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-gold/30 active:translate-y-0"
                 >
                   Register Now
                   <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
@@ -343,7 +343,7 @@ export function Navbar() {
           <Link href="/register" onClick={() => setMobileOpen(false)}>
             <button
               type="button"
-              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-brand-blue py-3 text-sm font-semibold text-white shadow-md shadow-brand-blue/20 transition-all hover:bg-blue-800"
+              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-brand-gold py-3.5 text-sm font-bold text-brand-navy shadow-md shadow-brand-gold/25 transition-all hover:shadow-lg"
             >
               Register Now
               <ArrowRight className="h-4 w-4" />

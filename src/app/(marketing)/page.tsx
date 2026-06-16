@@ -1,16 +1,12 @@
-import { testimonials } from "@/data/testimonials";
 import { HeroSection } from "@/components/marketing/HeroSection";
 import { FeatureGrid } from "@/components/marketing/FeatureGrid";
 import { ProgramsSection } from "@/components/marketing/ProgramsSection";
+import { TestimonialCarousel } from "@/components/marketing/TestimonialCarousel";
+import { FounderSection } from "@/components/marketing/FounderSection";
 import { BranchesSection } from "@/components/marketing/BranchesSection";
-import { TestimonialCard } from "@/components/marketing/TestimonialCard";
-import TestimonialCarousel from "@/components/marketing/TestimonialCarousel";
-import { CommunityCTA } from "@/components/marketing/CommunityCTA";
 import { FAQSection } from "@/components/marketing/FAQSection";
 import { CommunitySection } from "@/components/marketing/CommunitySection";
-import { CTABanner } from "@/components/marketing/CTABanner";
-import { Section } from "@/components/layout/Section";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { FinalCTA } from "@/components/marketing/FinalCTA";
 
 export default function HomePage() {
   return (
@@ -18,12 +14,12 @@ export default function HomePage() {
       <HeroSection />
       <FeatureGrid />
       <ProgramsSection />
+      <TestimonialCarousel />
+      <FounderSection />
       <BranchesSection />
       <FAQSection />
       <CommunitySection />
-      <TestimonialCarousel />
-      <CommunityCTA />
-      <CTABanner />
+      <FinalCTA />
     </>
   );
 }

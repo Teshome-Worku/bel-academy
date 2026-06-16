@@ -8,7 +8,7 @@ export function BranchCard({ branch }: { branch: Branch }) {
   const isOnline = branch.isOnline;
 
   return (
-    <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50">
+    <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition-shadow hover:shadow-md">
       {/* Top accent stripe */}
       <div className={`h-1.5 w-full ${isOnline ? "bg-gradient-to-r from-brand-gold to-amber-400" : "bg-gradient-to-r from-brand-blue to-blue-500"}`} />
 
@@ -17,7 +17,7 @@ export function BranchCard({ branch }: { branch: Branch }) {
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-3">
             {/* Icon */}
-            <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110 ${isOnline ? "bg-brand-gold/10" : "bg-brand-blue/10"}`}>
+            <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${isOnline ? "bg-brand-gold/10" : "bg-brand-blue/10"}`}>
               {isOnline ? (
                 <Wifi className="h-5 w-5 text-brand-gold" />
               ) : (
@@ -28,8 +28,8 @@ export function BranchCard({ branch }: { branch: Branch }) {
           </div>
 
           {isOnline && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-emerald-600">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
+            <span className="inline-flex items-center gap-1 rounded-full bg-brand-gold/15 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-brand-gold">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-gold" />
               Live
             </span>
           )}
