@@ -64,7 +64,7 @@ export function RegistrationsTable() {
               "rounded-full px-4 py-2 text-sm font-medium transition",
               activeTab === tab.key
                 ? "bg-brand-blue text-white shadow-sm"
-                : "bg-white text-brand-navy border border-slate-200 hover:bg-slate-50",
+                : "bg-white text-brand-navy border border-slate-200 hover:bg-slate-50 dark:bg-transparent dark:text-slate-200 dark:border-slate-700 dark:hover:bg-slate-800",
             )}
           >
             {tab.label}
@@ -85,7 +85,7 @@ export function RegistrationsTable() {
       <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm">
-            <thead className="bg-slate-50 text-brand-gray">
+            <thead className="bg-slate-50 dark:bg-slate-900 text-brand-gray dark:text-slate-300">
               <tr>
                 <th className="px-4 py-3 font-medium">Applicant</th>
                 <th className="hidden px-4 py-3 font-medium md:table-cell">Program</th>
@@ -97,18 +97,18 @@ export function RegistrationsTable() {
             </thead>
             <tbody>
               {filtered.map((r) => (
-                <tr key={r.id} className="border-t border-slate-100 hover:bg-slate-50/80">
+                <tr key={r.id} className="border-t border-slate-100 dark:border-slate-700 hover:bg-slate-50/80 dark:hover:bg-slate-800/60">
                   <td className="px-4 py-3">
                     <p className="font-medium text-brand-navy">{r.fullName}</p>
                     <p className="text-xs text-brand-gray">{r.phone}</p>
                   </td>
-                  <td className="hidden px-4 py-3 text-brand-gray md:table-cell">
+                  <td className="hidden px-4 py-3 text-brand-gray dark:text-slate-400 md:table-cell">
                     {programs.find((p) => p.id === r.programId)?.title}
                   </td>
-                  <td className="hidden px-4 py-3 text-brand-gray lg:table-cell">
+                  <td className="hidden px-4 py-3 text-brand-gray dark:text-slate-400 lg:table-cell">
                     {branches.find((b) => b.id === r.branchId)?.name}
                   </td>
-                  <td className="px-4 py-3 text-brand-gray">{formatDate(r.submittedAt)}</td>
+                  <td className="px-4 py-3 text-brand-gray dark:text-slate-400">{formatDate(r.submittedAt)}</td>
                   <td className="px-4 py-3">
                     <StatusBadge status={r.status} />
                   </td>

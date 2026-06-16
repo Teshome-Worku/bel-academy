@@ -14,9 +14,9 @@ export function BranchManagementTable() {
   return (
     <div className="space-y-4">
       <Input placeholder="Search branches..." value={query} onChange={(e) => setQuery(e.target.value)} className="max-w-sm" />
-      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
         <table className="min-w-full text-left text-sm">
-          <thead className="bg-slate-50 text-brand-gray">
+          <thead className="bg-slate-50 dark:bg-slate-900 text-brand-gray dark:text-slate-300">
             <tr>
               <th className="px-4 py-3 font-medium">Branch</th>
               <th className="px-4 py-3 font-medium">Phone</th>
@@ -26,11 +26,11 @@ export function BranchManagementTable() {
           </thead>
           <tbody>
             {rows.map((b) => (
-              <tr key={b.id} className="border-t border-slate-100">
-                <td className="px-4 py-3 font-medium text-brand-navy">{b.name}</td>
-                <td className="px-4 py-3 text-brand-gray">{b.phone}</td>
-                <td className="px-4 py-3 text-brand-gray">{b.address}</td>
-                <td className="px-4 py-3 text-brand-gray">{b.hours}</td>
+              <tr key={b.id} className="border-t border-slate-100 dark:border-slate-700">
+                <td className="px-4 py-3 font-medium text-brand-navy dark:text-slate-100">{b.name}</td>
+                <td className="px-4 py-3 text-brand-gray dark:text-slate-400">{b.phone}</td>
+                <td className="px-4 py-3 text-brand-gray dark:text-slate-400">{b.address}</td>
+                <td className="px-4 py-3 text-brand-gray dark:text-slate-400">{b.hours}</td>
               </tr>
             ))}
           </tbody>

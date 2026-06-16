@@ -23,7 +23,7 @@ export function RecentRegistrationsTable() {
       <Input placeholder="Search recent..." value={query} onChange={(e) => setQuery(e.target.value)} className="max-w-xs" />
       <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800">
         <table className="min-w-full text-left text-sm">
-          <thead className="bg-slate-50 text-brand-gray">
+          <thead className="bg-slate-50 dark:bg-slate-900 text-brand-gray dark:text-slate-300">
             <tr>
               <th className="px-4 py-3 font-medium">Name</th>
               <th className="px-4 py-3 font-medium">Program</th>
@@ -33,10 +33,10 @@ export function RecentRegistrationsTable() {
           </thead>
           <tbody>
             {rows.map((r) => (
-              <tr key={r.id} className="border-t border-slate-100">
-                <td className="px-4 py-3 font-medium text-brand-navy">{r.fullName}</td>
-                <td className="px-4 py-3 text-brand-gray">{programTitle(r.programId)}</td>
-                <td className="px-4 py-3 text-brand-gray">{formatDate(r.submittedAt)}</td>
+              <tr key={r.id} className="border-t border-slate-100 dark:border-slate-700">
+                <td className="px-4 py-3 font-medium text-brand-navy dark:text-slate-100">{r.fullName}</td>
+                <td className="px-4 py-3 text-brand-gray dark:text-slate-400">{programTitle(r.programId)}</td>
+                <td className="px-4 py-3 text-brand-gray dark:text-slate-400">{formatDate(r.submittedAt)}</td>
                 <td className="px-4 py-3">
                   <StatusBadge status={r.status} />
                 </td>

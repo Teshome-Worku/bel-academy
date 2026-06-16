@@ -16,7 +16,7 @@ export function ProgramsManagementTable() {
     <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
       <div className="overflow-x-auto">
         <table className="min-w-full text-left text-sm">
-          <thead className="bg-slate-50 text-brand-gray">
+          <thead className="bg-slate-50 dark:bg-slate-900 text-brand-gray dark:text-slate-300">
             <tr>
               <th className="px-4 py-3 font-medium">Program</th>
               <th className="px-4 py-3 font-medium">Students</th>
@@ -34,23 +34,23 @@ export function ProgramsManagementTable() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: i * 0.03 }}
-                  className="border-t border-slate-100 hover:bg-slate-50/80"
+                  className="border-t border-slate-100 dark:border-slate-700 hover:bg-slate-50/80 dark:hover:bg-slate-800/60"
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <p className="font-medium text-brand-navy">{p.title}</p>
+                      <p className="font-medium text-brand-navy dark:text-slate-100">{p.title}</p>
                       {p.featured ? (
                         <Badge className="bg-brand-gold/20 text-amber-800">Featured</Badge>
                       ) : null}
                     </div>
-                    <p className="mt-0.5 text-xs text-brand-gray line-clamp-1">
+                    <p className="mt-0.5 text-xs text-brand-gray dark:text-slate-400 line-clamp-1">
                       {p.deliveryMode}
                     </p>
                   </td>
-                  <td className="px-4 py-3 font-semibold text-brand-navy">
+                  <td className="px-4 py-3 font-semibold text-brand-navy dark:text-slate-100">
                     {enrolled}
                   </td>
-                  <td className="hidden px-4 py-3 text-brand-gray md:table-cell">
+                  <td className="hidden px-4 py-3 text-brand-gray dark:text-slate-400 md:table-cell">
                     {p.duration}
                   </td>
                   <td className="px-4 py-3">

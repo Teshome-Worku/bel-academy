@@ -104,7 +104,7 @@ export function StudentsTable() {
       <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800">
         <div className="overflow-x-auto">
           <table className="min-w-full text-left text-sm">
-            <thead className="sticky top-0 bg-slate-50 text-brand-gray">
+            <thead className="sticky top-0 bg-slate-50 dark:bg-slate-900 text-brand-gray dark:text-slate-300">
               <tr>
                 <th className="px-4 py-3 font-medium">Student</th>
                 <th className="px-4 py-3 font-medium">Phone</th>
@@ -118,22 +118,22 @@ export function StudentsTable() {
               {paginated.map((s) => (
                 <tr
                   key={s.id}
-                  className="border-t border-slate-100 transition hover:bg-slate-50/80"
+                  className="border-t border-slate-100 dark:border-slate-700 transition hover:bg-slate-50/80 dark:hover:bg-slate-800/60"
                 >
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-3">
                       <StudentAvatar name={s.fullName} />
                       <div>
-                        <p className="font-medium text-brand-navy">{s.fullName}</p>
-                        <p className="text-xs text-brand-gray">{s.email}</p>
+                        <p className="font-medium text-brand-navy dark:text-slate-100">{s.fullName}</p>
+                        <p className="text-xs text-brand-gray dark:text-slate-400">{s.email}</p>
                       </div>
                     </div>
                   </td>
                   <td className="px-4 py-3 text-brand-gray">{s.phone}</td>
-                  <td className="hidden px-4 py-3 text-brand-gray md:table-cell">
+                  <td className="hidden px-4 py-3 text-brand-gray dark:text-slate-400 md:table-cell">
                     {programs.find((p) => p.id === s.programId)?.title}
                   </td>
-                  <td className="hidden px-4 py-3 text-brand-gray lg:table-cell">
+                  <td className="hidden px-4 py-3 text-brand-gray dark:text-slate-400 lg:table-cell">
                     {branches.find((b) => b.id === s.branchId)?.name}
                   </td>
                   <td className="px-4 py-3">
