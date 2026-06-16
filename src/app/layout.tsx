@@ -21,6 +21,7 @@ export const metadata: Metadata = {
     title: `${BRAND.name} — ${BRAND.tagline}`,
     description: `${BRAND.name} — English language training for Afaan Oromo speakers.`,
     images: [{ url: LOGO_PATH, width: 800, height: 800, alt: `${BRAND.name} — ${BRAND.tagline}` }],
+    viewport: 'width=device-width, initial-scale=1',
   },
 };
 

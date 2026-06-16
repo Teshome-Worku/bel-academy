@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AdminThemeProvider } from "./AdminThemeProvider";
 import { AdminSidebar } from "./AdminSidebar";
@@ -9,6 +9,20 @@ import { AdminTopBar } from "./AdminTopBar";
 function AdminShellInner({ children }: { children: React.ReactNode }) {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    // Prevent body scroll when mobile sidebar/drawer is open
+    if (mobileOpen) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev || "";
+      };
+    }
+    // ensure cleanup
+    document.body.style.overflow = "";
+    return () => {};
+  }, [mobileOpen]);
 
   return (
     <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
