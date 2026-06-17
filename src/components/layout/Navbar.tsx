@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { marketingNav } from "@/constants/navigation";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/ui/Logo";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Container } from "./Container";
 
 export function Navbar() {
@@ -136,8 +137,10 @@ export function Navbar() {
 
             {/* ── RIGHT: Language Dropdown + Register Button ── */}
             <div ref={langRef} className="flex items-center gap-3">
-              {/* Desktop language + register (visible on lg+) */}
+              {/* Desktop language + theme + register (visible on lg+) */}
               <div className="hidden items-center gap-3 lg:flex">
+                <ThemeToggle />
+                
                 {/* Language Dropdown */}
                 <div className="relative">
                   <button
@@ -200,6 +203,8 @@ export function Navbar() {
             {/* ── MOBILE: Hamburger (only shows when menu is closed) ── */}
             {!mobileOpen ? (
               <div className="flex items-center gap-2 lg:hidden">
+                <ThemeToggle className="h-9 w-9" />
+                
                 {/* Compact language shorthand near hamburger */}
                 <button
                   type="button"

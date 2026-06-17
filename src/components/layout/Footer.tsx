@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { BRAND } from "@/constants/brand";
 import { marketingNav } from "@/constants/navigation";
+import { adminNavItems } from "@/constants/navigation";
 import { activeSocialLinks } from "@/data/social";
 import { Logo } from "@/components/ui/Logo";
 import { FacebookIcon, TelegramIcon, TikTokIcon, YouTubeIcon, InstagramIcon } from "@/components/ui/SocialIcons";
@@ -37,6 +38,15 @@ export function Footer() {
                     href={item.href}
                     className="text-sm text-slate-400 transition hover:text-brand-gold"
                   >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <ul className="mt-4 space-y-2.5">
+              {adminNavItems.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="text-sm text-slate-400 transition hover:text-brand-gold">
                     {item.label}
                   </Link>
                 </li>
