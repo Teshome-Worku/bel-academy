@@ -1,6 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 import type { LucideIcon } from "lucide-react";
 import { X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -20,7 +22,16 @@ export function ComingSoonModal({
   message,
   icon: Icon = Sparkles,
 }: ComingSoonModalProps) {
-  return (
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {open && (
         <>
@@ -72,6 +83,7 @@ export function ComingSoonModal({
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 }

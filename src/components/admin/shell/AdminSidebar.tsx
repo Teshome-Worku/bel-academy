@@ -162,7 +162,7 @@ export function AdminSidebar({
   onMobileClose,
 }: AdminSidebarProps) {
   const sidebarSurfaceClasses = cn(
-    "h-screen shrink-0 flex-col border-r border-slate-200 bg-white transition-all duration-300 dark:border-slate-700 dark:bg-slate-900",
+    "h-full shrink-0 flex-col border-r border-slate-200 bg-white transition-all duration-300 dark:border-slate-700 dark:bg-slate-900",
     collapsed ? "w-[72px]" : "w-64",
   );
 
@@ -170,7 +170,7 @@ export function AdminSidebar({
     <>
       <aside
         className={cn(
-          "sticky top-0 z-20 hidden h-screen shrink-0 flex-col lg:flex",
+          "sticky top-0 z-20 hidden h-full shrink-0 flex-col lg:flex",
           sidebarSurfaceClasses,
         )}
       >

@@ -21,17 +21,17 @@ function AdminShellInner({ children }: { children: React.ReactNode }) {
     }
     // ensure cleanup
     document.body.style.overflow = "";
-    return () => {};
+    return () => { };
   }, [mobileOpen]);
 
   return (
-    <div className="flex min-h-screen w-full overflow-x-hidden bg-slate-50 dark:bg-slate-950">
+    <div className="flex h-screen w-full overflow-hidden bg-slate-50 dark:bg-slate-950">
       <AdminSidebar
         collapsed={collapsed}
         mobileOpen={mobileOpen}
         onMobileClose={() => setMobileOpen(false)}
       />
-      <div className="flex min-h-screen w-full min-w-0 flex-1 flex-col">
+      <div className="flex flex-1 min-w-0 flex-col h-full overflow-hidden">
         <AdminTopBar
           collapsed={collapsed}
           onToggleCollapse={() => setCollapsed((v) => !v)}

@@ -12,7 +12,7 @@ export function Pagination({ page, totalPages, onPageChange }: PaginationProps) 
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex items-center justify-between border-t border-slate-100 px-4 py-3">
+    <div className="flex items-center justify-between border-t border-slate-100 px-4 py-3 lg:static fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-800 z-40">
       <p className="text-sm text-brand-gray">
         Page {page} of {totalPages}
       </p>
