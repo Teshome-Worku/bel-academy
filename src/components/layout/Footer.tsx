@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { Phone, Mail, MapPin, MessageCircle, Video } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 import { BRAND } from "@/constants/brand";
 import { marketingNav } from "@/constants/navigation";
 import { activeSocialLinks } from "@/data/social";
 import { Logo } from "@/components/ui/Logo";
+import { FacebookIcon, TelegramIcon, TikTokIcon, YouTubeIcon, InstagramIcon } from "@/components/ui/SocialIcons";
 import { Container } from "./Container";
 
 export function Footer() {
@@ -90,22 +91,49 @@ export function Footer() {
             </ul>
             <div className="mt-4 flex gap-3 justify-center sm:justify-start">
               <a
-                href="https://t.me/bel_academy2"
+                href="https://web.facebook.com/profile.php?id=61575630489570"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-slate-300 transition hover:bg-brand-gold hover:text-brand-navy"
-                aria-label="Telegram"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-slate-300 transition hover:shadow-lg hover:shadow-brand-blue/30"
+                aria-label="Facebook"
               >
-                <MessageCircle className="h-4 w-4" />
+                <FacebookIcon className="h-5 w-5" />
               </a>
               <a
-                href="https://www.tiktok.com/@bel_academy"
+                href="https://t.me/BEL_ACADEMY2"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-slate-300 transition hover:bg-brand-gold hover:text-brand-navy"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-slate-300 transition hover:shadow-lg hover:shadow-[#26A5E4]/30"
+                aria-label="Telegram"
+              >
+                <TelegramIcon className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@oromoenglish.bel.academy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-slate-300 transition hover:shadow-lg hover:shadow-[#69C9D0]/30"
                 aria-label="TikTok"
               >
-                <Video className="h-4 w-4" />
+                <TikTokIcon className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.youtube.com/@BELACADEMY"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-slate-300 transition hover:shadow-lg hover:shadow-[#FF0000]/30"
+                aria-label="YouTube"
+              >
+                <YouTubeIcon className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/oromo_english_bel_academy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-slate-300 transition hover:shadow-lg hover:shadow-[#E1306C]/30"
+                aria-label="Instagram"
+              >
+                <InstagramIcon className="h-5 w-5" />
               </a>
             </div>
           </div>

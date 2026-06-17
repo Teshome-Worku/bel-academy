@@ -23,38 +23,35 @@ export const socialLinks: SocialLink[] = [
     title: "Telegram Community",
     description:
       "Join for updates, registration announcements, and learning resources.",
-    url: "https://t.me/bel_academy2",
+    url: "https://t.me/BEL_ACADEMY2",
   },
   {
     id: "tiktok",
     Icon: Video,
     title: "TikTok Lessons",
     description: "Short English lessons and educational videos.",
-    url: "https://www.tiktok.com/@bel_academy",
+    url: "https://www.tiktok.com/@oromoenglish.bel.academy",
   },
   {
     id: "facebook",
     Icon: Globe,
     title: "Facebook Page",
     description: "Announcements, success stories, and academy updates.",
-    url: "PLACEHOLDER_FACEBOOK_LINK",
-    comingSoon: true,
+    url: "https://web.facebook.com/profile.php?id=61575630489570",
   },
   {
     id: "instagram",
     Icon: Camera,
     title: "Instagram",
     description: "Academy activities, learning tips, and student highlights.",
-    url: "PLACEHOLDER_INSTAGRAM_LINK",
-    comingSoon: true,
+    url: "https://www.instagram.com/oromo_english_bel_academy/",
   },
   {
     id: "youtube",
     Icon: Play,
     title: "YouTube Channel",
     description: "Long-form English lessons and educational content.",
-    url: "PLACEHOLDER_YOUTUBE_LINK",
-    comingSoon: true,
+    url: "https://www.youtube.com/@BELACADEMY",
   },
 ];
 
