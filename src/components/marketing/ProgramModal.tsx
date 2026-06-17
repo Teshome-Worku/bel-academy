@@ -85,7 +85,7 @@ export function ProgramModal({ program, accentIndex, onClose }: { program: Progr
             transition={{ duration: 0.3, ease: SMOOTH_EASE }}
             className="fixed inset-0 z-[90] flex items-center justify-center p-4"
           >
-            <div className="w-full max-w-lg max-h-[90vh] overflow-hidden rounded-2xl bg-white shadow-2xl">
+            <div className="w-full max-w-lg max-h-[90vh] overflow-hidden rounded-2xl bg-brand-dark-card border border-white/10 shadow-2xl">
               {/* Header with accent gradient */}
               <div style={{ background: `linear-gradient(135deg, ${palette.start} 0%, ${palette.end} 100%)` }} className="relative px-6 pb-6 pt-5">
                 {/* Close button */}
@@ -117,46 +117,46 @@ export function ProgramModal({ program, accentIndex, onClose }: { program: Progr
               {/* Scrollable body */}
               <div className="flex-1 overflow-y-auto px-6 py-5">
                 {/* Description */}
-                <p className="text-sm leading-relaxed text-brand-gray">{program.description}</p>
+                <p className="text-sm leading-relaxed text-slate-400">{program.description}</p>
 
                 {/* Meta grid */}
                 <div className="mt-5 grid grid-cols-2 gap-3">
-                  <div className="rounded-xl border border-slate-100 bg-slate-50/50 p-3">
-                    <div className="flex items-center gap-2 text-xs font-medium text-brand-gray">
-                      <Clock className="h-3.5 w-3.5 text-brand-blue" />
+                  <div className="rounded-xl border border-white/5 bg-white/5 p-3">
+                    <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
+                      <Clock className="h-3.5 w-3.5 text-brand-blue-light" />
                       Duration
                     </div>
-                    <p className="mt-1 font-display text-sm font-semibold text-brand-navy">{program.duration}</p>
+                    <p className="mt-1 font-display text-sm font-semibold text-white">{program.duration}</p>
                   </div>
-                  <div className="rounded-xl border border-slate-100 bg-slate-50/50 p-3">
-                    <div className="flex items-center gap-2 text-xs font-medium text-brand-gray">
+                  <div className="rounded-xl border border-white/5 bg-white/5 p-3">
+                    <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
                       <BarChart3 className="h-3.5 w-3.5 text-brand-gold" />
                       Level
                     </div>
-                    <p className="mt-1 font-display text-sm font-semibold capitalize text-brand-navy">{program.level.replace("-", " ")}</p>
+                    <p className="mt-1 font-display text-sm font-semibold capitalize text-white">{program.level.replace("-", " ")}</p>
                   </div>
-                  <div className="rounded-xl border border-slate-100 bg-slate-50/50 p-3">
-                    <div className="flex items-center gap-2 text-xs font-medium text-brand-gray">
-                      <MapPin className="h-3.5 w-3.5 text-emerald-500" />
+                  <div className="rounded-xl border border-white/5 bg-white/5 p-3">
+                    <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
+                      <MapPin className="h-3.5 w-3.5 text-emerald-400" />
                       Delivery
                     </div>
-                    <p className="mt-1 font-display text-sm font-semibold text-brand-navy">{program.deliveryMode}</p>
+                    <p className="mt-1 font-display text-sm font-semibold text-white">{program.deliveryMode}</p>
                   </div>
-                  <div className="rounded-xl border border-slate-100 bg-slate-50/50 p-3">
-                    <div className="flex items-center gap-2 text-xs font-medium text-brand-gray">
-                      <Clock className="h-3.5 w-3.5 text-purple-500" />
+                  <div className="rounded-xl border border-white/5 bg-white/5 p-3">
+                    <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
+                      <Clock className="h-3.5 w-3.5 text-purple-400" />
                       Schedule
                     </div>
-                    <p className="mt-1 font-display text-sm font-semibold text-brand-navy">{program.schedule}</p>
+                    <p className="mt-1 font-display text-sm font-semibold text-white">{program.schedule}</p>
                   </div>
                 </div>
 
                 {/* Learning outcomes */}
                 <div className="mt-5">
-                  <h4 className="font-display text-sm font-bold text-brand-navy">What You Will Learn</h4>
+                  <h4 className="font-display text-sm font-bold text-white">What You Will Learn</h4>
                   <ul className="mt-3 space-y-2.5">
                     {program.outcomes.map((outcome) => (
-                      <li key={outcome} className="flex items-start gap-2.5 text-sm text-brand-gray">
+                      <li key={outcome} className="flex items-start gap-2.5 text-sm text-slate-300">
                         <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" style={{ color: palette.start }} />
                         {outcome}
                       </li>
@@ -166,15 +166,15 @@ export function ProgramModal({ program, accentIndex, onClose }: { program: Progr
               </div>
 
               {/* Footer CTA */}
-              <div className="border-t border-slate-100 px-6 py-4">
+              <div className="border-t border-white/10 px-6 py-4 bg-white/5">
                 <Link href="/register" onClick={onClose}>
                   <button
                     type="button"
-                    className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white py-3 text-sm font-bold text-black shadow-md transition-all duration-200 hover:translate-y-[-2px]"
+                    className="group flex w-full items-center justify-center gap-2 rounded-xl bg-white py-3 text-sm font-bold text-black shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
                     style={{ color: palette.start }}
                   >
-                    Register Now
-                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                    Enroll Now
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </button>
                 </Link>
               </div>

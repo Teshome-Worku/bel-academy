@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { BRAND } from "@/constants/brand";
 import { Container } from "@/components/layout/Container";
 import { CountUpStats } from "./CountUpStats";
-import { SectionDivider } from "./SectionDivider";
 import { SMOOTH_EASE } from "./animation";
 
 const fadeUp = {
@@ -34,7 +33,7 @@ export function HeroSection() {
           sizes="100vw"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-navy/85 via-brand-navy/75 to-brand-navy/90" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050B1E]/85 via-[#050B1E]/75 to-[#050B1E]" />
 
         <Container className="relative z-10 flex flex-1 flex-col justify-center pb-28 pt-10 sm:pb-32 sm:pt-14 md:pb-36">
           <motion.div initial="hidden" animate="visible" className="max-w-3xl">
@@ -103,7 +102,6 @@ export function HeroSection() {
           </motion.div>
         </Container>
       </section>
-      <SectionDivider topColor="transparent" bottomColor="#ffffff" />
     </>
   );
 }

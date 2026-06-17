@@ -11,27 +11,44 @@ const features = [
     icon: BookOpen,
     title: "Structured Curriculum",
     description: "CEFR-aligned lessons from beginner to advanced levels.",
+    accent: { bg: "bg-blue-50 dark:bg-blue-500/10", color: "text-brand-blue dark:text-blue-400", ring: "group-hover:ring-brand-blue/20 dark:group-hover:ring-blue-500/20" },
   },
   {
     icon: Users,
     title: "Small Classes",
     description: "Personal attention with interactive speaking practice every session.",
+    accent: { bg: "bg-amber-50 dark:bg-amber-500/10", color: "text-amber-600 dark:text-amber-400", ring: "group-hover:ring-amber-400/20 dark:group-hover:ring-amber-500/20" },
   },
   {
     icon: Globe,
     title: "Online & On-Campus",
     description: "Choose Buraayyuu, Jamoo Furii, or live online classes.",
+    accent: { bg: "bg-emerald-50 dark:bg-emerald-500/10", color: "text-emerald-600 dark:text-emerald-400", ring: "group-hover:ring-emerald-400/20 dark:group-hover:ring-emerald-500/20" },
   },
   {
     icon: Award,
     title: "Certified Teachers",
     description: "Experienced instructors focused on real-world fluency.",
+    accent: { bg: "bg-purple-50 dark:bg-purple-500/10", color: "text-purple-600 dark:text-purple-400", ring: "group-hover:ring-purple-400/20 dark:group-hover:ring-purple-500/20" },
   },
 ];
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.1 + i * 0.1,
+      duration: 0.5,
+      ease: SMOOTH_EASE,
+    },
+  }),
+};
+
 export function FeatureGrid() {
   return (
-    <Section variant="white">
+    <Section variant="white" className="relative">
       <SectionHeading
         align="center"
         eyebrow="Why BEL Academy"
@@ -39,33 +56,40 @@ export function FeatureGrid() {
         description="Everything you need to reach your English goals—in one academy."
       />
 
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.5, ease: SMOOTH_EASE }}
-        className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
-      >
-        {features.map(({ icon: Icon, title, description }) => (
-          <div
+      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {features.map(({ icon: Icon, title, description, accent }, i) => (
+          <motion.div
             key={title}
-            className="group flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+            custom={i}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={cardVariants}
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-blue/10">
-              <Icon className="h-6 w-6 text-brand-blue" />
+            <div className={`group relative flex h-full flex-col rounded-2xl border border-slate-200/80 bg-white p-6 shadow-sm ring-0 ring-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-200/50 hover:ring-4 dark:border-white/10 dark:bg-brand-dark-card dark:shadow-none dark:hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] ${accent.ring}`}>
+              {/* Icon */}
+              <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${accent.bg} transition-transform duration-300 group-hover:scale-110`}>
+                <Icon className={`h-6 w-6 ${accent.color}`} />
+              </div>
+
+              {/* Title */}
+              <h3 className="mt-4 font-display text-base font-bold text-brand-navy dark:text-white">
+                {title}
+              </h3>
+
+              {/* Description */}
+              <p className="mt-2 text-sm leading-relaxed text-brand-gray dark:text-slate-400">
+                {description}
+              </p>
+
+              {/* Bottom accent line */}
+              <div className="mt-auto pt-5">
+                <div className="h-0.5 w-8 rounded-full bg-slate-200 dark:bg-white/10 transition-all duration-300 group-hover:w-12 group-hover:bg-brand-gold" />
+              </div>
             </div>
-            <h3 className="mt-4 font-display text-base font-bold text-brand-navy">
-              {title}
-            </h3>
-            <p className="mt-2 text-sm leading-relaxed text-brand-gray">
-              {description}
-            </p>
-            <div className="mt-auto pt-5">
-              <div className="h-0.5 w-8 rounded-full bg-slate-200 transition-all group-hover:w-12 group-hover:bg-brand-gold" />
-            </div>
-          </div>
+          </motion.div>
         ))}
-      </motion.div>
+      </div>
     </Section>
   );
 }
