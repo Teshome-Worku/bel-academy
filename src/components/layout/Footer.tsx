@@ -11,14 +11,14 @@ export function Footer() {
     <footer className="border-t border-slate-200 bg-brand-navy text-white">
       <div className="h-1 bg-gradient-to-r from-brand-blue via-brand-gold to-brand-blue" />
       <Container className="py-12 md:py-16">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8 text-center sm:text-left">
           {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <Logo imageClassName="h-24 md:h-28" showText={false} href="/" />
-            <p className="mt-4 font-heading text-sm font-semibold text-brand-gold">
+          <div className="sm:col-span-2 lg:col-span-1 flex flex-col items-center sm:items-start">
+            <Logo className="mx-auto sm:mx-0" imageClassName="h-24 md:h-28" showText={false} href="/" />
+            <p className="mt-4 font-heading text-sm font-semibold text-brand-gold mx-auto sm:mx-0">
               {BRAND.tagline}
             </p>
-            <p className="mt-2 max-w-xs text-sm leading-relaxed text-slate-400">
+            <p className="mt-2 max-w-xs text-sm leading-relaxed text-slate-400 mx-auto sm:mx-0">
               Quality English instruction for Afaan Oromo speakers across Addis
               Ababa and online.
             </p>
@@ -44,7 +44,7 @@ export function Footer() {
           </div>
 
           {/* Contact */}
-          <div>
+          <div className="flex flex-col items-center sm:items-start">
             <p className="font-heading text-sm font-semibold text-white">
               Contact
             </p>
@@ -88,7 +88,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <div className="mt-4 flex gap-3">
+            <div className="mt-4 flex gap-3 justify-center sm:justify-start">
               <a
                 href="https://t.me/bel_academy2"
                 target="_blank"
