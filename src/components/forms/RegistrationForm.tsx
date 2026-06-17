@@ -1,5 +1,6 @@
-﻿"use client";
+"use client";
 
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { branchOptions, programOptions, scheduleOptions } from "@/constants/form-options";
@@ -25,15 +26,22 @@ export function RegistrationForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center">
-        <CheckCircle2 className="mx-auto h-12 w-12 text-emerald-600" />
-        <p className="mt-4 font-display text-xl font-bold text-brand-navy">
+      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-8 text-center dark:border-emerald-500/20 dark:bg-emerald-500/10">
+        <CheckCircle2 className="mx-auto h-12 w-12 text-emerald-600 dark:text-emerald-400" />
+        <p className="mt-4 font-display text-xl font-bold text-brand-navy dark:text-white">
           Welcome to BEL Academy!
         </p>
-        <p className="mt-2 text-sm leading-relaxed text-brand-gray">
+        <p className="mt-2 text-sm leading-relaxed text-brand-gray dark:text-slate-300">
           Your registration has been received. Our admissions team will contact
           you within 24 hours.
         </p>
+        <div className="mt-8">
+          <Link href="/">
+            <Button className="rounded-xl bg-brand-navy text-white hover:bg-brand-blue dark:bg-brand-blue dark:hover:bg-blue-600">
+              Go to Homepage
+            </Button>
+          </Link>
+        </div>
       </div>
     );
   }

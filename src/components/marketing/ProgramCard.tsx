@@ -22,18 +22,21 @@ const iconMap: Record<string, React.ElementType> = {
 export function ProgramCard({ program, index, onViewDetails }: { program: Program; index?: number; onViewDetails: () => void }) {
   const Icon = iconMap[program.iconName] || BookOpen;
 
-  // Alternate subtle gradients for the dark cards
+  // Subtle gradients for the cards (always dark for premium feel)
   const gradientClass = (index ?? 0) % 2 === 0 
-    ? "from-brand-dark-secondary to-brand-dark-card" 
-    : "from-brand-dark-card to-[#0A1229]";
+    ? "bg-gradient-to-br from-brand-dark-secondary to-brand-dark-card" 
+    : "bg-gradient-to-br from-brand-dark-card to-[#0A1229]";
 
   return (
     <div
       className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-br p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(13,71,161,0.2)] dark:hover:border-brand-blue/30",
+        "group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-white/10 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(13,71,161,0.2)] hover:border-brand-blue/30",
         gradientClass
       )}
     >
+      {/* Top accent stripe */}
+      <div className="absolute top-0 left-0 h-1.5 w-full z-10 bg-gradient-to-r from-brand-blue/80 to-brand-gold/80 opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+      
       {/* Subtle top glow */}
       <div className="absolute inset-x-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-brand-blue/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 

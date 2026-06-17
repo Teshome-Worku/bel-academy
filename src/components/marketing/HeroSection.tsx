@@ -35,7 +35,7 @@ export function HeroSection() {
 
         <div className="absolute inset-0 bg-gradient-to-b from-[#050B1E]/85 via-[#050B1E]/75 to-[#050B1E]" />
 
-        <Container className="relative z-10 flex flex-1 flex-col justify-center pb-28 pt-10 sm:pb-32 sm:pt-14 md:pb-36">
+        <Container className="relative z-10 flex flex-1 flex-col justify-center pb-32 pt-2 sm:pb-36 sm:pt-6 md:pb-40">
           <motion.div initial="hidden" animate="visible" className="max-w-3xl">
             <motion.div custom={0} variants={fadeUp}>
               <span className="section-eyebrow border-brand-gold/30 bg-brand-gold/10 text-brand-gold">
@@ -92,7 +92,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5, ease: SMOOTH_EASE }}
-            className="absolute bottom-4 left-0 right-0 z-10 px-4 sm:bottom-6 md:bottom-8"
+            className="absolute bottom-8 left-0 right-0 z-10 px-4 sm:bottom-10 md:bottom-12"
           >
             <div className="mx-auto max-w-5xl">
               <div className="glass rounded-2xl px-4 py-4 shadow-2xl sm:px-8 sm:py-6">
