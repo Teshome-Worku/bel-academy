@@ -90,8 +90,8 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur-md transition-all duration-300",
-          scrolled ? "shadow-lg" : "shadow-sm",
+          "fixed inset-x-0 top-0 z-50 bg-white/90 dark:bg-brand-dark-bg/90 backdrop-blur-md transition-all duration-300",
+          scrolled ? "shadow-lg dark:border-b dark:border-white/10" : "shadow-sm dark:border-transparent",
         )}
       >
         <Container className="pl-2 pr-2.5 sm:pl-4 sm:pr-4 lg:pl-3 lg:pr-6 xl:pl-4 xl:pr-6">
@@ -122,8 +122,8 @@ export function Navbar() {
                     className={cn(
                       "relative px-3.5 py-2 text-sm font-medium transition-colors duration-200",
                       isActive
-                        ? "text-brand-blue"
-                        : "text-brand-navy hover:text-brand-blue",
+                        ? "text-brand-blue dark:text-brand-gold"
+                        : "text-brand-navy hover:text-brand-blue dark:text-slate-300 dark:hover:text-white",
                     )}
                   >
                     {item.label}
@@ -146,9 +146,9 @@ export function Navbar() {
                   <button
                     type="button"
                     onClick={() => setLangOpen((v) => !v)}
-                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-blue/30 hover:bg-blue-50"
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-blue/30 hover:bg-blue-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10"
                   >
-                    <Globe className="h-4 w-4 text-brand-gray" />
+                    <Globe className="h-4 w-4 text-brand-gray dark:text-slate-400" />
                     <span>{selectedLang}</span>
                     <ChevronDown
                       className={cn(
@@ -159,7 +159,7 @@ export function Navbar() {
                   </button>
 
                   {langOpen && (
-                    <div className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-xl border border-slate-100 bg-white py-1.5 shadow-xl">
+                    <div className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-xl border border-slate-100 bg-white py-1.5 shadow-xl dark:border-white/10 dark:bg-brand-dark-card">
                       {languages.map((lang) => (
                         <button
                           key={lang.code}
@@ -171,13 +171,13 @@ export function Navbar() {
                           className={cn(
                             "flex w-full items-center gap-2 px-4 py-2.5 text-sm transition-colors",
                             selectedLang === lang.label
-                              ? "bg-blue-50 font-medium text-brand-blue"
-                              : "text-brand-navy hover:bg-slate-50",
+                              ? "bg-blue-50 font-medium text-brand-blue dark:bg-white/10 dark:text-white"
+                              : "text-brand-navy hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white",
                           )}
                         >
                           {lang.label}
                           {selectedLang === lang.label && (
-                            <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-blue" />
+                            <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-blue dark:bg-brand-gold" />
                           )}
                         </button>
                       ))}
@@ -209,27 +209,27 @@ export function Navbar() {
                 <button
                   type="button"
                   onClick={() => setLangOpen((v) => !v)}
-                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-blue/30 hover:bg-blue-50"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-blue/30 hover:bg-blue-50 dark:border-white/10 dark:bg-white/5 dark:text-slate-300 dark:hover:bg-white/10"
                   aria-label="Language"
                 >
-                  <Globe className="h-4 w-4 text-brand-gray" />
+                  <Globe className="h-4 w-4 text-brand-gray dark:text-slate-400" />
                   <span className="ml-1 text-sm font-semibold">{selectedLang === 'English' ? 'EN' : 'OR'}</span>
                 </button>
 
                 <button
                   type="button"
-                  className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-slate-100"
+                  className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-slate-100 dark:hover:bg-white/10"
                   onClick={() => setMobileOpen(true)}
                   aria-label="Open menu"
                 >
-                  <Menu className="h-6 w-6 text-brand-navy" />
+                  <Menu className="h-6 w-6 text-brand-navy dark:text-slate-200" />
                 </button>
               </div>
             ) : null}
 
             {/* Mobile language menu popup (shared with mobile button) */}
             {langOpen && (
-              <div className="fixed right-4 top-[4.5rem] z-[80] w-44 overflow-hidden rounded-xl border border-slate-100 bg-white py-1.5 shadow-xl lg:hidden">
+              <div className="fixed right-4 top-[4.5rem] z-[80] w-44 overflow-hidden rounded-xl border border-slate-100 bg-white py-1.5 shadow-xl lg:hidden dark:border-white/10 dark:bg-brand-dark-card">
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
@@ -241,11 +241,11 @@ export function Navbar() {
                     className={cn(
                       "flex w-full items-center gap-2 px-4 py-2.5 text-sm transition-colors",
                       selectedLang === lang.label
-                        ? "bg-blue-50 font-medium text-brand-blue"
-                        : "text-brand-navy hover:bg-slate-50",
+                        ? "bg-blue-50 font-medium text-brand-blue dark:bg-white/10 dark:text-white"
+                        : "text-brand-navy hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white",
                     )}
                   >
-                    <Globe className="mr-2.5 h-4 w-4 text-brand-gray" />
+                    <Globe className="mr-2.5 h-4 w-4 text-brand-gray dark:text-slate-400" />
                     {lang.label}
                     {selectedLang === lang.label && (
                       <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-blue" />
@@ -271,21 +271,21 @@ export function Navbar() {
       {/* ── MOBILE SLIDE-OUT DRAWER (moved outside header to avoid stacking issues) ──────────────────────── */}
       <div
         className={cn(
-          "fixed right-0 top-0 z-[70] flex h-full w-[19rem] max-w-[calc(100vw-1rem)] flex-col bg-white shadow-2xl transform transition-transform duration-300 ease-in-out lg:hidden",
+          "fixed right-0 top-0 z-[70] flex h-full w-[19rem] max-w-[calc(100vw-1rem)] flex-col bg-white dark:bg-brand-dark-bg shadow-2xl transform transition-transform duration-300 ease-in-out lg:hidden",
           mobileOpen ? "translate-x-0" : "translate-x-full pointer-events-none",
         )}
         aria-hidden={!mobileOpen}
       >
         {/* Drawer Header — single close button */}
-        <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
+        <div className="flex items-center justify-between border-b border-slate-100 dark:border-white/10 px-5 py-4">
           <Logo imageClassName="h-14" showText href={false} />
           <button
             type="button"
-            className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-slate-100"
+            className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-slate-100 dark:hover:bg-white/10"
             onClick={() => setMobileOpen(false)}
             aria-label="Close menu"
           >
-            <X className="h-5 w-5 text-brand-navy" />
+            <X className="h-5 w-5 text-brand-navy dark:text-slate-200" />
           </button>
         </div>
 
@@ -302,8 +302,8 @@ export function Navbar() {
                   className={cn(
                     "flex items-center rounded-lg px-4 py-3.5 text-[15px] font-medium transition-colors",
                     isActive
-                      ? "bg-blue-50 text-brand-blue"
-                      : "text-brand-navy hover:bg-slate-50",
+                      ? "bg-blue-50 text-brand-blue dark:bg-white/10 dark:text-white"
+                      : "text-brand-navy hover:bg-slate-50 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white",
                   )}
                 >
                   {item.label}
@@ -316,8 +316,8 @@ export function Navbar() {
           </div>
 
           {/* Language Selector */}
-          <div className="mt-6 rounded-xl border border-slate-100 bg-slate-50 p-3">
-            <p className="mb-2 px-1 text-xs font-semibold uppercase tracking-wider text-brand-gray">
+          <div className="mt-6 rounded-xl border border-slate-100 bg-slate-50 dark:border-white/10 dark:bg-brand-dark-card p-3">
+            <p className="mb-2 px-1 text-xs font-semibold uppercase tracking-wider text-brand-gray dark:text-slate-400">
               Language
             </p>
             <div className="grid gap-2">
@@ -332,14 +332,14 @@ export function Navbar() {
                   className={cn(
                     "flex min-h-11 w-full items-center rounded-lg px-3.5 py-2.5 text-sm transition-colors",
                     selectedLang === lang.label
-                      ? "bg-white font-semibold text-brand-blue shadow-sm"
-                      : "text-brand-navy hover:bg-white",
+                      ? "bg-white font-semibold text-brand-blue shadow-sm dark:bg-white/10 dark:text-white"
+                      : "text-brand-navy hover:bg-white dark:text-slate-300 dark:hover:bg-white/5",
                   )}
                 >
-                  <Globe className="mr-2.5 h-4 w-4 text-brand-gray" />
+                  <Globe className="mr-2.5 h-4 w-4 text-brand-gray dark:text-slate-400" />
                   {lang.label}
                   {selectedLang === lang.label && (
-                    <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-blue" />
+                    <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-blue dark:bg-brand-gold" />
                   )}
                 </button>
               ))}
@@ -348,7 +348,7 @@ export function Navbar() {
         </nav>
 
         {/* Register Button */}
-        <div className="border-t border-slate-100 p-4">
+        <div className="border-t border-slate-100 dark:border-white/10 p-4">
           <Link href="/register" onClick={() => setMobileOpen(false)}>
             <button
               type="button"

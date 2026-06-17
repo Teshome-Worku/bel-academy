@@ -34,7 +34,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
-      <body className="font-body bg-slate-50 dark:bg-[#050B1E] text-brand-navy dark:text-slate-200 transition-colors duration-300">
+      <body className="font-body bg-slate-50 dark:bg-brand-dark-bg text-brand-navy dark:text-slate-200 transition-colors duration-300">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
