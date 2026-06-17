@@ -66,18 +66,7 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-            <ul className="mt-3 space-y-3">
-              {adminNavItems.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-slate-400 transition-colors hover:text-brand-gold"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+
           </div>
 
           {/* Contact */}

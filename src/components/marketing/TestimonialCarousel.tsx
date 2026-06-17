@@ -92,7 +92,7 @@ export function TestimonialCarousel() {
               <div className="flex h-full flex-col justify-between rounded-[2rem] border border-white/20 bg-white/50 p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] backdrop-blur-xl dark:bg-brand-dark-card/60 dark:shadow-[0_8px_30px_rgba(0,0,0,0.3)] sm:p-10">
                 <div className="relative">
                   <Quote className="absolute -left-2 -top-4 h-12 w-12 text-brand-gold/20 dark:text-brand-gold/10" />
-                  <p className="relative z-10 text-lg leading-relaxed text-brand-navy dark:text-slate-300 sm:text-xl md:text-2xl font-medium">
+                  <p className="relative z-10 text-lg leading-relaxed text-brand-navy dark:text-slate-200 sm:text-xl md:text-2xl font-medium">
                     &ldquo;{currentTestimonial.quote}&rdquo;
                   </p>
                 </div>
