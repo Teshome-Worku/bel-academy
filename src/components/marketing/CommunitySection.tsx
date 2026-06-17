@@ -5,7 +5,7 @@ import { motion, Variants } from "framer-motion";
 import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SMOOTH_EASE } from "./animation";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Users } from "lucide-react";
 import {
   FacebookIcon,
   TelegramIcon,
@@ -20,120 +20,98 @@ type Platform = {
   description: string;
   url: string;
   color: string;
+  hoverGlow: string;
+  bgGlass: string;
   Icon: ComponentType<{ className?: string; title?: string }>;
   cta: string;
+  followers?: string;
 };
 
 const PLATFORMS: Platform[] = [
   {
     id: "telegram",
     name: "Telegram",
-    description: "Join our active student community and receive announcements.",
+    description: "Join our active student community channel for announcements.",
     url: "https://t.me/BEL_ACADEMY2",
     color: "#26A5E4",
+    hoverGlow: "hover:shadow-[0_8px_30px_rgba(38,165,228,0.35)]",
+    bgGlass: "dark:hover:border-[#26A5E4]/30",
     Icon: TelegramIcon,
-    cta: "Join Telegram",
+    cta: "Join Channel",
+    followers: "4,156",
   },
   {
     id: "facebook",
     name: "Facebook",
-    description: "Stay updated with academy news and success stories.",
+    description: "Stay updated with academy news and student success stories.",
     url: "https://web.facebook.com/profile.php?id=61575630489570",
     color: "#1877F2",
+    hoverGlow: "hover:shadow-[0_8px_30px_rgba(24,119,242,0.35)]",
+    bgGlass: "dark:hover:border-[#1877F2]/30",
     Icon: FacebookIcon,
-    cta: "Visit Facebook",
+    cta: "Visit Page",
+    followers: "93K+",
   },
   {
     id: "tiktok",
     name: "TikTok",
-    description: "Watch short English learning videos and speaking tips.",
+    description: "Watch short English tips and speaking practice videos.",
     url: "https://www.tiktok.com/@oromoenglish.bel.academy",
     color: "#69C9D0",
+    hoverGlow: "hover:shadow-[0_8px_30px_rgba(105,201,208,0.35)]",
+    bgGlass: "dark:hover:border-[#69C9D0]/30",
     Icon: TikTokIcon,
     cta: "Watch Videos",
+    followers: "295K+",
   },
   {
     id: "youtube",
     name: "YouTube",
-    description: "Access free lessons and educational content.",
+    description: "Access free English lessons and educational content.",
     url: "https://www.youtube.com/@BELACADEMY",
     color: "#FF0000",
+    hoverGlow: "hover:shadow-[0_8px_30px_rgba(255,0,0,0.25)]",
+    bgGlass: "dark:hover:border-[#FF0000]/30",
     Icon: YouTubeIcon,
-    cta: "Watch on YouTube",
+    cta: "Subscribe",
+    followers: "87.9K+",
   },
   {
     id: "instagram",
     name: "Instagram",
-    description: "See academy activities, student achievements, and updates.",
+    description: "See academy activities, achievements, and updates.",
     url: "https://www.instagram.com/oromo_english_bel_academy/",
     color: "#E1306C",
+    hoverGlow: "hover:shadow-[0_8px_30px_rgba(225,48,108,0.30)]",
+    bgGlass: "dark:hover:border-[#E1306C]/30",
     Icon: InstagramIcon,
-    cta: "Follow Instagram",
+    cta: "Follow Us",
   },
 ];
 
 const container: Variants = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    y: 0,
-    transition: { staggerChildren: 0.06, ease: SMOOTH_EASE },
+    transition: { staggerChildren: 0.08, ease: SMOOTH_EASE },
   },
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: SMOOTH_EASE } },
 };
 
-function useCountUp(target: number, startOn: boolean, duration = 1500) {
-  const [value, setValue] = useState(0);
-  useEffect(() => {
-    if (!startOn) return;
-    let start: number | null = null;
-    const step = (timestamp: number) => {
-      if (!start) start = timestamp;
-      const progress = Math.min((timestamp - start) / duration, 1);
-      setValue(Math.floor(progress * target));
-      if (progress < 1) requestAnimationFrame(step);
-      else setValue(target);
-    };
-    const id = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(id);
-  }, [startOn, target, duration]);
-  return value;
-}
-
 export function CommunitySection() {
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    if (!ref.current) return;
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            setVisible(true);
-            obs.disconnect();
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, []);
-
-  // Social proof numbers (from user-provided data)
-  const telegramCount = useCountUp(4156, visible);
-  const tiktokCount = useCountUp(295200, visible);
-  const youtubeCount = useCountUp(87900, visible);
-  const facebookCount = useCountUp(93000, visible);
-
   return (
-    <div ref={ref}>
-      <Section variant="white">
+    <div>
+      <Section variant="white" className="relative overflow-hidden">
+        {/* Background glow */}
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute left-1/4 top-1/2 h-96 w-96 -translate-y-1/2 rounded-full bg-brand-blue/5 blur-[120px] dark:bg-brand-blue/8" />
+          <div className="absolute right-1/4 top-1/2 h-64 w-64 -translate-y-1/2 rounded-full bg-brand-gold/5 blur-[100px] dark:bg-brand-gold/8" />
+        </div>
+
         <SectionHeading
           align="center"
           eyebrow="JOIN OUR COMMUNITY"
@@ -146,7 +124,7 @@ export function CommunitySection() {
           whileInView="show"
           viewport={{ once: true, amount: 0.15 }}
           variants={container}
-          className="mx-auto mt-10 grid max-w-6xl gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
+          className="mx-auto mt-12 grid max-w-6xl gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"
         >
           {PLATFORMS.map((p) => (
             <motion.a
@@ -156,70 +134,77 @@ export function CommunitySection() {
               rel="noopener noreferrer"
               variants={item}
               whileHover={{ y: -6, scale: 1.02 }}
-              className="group relative block overflow-hidden rounded-2xl p-6 shadow-xl"
-              style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02))` }}
+              className={`group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 dark:border-white/10 dark:bg-brand-dark-card ${p.hoverGlow} ${p.bgGlass} hover:border-slate-300`}
             >
-              <div className="absolute inset-0 -z-10 transform-gpu transition-opacity duration-500 group-hover:opacity-100" />
+              {/* Top accent line */}
+              <div
+                className="absolute inset-x-0 top-0 h-0.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{ background: p.color }}
+              />
 
-              <div className="flex items-start gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-white/90 shadow">
-                  <span className="sr-only">{p.name}</span>
-                  <span style={{ color: p.color }} aria-hidden>
-                    <p.Icon className="h-8 w-8 transition-transform duration-200 group-hover:scale-110" />
-                  </span>
-                </div>
-
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-lg font-semibold text-brand-navy">
-                      {p.name}
-                    </h3>
-                  </div>
-                  <p className="mt-2 text-sm text-slate-400">{p.description}</p>
-                </div>
+              {/* Icon */}
+              <div
+                className="flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110"
+                style={{ background: `${p.color}15` }}
+              >
+                <span style={{ color: p.color }}>
+                  <p.Icon className="h-7 w-7" />
+                </span>
               </div>
 
-              <div className="mt-4 flex items-center justify-between">
-                <span className="text-xs font-semibold text-brand-gray">&nbsp;</span>
-                <span className="ml-auto">
-                  <span className="inline-flex">
-                    <span className="inline-flex items-center gap-2 rounded-full bg-brand-gold px-4 py-2 text-sm font-semibold text-brand-navy shadow-md transition-transform duration-200 group-hover:-translate-y-0.5">
-                      <span>{p.cta}</span>
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              {/* Content */}
+              <div className="mt-4 flex-1">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="font-display text-base font-bold text-brand-navy dark:text-white">
+                    {p.name}
+                  </h3>
+                  {p.followers && (
+                    <span className="flex items-center gap-1 text-[11px] font-semibold text-brand-gray dark:text-slate-400">
+                      <Users className="h-3 w-3" />
+                      {p.followers}
                     </span>
-                  </span>
+                  )}
+                </div>
+                <p className="mt-2 text-xs leading-relaxed text-brand-gray dark:text-slate-400">{p.description}</p>
+              </div>
+
+              {/* CTA */}
+              <div className="mt-5">
+                <span
+                  className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white shadow-sm transition-all duration-300 group-hover:shadow-md"
+                  style={{ background: p.color }}
+                >
+                  {p.cta}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </span>
               </div>
             </motion.a>
           ))}
         </motion.div>
 
+        {/* Stats banner */}
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6, ease: SMOOTH_EASE }}
-          className="mx-auto mt-10 max-w-4xl rounded-2xl bg-white/5 p-6 text-center shadow-lg"
+          transition={{ duration: 0.5, ease: SMOOTH_EASE, delay: 0.3 }}
+          className="mx-auto mt-12 max-w-4xl rounded-2xl border border-white/20 bg-gradient-to-r from-brand-dark-bg via-brand-dark-secondary to-brand-dark-bg p-6 text-center shadow-xl dark:from-brand-dark-secondary dark:via-brand-dark-card dark:to-brand-dark-secondary"
         >
-          <p className="text-sm font-semibold text-brand-gold">Join thousands of learners across our community</p>
-
-          <div className="mt-4 grid grid-cols-2 gap-6 sm:grid-cols-4">
-            <div>
-              <div className="text-2xl font-bold text-white">{telegramCount >= 1000 ? telegramCount.toLocaleString() : telegramCount}</div>
-              <div className="mt-1 text-sm text-slate-300">Telegram Community</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-white">{tiktokCount >= 1000 ? (tiktokCount / 1000).toFixed(1) + "k" : tiktokCount}</div>
-              <div className="mt-1 text-sm text-slate-300">TikTok Followers</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-white">{youtubeCount >= 1000 ? (youtubeCount / 1000).toFixed(1) + "k" : youtubeCount}</div>
-              <div className="mt-1 text-sm text-slate-300">YouTube Subscribers</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-white">{facebookCount >= 1000 ? (facebookCount / 1000).toFixed(1) + "k" : facebookCount}</div>
-              <div className="mt-1 text-sm text-slate-300">Facebook Community</div>
-            </div>
+          <p className="text-xs font-bold uppercase tracking-widest text-brand-gold">
+            Our Reach
+          </p>
+          <div className="mt-5 grid grid-cols-2 gap-6 sm:grid-cols-4">
+            {[
+              { label: "Telegram Community", value: "4,156+" },
+              { label: "TikTok Followers", value: "295K+" },
+              { label: "YouTube Subscribers", value: "87.9K+" },
+              { label: "Facebook Community", value: "93K+" },
+            ].map((stat) => (
+              <div key={stat.label}>
+                <div className="font-display text-2xl font-extrabold text-white">{stat.value}</div>
+                <div className="mt-1 text-xs text-slate-400">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </motion.div>
       </Section>

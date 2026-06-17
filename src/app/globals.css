@@ -6,54 +6,22 @@
   color-scheme: light;
 }
 
+.dark {
+  color-scheme: dark;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
 
 body {
-  @apply bg-slate-50 text-brand-navy antialiased;
+  @apply antialiased;
   overflow-x: hidden;
   width: 100%;
 }
 
-/* When the admin theme wrapper adds the `dark` class we want
-   the subtree to use the dark text/background defaults. This
-   keeps components that rely on inherited color tokens readable
-   without changing every file. */
-.dark {
-  @apply bg-slate-950 text-slate-100;
-}
-
-/* Lightweight overrides so components that used light-only utilities
-   (e.g. `text-brand-navy`, `bg-white`, table header `bg-slate-50`) still
-   look correct inside the admin dark wrapper. These are intentionally
-   conservative and scoped to the `.dark` wrapper. */
-.dark .text-brand-navy {
-  @apply text-slate-100;
-}
-
-.dark .text-brand-gray {
-  @apply text-slate-400;
-}
-
-.dark .bg-white {
-  @apply bg-slate-800;
-}
-
-.dark .bg-slate-50 {
-  @apply bg-slate-900;
-}
-
-.dark .border-slate-200 {
-  @apply border-slate-700;
-}
-
-.dark .border-slate-100 {
-  @apply border-slate-700;
-}
-
-/* ── Custom scrollbar ─────────────────────────────── */
+/* ── Dark mode scrollbar ─────────────────────────── */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -62,13 +30,25 @@ body {
   background: #f1f5f9;
 }
 
+.dark ::-webkit-scrollbar-track {
+  background: #050B1E;
+}
+
 ::-webkit-scrollbar-thumb {
   background: #94a3b8;
   border-radius: 4px;
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background: #1e3a5f;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: #64748b;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #2a5298;
 }
 
 /* ── Navbar scroll transition helper ─────────────── */
@@ -77,12 +57,19 @@ body {
   backdrop-filter: saturate(180%) blur(12px);
 }
 
-/* ── Glassmorphism utility ───────────────────────── */
+/* ── Glassmorphism utilities ─────────────────────── */
 .glass {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-dark {
+  background: rgba(13, 24, 53, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* ── Count-up number tabular alignment ───────────── */
@@ -96,13 +83,40 @@ body {
 }
 
 .section-title {
-  @apply font-display text-3xl font-bold text-brand-navy md:text-4xl lg:text-5xl;
+  @apply font-display text-3xl font-bold text-brand-navy dark:text-white md:text-4xl lg:text-5xl;
 }
 
 .section-lead {
-  @apply max-w-2xl text-lg leading-relaxed text-brand-gray;
+  @apply max-w-2xl text-lg leading-relaxed text-brand-gray dark:text-slate-400;
 }
 
 .section-padding {
   @apply py-20 md:py-28;
+}
+
+/* ── Admin dark wrapper (scoped to admin routes only) */
+/* These overrides are intentionally conservative and only apply
+   inside the admin dark wrapper, NOT site-wide. */
+[data-admin-dark="true"] .text-brand-navy {
+  @apply text-slate-100;
+}
+
+[data-admin-dark="true"] .text-brand-gray {
+  @apply text-slate-400;
+}
+
+[data-admin-dark="true"] .bg-white {
+  @apply bg-slate-800;
+}
+
+[data-admin-dark="true"] .bg-slate-50 {
+  @apply bg-slate-900;
+}
+
+[data-admin-dark="true"] .border-slate-200 {
+  @apply border-slate-700;
+}
+
+[data-admin-dark="true"] .border-slate-100 {
+  @apply border-slate-700;
 }

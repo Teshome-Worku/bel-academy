@@ -7,34 +7,13 @@ import { Section } from "@/components/layout/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const faqs = [
-  {
-    q: "Do I need prior English knowledge to join?",
-    a: "No. BEL Academy offers programs for beginners, intermediate learners, and advanced students.",
-  },
-  {
-    q: "Are classes available online?",
-    a: "Yes. Students can learn from anywhere through our online learning programs.",
-  },
-  {
-    q: "What class schedules are available?",
-    a: "Regular, Night, Weekend, VIP, VVIP, Private, and Online classes are available.",
-  },
-  {
-    q: "Where are your branches located?",
-    a: "BEL Academy currently serves students through Burayyuu Branch, Jamoo Furii Branch, and online programs.",
-  },
-  {
-    q: "How can I register?",
-    a: "You can complete the registration form on the website and our team will contact you.",
-  },
-  {
-    q: "Do you offer private coaching?",
-    a: "Yes. Private and personalized English coaching is available.",
-  },
-  {
-    q: "Which program is best for beginners?",
-    a: "Our Regular Class program is designed for learners starting their English journey.",
-  },
+  { q: "Do I need prior English knowledge to join?", a: "No. BEL Academy offers programs for beginners, intermediate learners, and advanced students." },
+  { q: "Are classes available online?", a: "Yes. Students can learn from anywhere through our online learning programs." },
+  { q: "What class schedules are available?", a: "Regular, Night, Weekend, VIP, VVIP, Private, and Online classes are available." },
+  { q: "Where are your branches located?", a: "BEL Academy currently serves students through Burayyuu Branch, Jamoo Furii Branch, and online programs." },
+  { q: "How can I register?", a: "You can complete the registration form on the website and our team will contact you." },
+  { q: "Do you offer private coaching?", a: "Yes. Private and personalized English coaching is available." },
+  { q: "Which program is best for beginners?", a: "Our Regular Class program is designed for learners starting their English journey." },
 ];
 
 export function FAQSection() {
@@ -48,7 +27,6 @@ export function FAQSection() {
         title="Frequently Asked Questions"
         description="Quick answers about programs, registration, schedules, and learning options."
       />
-
       <div className="mx-auto mt-12 max-w-3xl space-y-3">
         {faqs.map((f, i) => {
           const isOpen = openIndex === i;
@@ -77,17 +55,12 @@ export function FAQSection() {
                 </span>
                 <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-xl transition-all duration-300 ${
                   isOpen
-                    ? "bg-brand-blue text-white dark:bg-brand-gold dark:text-brand-navy rotate-0 shadow-[0_0_10px_rgba(13,71,161,0.3)] dark:shadow-[0_0_10px_rgba(245,166,35,0.3)]"
+                    ? "bg-brand-blue text-white dark:bg-brand-gold dark:text-brand-navy shadow-[0_0_12px_rgba(13,71,161,0.4)] dark:shadow-[0_0_12px_rgba(245,166,35,0.4)]"
                     : "bg-slate-50 text-brand-blue dark:bg-white/5 dark:text-slate-400"
                 }`}>
-                  {isOpen ? (
-                    <Minus className="h-4 w-4" />
-                  ) : (
-                    <Plus className="h-4 w-4" />
-                  )}
+                  {isOpen ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                 </span>
               </button>
-
               <AnimatePresence initial={false}>
                 {isOpen && (
                   <motion.div

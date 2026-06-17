@@ -29,33 +29,34 @@ export function ProgramsSection() {
           description="Find the learning path that matches your goals—from everyday English to exam preparation."
         />
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5, ease: SMOOTH_EASE }}
-          className="mt-12 grid gap-6 md:grid-cols-2"
-        >
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
           {featured.map((p, i) => (
-            <ProgramCard
+            <motion.div
               key={p.id}
-              program={p}
-              index={i}
-              onViewDetails={() => {
-                setSelectedProgram(p);
-                setSelectedIndex(i);
-              }}
-            />
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ delay: i * 0.1, duration: 0.5, ease: SMOOTH_EASE }}
+            >
+              <ProgramCard
+                program={p}
+                index={i}
+                onViewDetails={() => {
+                  setSelectedProgram(p);
+                  setSelectedIndex(i);
+                }}
+              />
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         <div className="mt-10 text-center">
           <Link
             href="/programs"
-            className="group inline-flex items-center gap-2 rounded-xl border border-brand-blue/20 bg-white px-6 py-3 text-sm font-semibold text-brand-blue shadow-sm transition hover:border-brand-blue/40 hover:shadow-md"
+            className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-brand-dark-card px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:border-white/20 hover:bg-brand-dark-secondary dark:bg-brand-dark-card dark:hover:bg-brand-dark-secondary"
           >
             View all {programs.length} programs
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
       </Section>
