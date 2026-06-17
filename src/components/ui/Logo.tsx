@@ -30,7 +30,8 @@ export function Logo({
           alt={`${BRAND.name} logo`}
           fill
           quality={100}
-          className="object-contain"
+          sizes="(max-width: 640px) 72px, 112px"
+          className="object-contain scale-[1.45] transform-gpu"
           priority
         />
       </span>

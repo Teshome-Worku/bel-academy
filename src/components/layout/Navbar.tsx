@@ -86,186 +86,190 @@ export function Navbar() {
   }, []);
 
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 bg-white/90 backdrop-blur-md transition-all duration-300",
-        scrolled ? "shadow-lg" : "shadow-sm",
-      )}
-    >
-      <Container className="pl-2 pr-2.5 sm:pl-4 sm:pr-4 lg:pl-3 lg:pr-6 xl:pl-4 xl:pr-6">
-        <div
-          className={cn(
-            "flex items-center justify-between transition-all duration-300",
-            scrolled ? "h-[4.25rem] md:h-[4.5rem]" : "h-[4.5rem] md:h-20",
-          )}
-        >
-          {/* ── LEFT: Logo + Brand Name ──────────────────── */}
-          <Logo
-            className="sm:gap-0.5"
-            imageClassName={cn(
-              "transition-all duration-300",
-              scrolled ? "h-[4rem] md:h-[4.5rem]" : "h-16 md:h-20",
+    <>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur-md transition-all duration-300",
+          scrolled ? "shadow-lg" : "shadow-sm",
+        )}
+      >
+        <Container className="pl-2 pr-2.5 sm:pl-4 sm:pr-4 lg:pl-3 lg:pr-6 xl:pl-4 xl:pr-6">
+          <div
+            className={cn(
+              "flex items-center justify-between transition-all duration-300",
+              scrolled ? "h-[4.25rem] md:h-[4.5rem]" : "h-[4.5rem] md:h-20",
             )}
-            showText
-          />
+          >
+            {/* ── LEFT: Logo + Brand Name ──────────────────── */}
+            <Logo
+              className="sm:gap-0.5"
+              imageClassName={cn(
+                "transition-all duration-300",
+                scrolled ? "h-[4rem] md:h-[4.5rem]" : "h-16 md:h-20",
+              )}
+              showText
+            />
 
-          {/* ── CENTER: Navigation Links ─────────────────── */}
-          <nav className="hidden items-center gap-1 lg:flex">
-            {marketingNav.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "relative px-3.5 py-2 text-sm font-medium transition-colors duration-200",
-                    isActive
-                      ? "text-brand-blue"
-                      : "text-brand-navy hover:text-brand-blue",
+            {/* ── CENTER: Navigation Links ─────────────────── */}
+            <nav className="hidden items-center gap-1 lg:flex">
+              {marketingNav.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      "relative px-3.5 py-2 text-sm font-medium transition-colors duration-200",
+                      isActive
+                        ? "text-brand-blue"
+                        : "text-brand-navy hover:text-brand-blue",
+                    )}
+                  >
+                    {item.label}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-1/2 h-[2.5px] w-5 -translate-x-1/2 rounded-full bg-brand-gold" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            {/* ── RIGHT: Language Dropdown + Register Button ── */}
+            <div ref={langRef} className="flex items-center gap-3">
+              {/* Desktop language + register (visible on lg+) */}
+              <div className="hidden items-center gap-3 lg:flex">
+                {/* Language Dropdown */}
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setLangOpen((v) => !v)}
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-blue/30 hover:bg-blue-50"
+                  >
+                    <Globe className="h-4 w-4 text-brand-gray" />
+                    <span>{selectedLang}</span>
+                    <ChevronDown
+                      className={cn(
+                        "h-3.5 w-3.5 text-brand-gray transition-transform duration-200",
+                        langOpen && "rotate-180",
+                      )}
+                    />
+                  </button>
+
+                  {langOpen && (
+                    <div className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-xl border border-slate-100 bg-white py-1.5 shadow-xl">
+                      {languages.map((lang) => (
+                        <button
+                          key={lang.code}
+                          type="button"
+                          onClick={() => {
+                            applyLanguage(lang.label, lang.code);
+                            setLangOpen(false);
+                          }}
+                          className={cn(
+                            "flex w-full items-center gap-2 px-4 py-2.5 text-sm transition-colors",
+                            selectedLang === lang.label
+                              ? "bg-blue-50 font-medium text-brand-blue"
+                              : "text-brand-navy hover:bg-slate-50",
+                          )}
+                        >
+                          {lang.label}
+                          {selectedLang === lang.label && (
+                            <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-blue" />
+                          )}
+                        </button>
+                      ))}
+                    </div>
                   )}
-                >
-                  {item.label}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-1/2 h-[2.5px] w-5 -translate-x-1/2 rounded-full bg-brand-gold" />
-                  )}
+                </div>
+
+                {/* Register Now Button */}
+                <Link href="/register">
+                  <button
+                    type="button"
+                    className="group inline-flex items-center gap-2 rounded-xl bg-brand-gold px-5 py-2.5 text-sm font-bold text-brand-navy shadow-md shadow-brand-gold/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-gold/30 active:translate-y-0"
+                  >
+                    Register Now
+                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </button>
                 </Link>
-              );
-            })}
-          </nav>
+              </div>
 
-          {/* ── RIGHT: Language Dropdown + Register Button ── */}
-          <div ref={langRef} className="flex items-center gap-3">
-            {/* Desktop language + register (visible on lg+) */}
-            <div className="hidden items-center gap-3 lg:flex">
-              {/* Language Dropdown */}
-              <div className="relative">
+              {/* Mobile language popup triggered by the hamburger-adjacent button — moved next to hamburger below */}
+            </div>
+
+            {/* ── MOBILE: Hamburger (only shows when menu is closed) ── */}
+            {!mobileOpen ? (
+              <div className="flex items-center gap-2 lg:hidden">
+                {/* Compact language shorthand near hamburger */}
                 <button
                   type="button"
                   onClick={() => setLangOpen((v) => !v)}
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3.5 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-blue/30 hover:bg-blue-50"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-blue/30 hover:bg-blue-50"
+                  aria-label="Language"
                 >
                   <Globe className="h-4 w-4 text-brand-gray" />
-                  <span>{selectedLang}</span>
-                  <ChevronDown
-                    className={cn(
-                      "h-3.5 w-3.5 text-brand-gray transition-transform duration-200",
-                      langOpen && "rotate-180",
-                    )}
-                  />
+                  <span className="ml-1 text-sm font-semibold">{selectedLang === 'English' ? 'EN' : 'OR'}</span>
                 </button>
 
-                {langOpen && (
-                  <div className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-xl border border-slate-100 bg-white py-1.5 shadow-xl">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        type="button"
-                        onClick={() => {
-                          applyLanguage(lang.label, lang.code);
-                          setLangOpen(false);
-                        }}
-                        className={cn(
-                          "flex w-full items-center gap-2 px-4 py-2.5 text-sm transition-colors",
-                          selectedLang === lang.label
-                            ? "bg-blue-50 font-medium text-brand-blue"
-                            : "text-brand-navy hover:bg-slate-50",
-                        )}
-                      >
-                        {lang.label}
-                        {selectedLang === lang.label && (
-                          <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-blue" />
-                        )}
-                      </button>
-                    ))}
-                  </div>
-                )}
+                <button
+                  type="button"
+                  className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-slate-100"
+                  onClick={() => setMobileOpen(true)}
+                  aria-label="Open menu"
+                >
+                  <Menu className="h-6 w-6 text-brand-navy" />
+                </button>
               </div>
+            ) : null}
 
-              {/* Register Now Button */}
-              <Link href="/register">
-                <button
-                  type="button"
-                  className="group inline-flex items-center gap-2 rounded-xl bg-brand-gold px-5 py-2.5 text-sm font-bold text-brand-navy shadow-md shadow-brand-gold/25 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-brand-gold/30 active:translate-y-0"
-                >
-                  Register Now
-                  <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                </button>
-              </Link>
-            </div>
-
-            {/* Mobile language popup triggered by the hamburger-adjacent button — moved next to hamburger below */}
+            {/* Mobile language menu popup (shared with mobile button) */}
+            {langOpen && (
+              <div className="fixed right-4 top-[4.5rem] z-[80] w-44 overflow-hidden rounded-xl border border-slate-100 bg-white py-1.5 shadow-xl lg:hidden">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    type="button"
+                    onClick={() => {
+                      applyLanguage(lang.label, lang.code);
+                      setLangOpen(false);
+                    }}
+                    className={cn(
+                      "flex w-full items-center gap-2 px-4 py-2.5 text-sm transition-colors",
+                      selectedLang === lang.label
+                        ? "bg-blue-50 font-medium text-brand-blue"
+                        : "text-brand-navy hover:bg-slate-50",
+                    )}
+                  >
+                    <Globe className="mr-2.5 h-4 w-4 text-brand-gray" />
+                    {lang.label}
+                    {selectedLang === lang.label && (
+                      <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-blue" />
+                    )}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
+        </Container>
+      </header>
 
-          {/* ── MOBILE: Hamburger (only shows when menu is closed) ── */}
-          {!mobileOpen ? (
-            <div className="flex items-center gap-2 lg:hidden">
-              {/* Compact language shorthand near hamburger */}
-              <button
-                type="button"
-                onClick={() => setLangOpen((v) => !v)}
-                className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-brand-navy transition-colors hover:border-brand-blue/30 hover:bg-blue-50"
-                aria-label="Language"
-              >
-                <Globe className="h-4 w-4 text-brand-gray" />
-                <span className="ml-1 text-sm font-semibold">{selectedLang === 'English' ? 'EN' : 'OR'}</span>
-              </button>
-
-              <button
-                type="button"
-                className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-slate-100"
-                onClick={() => setMobileOpen(true)}
-                aria-label="Open menu"
-              >
-                <Menu className="h-6 w-6 text-brand-navy" />
-              </button>
-            </div>
-          ) : null}
-
-          {/* Mobile language menu popup (shared with mobile button) */}
-          {langOpen && (
-            <div className="fixed right-4 top-[4.5rem] z-[80] w-44 overflow-hidden rounded-xl border border-slate-100 bg-white py-1.5 shadow-xl lg:hidden">
-              {languages.map((lang) => (
-                <button
-                  key={lang.code}
-                  type="button"
-                  onClick={() => {
-                    applyLanguage(lang.label, lang.code);
-                    setLangOpen(false);
-                  }}
-                  className={cn(
-                    "flex w-full items-center gap-2 px-4 py-2.5 text-sm transition-colors",
-                    selectedLang === lang.label
-                      ? "bg-blue-50 font-medium text-brand-blue"
-                      : "text-brand-navy hover:bg-slate-50",
-                  )}
-                >
-                  <Globe className="mr-2.5 h-4 w-4 text-brand-gray" />
-                  {lang.label}
-                  {selectedLang === lang.label && (
-                    <span className="ml-auto h-1.5 w-1.5 rounded-full bg-brand-blue" />
-                  )}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      </Container>
-
-      {/* ── MOBILE BACKDROP ─────────────────────────────── */}
+      {/* ── MOBILE BACKDROP (moved outside header to avoid stacking issues) ─────────────────────────────── */}
       <div
         className={cn(
-          "fixed inset-0 z-[60] bg-black/40 transition-opacity duration-300 lg:hidden",
-          mobileOpen ? "opacity-100" : "pointer-events-none opacity-0",
+          "fixed inset-0 z-[60] bg-black/40 transition-opacity duration-300 lg:hidden pointer-events-none",
+          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0",
         )}
         onClick={() => setMobileOpen(false)}
+        aria-hidden={!mobileOpen}
       />
 
-      {/* ── MOBILE SLIDE-OUT DRAWER ──────────────────────── */}
+      {/* ── MOBILE SLIDE-OUT DRAWER (moved outside header to avoid stacking issues) ──────────────────────── */}
       <div
         className={cn(
-          "fixed right-0 top-0 z-[70] flex h-full w-[19rem] max-w-[calc(100vw-1rem)] flex-col bg-white shadow-2xl transition-transform duration-300 ease-out lg:hidden",
-          mobileOpen ? "translate-x-0" : "translate-x-full",
+          "fixed right-0 top-0 z-[70] flex h-full w-[19rem] max-w-[calc(100vw-1rem)] flex-col bg-white shadow-2xl transform transition-transform duration-300 ease-in-out lg:hidden",
+          mobileOpen ? "translate-x-0" : "translate-x-full pointer-events-none",
         )}
+        aria-hidden={!mobileOpen}
       >
         {/* Drawer Header — single close button */}
         <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
@@ -351,6 +355,6 @@ export function Navbar() {
           </Link>
         </div>
       </div>
-    </header>
+    </>
   );
 }
