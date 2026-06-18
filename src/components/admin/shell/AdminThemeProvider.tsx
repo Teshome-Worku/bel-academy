@@ -21,7 +21,7 @@ type AdminThemeContextValue = {
 const AdminThemeContext = createContext<AdminThemeContextValue | null>(null);
 
 export function AdminThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<AdminTheme>("dark");
+  const [theme, setTheme] = useState<AdminTheme>("light");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -35,6 +35,11 @@ export function AdminThemeProvider({ children }: { children: React.ReactNode }) 
   useEffect(() => {
     if (!mounted) return;
     localStorage.setItem(STORAGE_KEY, theme);
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
   }, [theme, mounted]);
 
   const toggleTheme = useCallback(() => {
@@ -45,7 +50,7 @@ export function AdminThemeProvider({ children }: { children: React.ReactNode }) 
 
   return (
     <AdminThemeContext.Provider value={{ theme, isDark, toggleTheme }}>
-      <div className={isDark ? "dark" : ""}>{children}</div>
+      {children}
     </AdminThemeContext.Provider>
   );
 }

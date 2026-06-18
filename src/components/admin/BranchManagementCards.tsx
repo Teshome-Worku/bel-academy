@@ -43,18 +43,18 @@ export function BranchManagementCards() {
                 onEdit={() => alert(`Edit ${b.name} — demo`)}
               />
             </div>
-            <h3 className="mt-4 font-heading text-lg font-semibold text-brand-navy">
+            <h3 className="mt-4 font-heading text-lg font-semibold text-brand-navy dark:text-slate-100">
               {b.name}
             </h3>
-            <p className="mt-1 text-sm text-brand-gray">{b.address}</p>
-            <div className="mt-4 flex items-center gap-2 text-sm text-brand-gray">
+            <p className="mt-1 text-sm text-brand-gray dark:text-slate-400">{b.address}</p>
+            <div className="mt-4 flex items-center gap-2 text-sm text-brand-gray dark:text-slate-400">
               <Phone className="h-4 w-4 shrink-0" />
               {b.phone}
             </div>
-            <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-4">
+            <div className="mt-4 flex items-center justify-between border-t border-slate-200 pt-4 dark:border-slate-700">
               <div>
-                <p className="text-xs text-brand-gray">Students</p>
-                <p className="font-heading text-xl font-bold text-brand-navy">{count}</p>
+                <p className="text-xs text-brand-gray dark:text-slate-400">Students</p>
+                <p className="font-heading text-xl font-bold text-brand-navy dark:text-slate-100">{count}</p>
               </div>
               <StatusBadge status="active" />
             </div>

@@ -13,7 +13,7 @@ const features = [
 
 export function LoginBrandingPanel() {
   return (
-    <div className="relative flex flex-col bg-brand-navy p-8 text-white lg:w-[42%] lg:p-10">
+    <div className="relative flex flex-col items-center text-center lg:items-start lg:text-left bg-brand-navy p-8 text-white lg:w-[42%] lg:p-10">
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-gold to-brand-gold/40" />
 
       <div className="inline-flex w-fit rounded-xl bg-white p-4 shadow-sm">
@@ -31,7 +31,7 @@ export function LoginBrandingPanel() {
         one place.
       </p>
 
-      <ul className="mt-8 space-y-3">
+      <ul className="mt-8 flex flex-col items-center lg:items-start space-y-3">
         {features.map((feature) => (
           <li key={feature} className="flex items-center gap-3 text-slate-200">
             <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-gold/20 text-brand-gold">

@@ -24,7 +24,7 @@ export function PremiumStatCard({
     <motion.div
       whileHover={{ scale: 1.02, y: -2 }}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
-      className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-shadow hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
+      className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-3 sm:p-5 shadow-sm transition-shadow hover:shadow-md dark:border-slate-700 dark:bg-slate-800"
     >
       <div
         className={cn(
@@ -34,8 +34,8 @@ export function PremiumStatCard({
       />
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-sm font-medium text-brand-gray dark:text-slate-400">{label}</p>
-          <p className="mt-2 font-heading text-3xl font-bold text-brand-navy dark:text-slate-100">
+          <p className="text-xs sm:text-sm font-medium text-brand-gray dark:text-slate-400">{label}</p>
+          <p className="mt-1 sm:mt-2 font-heading text-xl sm:text-3xl font-bold text-brand-navy dark:text-slate-100">
             {value}
           </p>
           {trend ? (
@@ -47,11 +47,11 @@ export function PremiumStatCard({
         </div>
         <div
           className={cn(
-            "flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm",
+            "flex h-9 w-9 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br text-white shadow-sm ml-2",
             gradient,
           )}
         >
-          <Icon className="h-5 w-5" />
+          <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
         </div>
       </div>
     </motion.div>

@@ -38,7 +38,7 @@ const PLATFORMS: Platform[] = [
     bgGlass: "dark:hover:border-[#26A5E4]/30",
     Icon: TelegramIcon,
     cta: "Join Channel",
-    followers: "4K",
+    followers: "4K+",
   },
   {
     id: "facebook",
@@ -147,9 +147,9 @@ export function CommunitySection() {
                 className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-1"
                 style={{ background: p.id === 'tiktok' ? 'rgba(105,201,208,0.1)' : `${p.color}15` }}
               >
-                <span 
+                <span
                   className="transition-colors duration-300"
-                  style={{ 
+                  style={{
                     color: p.id === 'tiktok' ? 'currentColor' : p.color,
                   }}
                 >
@@ -200,9 +200,9 @@ export function CommunitySection() {
           </p>
           <div className="mt-5 grid grid-cols-2 gap-6 sm:grid-cols-4">
             {[
-              { label: "Telegram Community", value: "4,156+" },
+              { label: "Telegram Community", value: "4K+" },
               { label: "TikTok Followers", value: "295K+" },
-              { label: "YouTube Subscribers", value: "87.9K+" },
+              { label: "YouTube Subscribers", value: "88K+" },
               { label: "Facebook Community", value: "93K+" },
             ].map((stat) => (
               <div key={stat.label}>

@@ -23,11 +23,11 @@ export default function AdminSettingsPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label className="mb-1 block text-sm font-medium text-brand-navy">Name</label>
+              <label className="mb-1 block text-sm font-medium text-brand-navy dark:text-slate-200">Name</label>
               <Input value={BRAND.name} readOnly />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-brand-navy">Tagline</label>
+              <label className="mb-1 block text-sm font-medium text-brand-navy dark:text-slate-200">Tagline</label>
               <Input value={BRAND.tagline} readOnly />
             </div>
           </CardContent>
@@ -39,15 +39,15 @@ export default function AdminSettingsPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
-              <label className="mb-1 block text-sm font-medium text-brand-navy">Phone</label>
+              <label className="mb-1 block text-sm font-medium text-brand-navy dark:text-slate-200">Phone</label>
               <Input value={BRAND.phone} readOnly />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-brand-navy">Email</label>
+              <label className="mb-1 block text-sm font-medium text-brand-navy dark:text-slate-200">Email</label>
               <Input value={BRAND.email} readOnly />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-brand-navy">Address</label>
+              <label className="mb-1 block text-sm font-medium text-brand-navy dark:text-slate-200">Address</label>
               <Input value={BRAND.address} readOnly />
             </div>
           </CardContent>
@@ -69,21 +69,21 @@ export default function AdminSettingsPage() {
             <CardTitle>Language Settings</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            <label className="flex items-center gap-3 rounded-lg border border-slate-200 p-3">
+            <label className="flex items-center gap-3 rounded-lg border border-slate-200 p-3 dark:border-slate-700">
               <input
                 type="radio"
                 checked={lang === "en"}
                 onChange={() => setLang("en")}
               />
-              <span className="text-sm font-medium">English</span>
+              <span className="text-sm font-medium dark:text-slate-200">English</span>
             </label>
-            <label className="flex items-center gap-3 rounded-lg border border-slate-200 p-3">
+            <label className="flex items-center gap-3 rounded-lg border border-slate-200 p-3 dark:border-slate-700">
               <input
                 type="radio"
                 checked={lang === "om"}
                 onChange={() => setLang("om")}
               />
-              <span className="text-sm font-medium">Afaan Oromo</span>
+              <span className="text-sm font-medium dark:text-slate-200">Afaan Oromo</span>
             </label>
             <p className="text-xs text-brand-gray">UI only — no translation in showcase.</p>
           </CardContent>
@@ -94,8 +94,8 @@ export default function AdminSettingsPage() {
             <CardTitle>Notification Settings</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <label className="flex items-center justify-between rounded-lg border border-slate-200 p-4">
-              <span className="text-sm font-medium text-brand-navy">Email notifications</span>
+            <label className="flex items-center justify-between rounded-lg border border-slate-200 p-4 dark:border-slate-700">
+              <span className="text-sm font-medium text-brand-navy dark:text-slate-200">Email notifications</span>
               <input
                 type="checkbox"
                 checked={emailNotif}
@@ -103,8 +103,8 @@ export default function AdminSettingsPage() {
                 className="h-4 w-4 rounded"
               />
             </label>
-            <label className="flex items-center justify-between rounded-lg border border-slate-200 p-4">
-              <span className="text-sm font-medium text-brand-navy">New registration alerts</span>
+            <label className="flex items-center justify-between rounded-lg border border-slate-200 p-4 dark:border-slate-700">
+              <span className="text-sm font-medium text-brand-navy dark:text-slate-200">New registration alerts</span>
               <input
                 type="checkbox"
                 checked={regNotif}
