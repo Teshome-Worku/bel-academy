@@ -1,4 +1,4 @@
-﻿import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 type FormFieldProps = {
   label: string;
@@ -11,7 +11,7 @@ type FormFieldProps = {
 export function FormField({ label, htmlFor, error, children, className }: FormFieldProps) {
   return (
     <div className={cn("space-y-1.5", className)}>
-      <label htmlFor={htmlFor} className="text-sm font-medium text-brand-navy">
+      <label htmlFor={htmlFor} className="text-sm font-medium text-brand-navy dark:text-slate-200">
         {label}
       </label>
       {children}

@@ -77,7 +77,7 @@ export function RegistrationForm() {
 
       <form onSubmit={handleSubmit} className="space-y-8">
         <fieldset className="space-y-5">
-          <legend className="mb-1 font-display text-sm font-bold uppercase tracking-wide text-brand-blue">
+          <legend className="mb-1 font-display text-sm font-bold uppercase tracking-wide text-brand-blue dark:text-blue-400">
             Step 1 — Personal Information
           </legend>
           <div className="grid gap-5 md:grid-cols-2">
@@ -94,7 +94,7 @@ export function RegistrationForm() {
         </fieldset>
 
         <fieldset className="space-y-5">
-          <legend className="mb-1 font-display text-sm font-bold uppercase tracking-wide text-brand-blue">
+          <legend className="mb-1 font-display text-sm font-bold uppercase tracking-wide text-brand-blue dark:text-blue-400">
             Step 2 — Program & Branch
           </legend>
           <div className="grid gap-5 md:grid-cols-2">
@@ -138,7 +138,7 @@ export function RegistrationForm() {
         </fieldset>
 
         <fieldset className="space-y-5">
-          <legend className="mb-1 font-display text-sm font-bold uppercase tracking-wide text-brand-blue">
+          <legend className="mb-1 font-display text-sm font-bold uppercase tracking-wide text-brand-blue dark:text-blue-400">
             Step 3 — Your Goals
           </legend>
           <FormField label="Message (optional)" htmlFor="message">
