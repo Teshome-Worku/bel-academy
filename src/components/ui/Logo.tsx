@@ -22,7 +22,7 @@ export function Logo({
         className={
           imageClassName
             ? cn("relative block aspect-square shrink-0 overflow-hidden", imageClassName)
-            : "relative block aspect-square shrink-0 overflow-hidden h-16 w-16 sm:h-20 sm:w-20 md:h-22 md:w-22"
+            : "relative block aspect-square shrink-0 overflow-hidden h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14"
         }
       >
         <Image
@@ -30,8 +30,8 @@ export function Logo({
           alt={`${BRAND.name} logo`}
           fill
           quality={100}
-          sizes="(max-width: 640px) 72px, 112px"
-          className="object-contain scale-[1.45] transform-gpu"
+          sizes="(max-width: 640px) 40px, 56px"
+          className="object-contain scale-[1.15] transform-gpu"
           priority
         />
       </span>
