@@ -21,8 +21,8 @@ export function Logo({
       <span
         className={
           imageClassName
-            ? cn("relative block aspect-square shrink-0 overflow-hidden", imageClassName)
-            : "relative block aspect-square shrink-0 overflow-hidden h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11"
+            ? cn("relative block aspect-square shrink-0 overflow-hidden transition-all duration-300 dark:scale-[0.85] dark:rounded-2xl", imageClassName)
+            : "relative block aspect-square shrink-0 overflow-hidden h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11 transition-all duration-300 dark:scale-[0.85] dark:rounded-xl"
         }
       >
         <Image
