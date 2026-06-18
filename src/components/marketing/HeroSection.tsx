@@ -21,7 +21,7 @@ const fadeUp = {
 export function HeroSection() {
   return (
     <>
-      <section className="relative flex min-h-[80dvh] lg:min-h-[calc(100dvh-4.5rem)] flex-col overflow-hidden">
+      <section className="relative flex min-h-[98dvh] lg:min-h-[calc(100dvh-4.5rem)] flex-col overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80"
           alt="Students learning English at BEL Academy"
@@ -38,7 +38,7 @@ export function HeroSection() {
           Stats panel follows inline after the buttons — no absolute positioning.
           Bottom padding pb-8 gives breathing room at the bottom.
         */}
-        <Container className="relative z-10 flex flex-1 flex-col pt-10 pb-12 lg:pt-12 lg:pb-10">
+        <Container className="relative z-10 flex flex-1 flex-col pt-20 pb-12 lg:pt-24 lg:pb-24">
           {/* ── Hero copy ── */}
           <motion.div initial="hidden" animate="visible" className="max-w-3xl">
             <motion.div custom={0} variants={fadeUp}>
