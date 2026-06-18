@@ -38,7 +38,7 @@ export function HeroSection() {
           Stats panel follows inline after the buttons — no absolute positioning.
           Bottom padding pb-8 gives breathing room at the bottom.
         */}
-        <Container className="relative z-10 flex flex-1 flex-col pt-20 pb-12 lg:pt-24 lg:pb-24">
+        <Container className="relative z-10 flex flex-1 flex-col pt-20 pb-8 lg:pt-24 lg:pb-10">
           {/* ── Hero copy ── */}
           <motion.div initial="hidden" animate="visible" className="max-w-3xl">
             <motion.div custom={0} variants={fadeUp}>
