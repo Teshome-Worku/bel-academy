@@ -38,7 +38,7 @@ export function SectionHeading({
       <h2
         className={cn(
           "section-title mt-4",
-          dark && "text-white",
+          dark ? "!text-white" : "",
         )}
       >
         {title}
