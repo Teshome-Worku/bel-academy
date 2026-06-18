@@ -30,7 +30,7 @@ export const socialLinks: SocialLink[] = [
     Icon: Video,
     title: "TikTok Lessons",
     description: "Short English lessons and educational videos.",
-    url: "https://www.tiktok.com/@oromoenglish.bel.academy",
+    url: "https://www.tiktok.com/@bel_academy",
   },
   {
     id: "facebook",
@@ -44,7 +44,7 @@ export const socialLinks: SocialLink[] = [
     Icon: Camera,
     title: "Instagram",
     description: "Academy activities, learning tips, and student highlights.",
-    url: "https://www.instagram.com/bel_academy1?igsh=MWM3bjgwdmUxOGx3OQ==",
+    url: "https://www.instagram.com/bel_academy1/",
   },
   {
     id: "youtube",
