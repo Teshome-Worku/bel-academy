@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useMemo, useState } from "react";
 import { students as initial } from "@/data/students";
@@ -12,6 +12,7 @@ import { StudentAvatar } from "./tables/StudentAvatar";
 import { RowActionsMenu } from "./tables/RowActionsMenu";
 import { Pagination } from "./tables/Pagination";
 import { StudentDetailModal } from "./tables/StudentDetailModal";
+import { ComingSoonModal } from "@/components/admin/ui/ComingSoonModal";
 import type { Student } from "@/types/student";
 
 const PAGE_SIZE = 8;
@@ -24,6 +25,7 @@ export function StudentsTable() {
   const [branchId, setBranchId] = useState("all");
   const [page, setPage] = useState(1);
   const [viewStudent, setViewStudent] = useState<Student | null>(null);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   const filtered = useMemo(() => {
     return rows.filter((s) => {
@@ -142,7 +144,7 @@ export function StudentsTable() {
                   <td className="px-4 py-3">
                     <RowActionsMenu
                       onView={() => setViewStudent(s)}
-                      onEdit={() => alert("Edit student — demo only")}
+                      onEdit={() => setShowEditModal(true)}
                       onDelete={() => handleDelete(s.id)}
                     />
                   </td>
@@ -157,6 +159,12 @@ export function StudentsTable() {
       <StudentDetailModal
         student={viewStudent}
         onClose={() => setViewStudent(null)}
+      />
+      <ComingSoonModal
+        open={showEditModal}
+        onClose={() => setShowEditModal(false)}
+        title="Edit Student"
+        message="Editing student profiles directly from the dashboard is coming soon."
       />
     </div>
   );

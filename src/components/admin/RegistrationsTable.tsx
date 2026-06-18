@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useMemo, useState } from "react";
 import { registrations as initial } from "@/data/registrations";
@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/Button";
 import { StatusBadge } from "./StatusBadge";
 import { RowActionsMenu } from "./tables/RowActionsMenu";
 import { RegistrationDetailModal } from "./tables/RegistrationDetailModal";
+import { ComingSoonModal } from "@/components/admin/ui/ComingSoonModal";
 
 type TabStatus = RegistrationStatus | "all";
 
@@ -27,6 +28,7 @@ export function RegistrationsTable() {
   const [query, setQuery] = useState("");
   const [activeTab, setActiveTab] = useState<TabStatus>("pending");
   const [viewReg, setViewReg] = useState<Registration | null>(null);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   const counts = useMemo(() => ({
     all: rows.length,
@@ -99,7 +101,7 @@ export function RegistrationsTable() {
               {filtered.map((r) => (
                 <tr key={r.id} className="border-t border-slate-100 dark:border-slate-700 hover:bg-slate-50/80 dark:hover:bg-slate-800/60">
                   <td className="px-4 py-3">
-                    <p className="font-medium text-brand-navy">{r.fullName}</p>
+                    <p className="font-medium text-brand-navy dark:text-slate-100">{r.fullName}</p>
                     <p className="text-xs text-brand-gray">{r.phone}</p>
                   </td>
                   <td className="hidden px-4 py-3 text-brand-gray dark:text-slate-400 md:table-cell">
@@ -135,7 +137,7 @@ export function RegistrationsTable() {
                       ) : null}
                       <RowActionsMenu
                         onView={() => setViewReg(r)}
-                        onEdit={() => alert("Edit — demo only")}
+                        onEdit={() => setShowEditModal(true)}
                       />
                     </div>
                   </td>
@@ -155,6 +157,12 @@ export function RegistrationsTable() {
         onReject={() => {
           if (viewReg) updateStatus(viewReg.id, "rejected");
         }}
+      />
+      <ComingSoonModal
+        open={showEditModal}
+        onClose={() => setShowEditModal(false)}
+        title="Edit Registration"
+        message="Editing registrations directly from the dashboard is coming soon."
       />
     </div>
   );
