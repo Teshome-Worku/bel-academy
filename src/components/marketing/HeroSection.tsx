@@ -21,9 +21,7 @@ const fadeUp = {
 export function HeroSection() {
   return (
     <>
-      <section
-        className="relative flex min-h-[calc(100dvh-4.5rem)] flex-col overflow-hidden"
-      >
+      <section className="relative flex min-h-[calc(100dvh-4.5rem)] flex-col overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80"
           alt="Students learning English at BEL Academy"
@@ -32,10 +30,16 @@ export function HeroSection() {
           className="object-cover"
           sizes="100vw"
         />
-
         <div className="absolute inset-0 bg-gradient-to-b from-[#050B1E]/85 via-[#050B1E]/75 to-[#050B1E]" />
 
-        <Container className="relative z-10 flex flex-1 flex-col justify-center pb-32 pt-2 sm:pb-36 sm:pt-6 md:pb-40">
+        {/*
+          Layout: flex-col, no justify-center.
+          Top padding is small (pt-8 / sm:pt-12) so content starts just below the navbar.
+          Stats panel follows inline after the buttons — no absolute positioning.
+          Bottom padding pb-8 gives breathing room at the bottom.
+        */}
+        <Container className="relative z-10 flex flex-1 flex-col pt-8 pb-8 sm:pt-12 sm:pb-10">
+          {/* ── Hero copy ── */}
           <motion.div initial="hidden" animate="visible" className="max-w-3xl">
             <motion.div custom={0} variants={fadeUp}>
               <span className="section-eyebrow border-brand-gold/30 bg-brand-gold/10 text-brand-gold">
@@ -88,16 +92,15 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
+          {/* ── Stats panel — inline, right after buttons ── */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5, ease: SMOOTH_EASE }}
-            className="absolute bottom-8 left-0 right-0 z-10 px-4 sm:bottom-10 md:bottom-12"
+            transition={{ delay: 0.45, duration: 0.5, ease: SMOOTH_EASE }}
+            className="mt-10 sm:mt-12 w-full max-w-3xl"
           >
-            <div className="mx-auto max-w-5xl">
-              <div className="glass rounded-2xl px-4 py-4 shadow-2xl sm:px-8 sm:py-6">
-                <CountUpStats />
-              </div>
+            <div className="glass rounded-2xl px-4 py-4 shadow-2xl sm:px-8 sm:py-6">
+              <CountUpStats />
             </div>
           </motion.div>
         </Container>

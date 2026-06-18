@@ -37,10 +37,10 @@ export function Logo({
       </span>
       {showText ? (
         <span className="flex flex-col leading-tight">
-          <span className="whitespace-nowrap font-display text-sm sm:text-[1.2rem] font-bold text-brand-navy md:text-[1.3rem]">
+          <span className="whitespace-nowrap font-display text-sm sm:text-[1.2rem] font-bold text-brand-navy dark:text-white md:text-[1.3rem]">
             {BRAND.name}
           </span>
-          <span className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-gray">
+          <span className="flex items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-brand-gray dark:text-slate-300">
             <span className="inline-block h-px w-3 bg-brand-gold" />
             {BRAND.tagline}
             <span className="inline-block h-px w-3 bg-brand-gold" />
