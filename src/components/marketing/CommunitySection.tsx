@@ -57,9 +57,9 @@ const PLATFORMS: Platform[] = [
     name: "TikTok",
     description: "Watch short English tips and speaking practice videos.",
     url: "https://www.tiktok.com/@bel_academy",
-    color: "#69C9D0",
-    hoverGlow: "hover:shadow-[0_8px_30px_rgba(105,201,208,0.35)]",
-    bgGlass: "dark:hover:border-[#69C9D0]/30",
+    color: "#000000",
+    hoverGlow: "hover:shadow-[0_8px_30px_rgba(255,255,255,0.15)] dark:hover:shadow-[0_8px_30px_rgba(105,201,208,0.25)]",
+    bgGlass: "dark:hover:border-white/30",
     Icon: TikTokIcon,
     cta: "Watch Videos",
     followers: "295K+",
@@ -138,17 +138,22 @@ export function CommunitySection() {
             >
               {/* Top accent line */}
               <div
-                className="absolute inset-x-0 top-0 h-0.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                style={{ background: p.color }}
+                className="absolute inset-x-0 top-0 h-1 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{ background: p.id === 'instagram' ? 'linear-gradient(45deg, #f58529, #dd2a7b, #515bd4)' : p.color }}
               />
 
               {/* Icon */}
               <div
-                className="flex h-14 w-14 items-center justify-center rounded-2xl transition-transform duration-300 group-hover:scale-110"
-                style={{ background: `${p.color}15` }}
+                className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-1"
+                style={{ background: p.id === 'tiktok' ? 'rgba(105,201,208,0.1)' : `${p.color}15` }}
               >
-                <span style={{ color: p.color }}>
-                  <p.Icon className="h-7 w-7" />
+                <span 
+                  className="transition-colors duration-300"
+                  style={{ 
+                    color: p.id === 'tiktok' ? 'currentColor' : p.color,
+                  }}
+                >
+                  <p.Icon className="h-8 w-8 sm:h-10 sm:w-10 drop-shadow-sm" />
                 </span>
               </div>
 
@@ -171,8 +176,8 @@ export function CommunitySection() {
               {/* CTA */}
               <div className="mt-5">
                 <span
-                  className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white shadow-sm transition-all duration-300 group-hover:shadow-md"
-                  style={{ background: p.color }}
+                  className="inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-xs font-bold text-white shadow-sm transition-all duration-300 group-hover:shadow-md group-hover:scale-105"
+                  style={{ background: p.id === 'instagram' ? 'linear-gradient(45deg, #f58529, #dd2a7b, #515bd4)' : (p.id === 'tiktok' ? '#000000' : p.color) }}
                 >
                   {p.cta}
                   <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5" />

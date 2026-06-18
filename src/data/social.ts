@@ -1,15 +1,15 @@
 import {
-  MessageCircle,
-  Video,
-  Globe,
-  Camera,
-  Play,
-  type LucideIcon,
-} from "lucide-react";
+  FaTelegram,
+  FaTiktok,
+  FaFacebook,
+  FaInstagram,
+  FaYoutube,
+} from "react-icons/fa6";
+import type { IconType } from "react-icons";
 
 export type SocialLink = {
   id: string;
-  Icon: LucideIcon;
+  Icon: IconType;
   title: string;
   description: string;
   url: string;
@@ -19,7 +19,7 @@ export type SocialLink = {
 export const socialLinks: SocialLink[] = [
   {
     id: "telegram",
-    Icon: MessageCircle,
+    Icon: FaTelegram,
     title: "Telegram Community",
     description:
       "Join for updates, registration announcements, and learning resources.",
@@ -27,28 +27,28 @@ export const socialLinks: SocialLink[] = [
   },
   {
     id: "tiktok",
-    Icon: Video,
+    Icon: FaTiktok,
     title: "TikTok Lessons",
     description: "Short English lessons and educational videos.",
     url: "https://www.tiktok.com/@bel_academy",
   },
   {
     id: "facebook",
-    Icon: Globe,
+    Icon: FaFacebook,
     title: "Facebook Page",
     description: "Announcements, success stories, and academy updates.",
     url: "https://web.facebook.com/profile.php?id=61575630489570",
   },
   {
     id: "instagram",
-    Icon: Camera,
+    Icon: FaInstagram,
     title: "Instagram",
     description: "Academy activities, learning tips, and student highlights.",
     url: "https://www.instagram.com/bel_academy1/",
   },
   {
     id: "youtube",
-    Icon: Play,
+    Icon: FaYoutube,
     title: "YouTube Channel",
     description: "Long-form English lessons and educational content.",
     url: "https://www.youtube.com/@BELACADEMY",

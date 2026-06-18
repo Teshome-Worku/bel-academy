@@ -22,7 +22,7 @@ export function Logo({
         className={
           imageClassName
             ? cn("relative block aspect-square shrink-0 overflow-hidden", imageClassName)
-            : "relative block aspect-square shrink-0 overflow-hidden h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14"
+            : "relative block aspect-square shrink-0 overflow-hidden h-9 w-9 sm:h-10 sm:w-10 md:h-11 md:w-11"
         }
       >
         <Image
@@ -30,7 +30,7 @@ export function Logo({
           alt={`${BRAND.name} logo`}
           fill
           unoptimized
-          className="object-contain scale-[1.15] transform-gpu"
+          className="object-contain transform-gpu"
           priority
         />
       </span>

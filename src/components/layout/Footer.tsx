@@ -9,11 +9,11 @@ import { FacebookIcon, TelegramIcon, TikTokIcon, YouTubeIcon, InstagramIcon } fr
 import { Container } from "./Container";
 
 const socialIcons = [
-  { href: "https://web.facebook.com/profile.php?id=61575630489570", Icon: FacebookIcon, label: "Facebook", glow: "hover:shadow-[0_0_16px_rgba(24,119,242,0.5)] hover:border-[#1877F2]/30" },
-  { href: "https://t.me/BEL_ACADEMY2", Icon: TelegramIcon, label: "Telegram", glow: "hover:shadow-[0_0_16px_rgba(38,165,228,0.5)] hover:border-[#26A5E4]/30" },
-  { href: "https://www.tiktok.com/@oromoenglish.bel.academy", Icon: TikTokIcon, label: "TikTok", glow: "hover:shadow-[0_0_16px_rgba(105,201,208,0.5)] hover:border-[#69C9D0]/30" },
-  { href: "https://www.youtube.com/@BELACADEMY", Icon: YouTubeIcon, label: "YouTube", glow: "hover:shadow-[0_0_16px_rgba(255,0,0,0.4)] hover:border-[#FF0000]/30" },
-  { href: "https://www.instagram.com/oromo_english_bel_academy/", Icon: InstagramIcon, label: "Instagram", glow: "hover:shadow-[0_0_16px_rgba(225,48,108,0.5)] hover:border-[#E1306C]/30" },
+  { href: "https://web.facebook.com/profile.php?id=61575630489570", Icon: FacebookIcon, label: "Facebook", glow: "hover:shadow-[0_0_16px_rgba(24,119,242,0.5)] hover:border-[#1877F2]/30 hover:text-[#1877F2]" },
+  { href: "https://t.me/BEL_ACADEMY2", Icon: TelegramIcon, label: "Telegram", glow: "hover:shadow-[0_0_16px_rgba(38,165,228,0.5)] hover:border-[#26A5E4]/30 hover:text-[#26A5E4]" },
+  { href: "https://www.tiktok.com/@bel_academy", Icon: TikTokIcon, label: "TikTok", glow: "hover:shadow-[0_0_16px_rgba(105,201,208,0.5)] hover:border-[#69C9D0]/30 hover:text-white" },
+  { href: "https://www.youtube.com/@BELACADEMY", Icon: YouTubeIcon, label: "YouTube", glow: "hover:shadow-[0_0_16px_rgba(255,0,0,0.4)] hover:border-[#FF0000]/30 hover:text-[#FF0000]" },
+  { href: "https://www.instagram.com/bel_academy1/", Icon: InstagramIcon, label: "Instagram", glow: "hover:shadow-[0_0_16px_rgba(225,48,108,0.5)] hover:border-[#E1306C]/30 hover:text-white" },
 ];
 
 export function Footer() {
@@ -43,7 +43,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className={`flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-400 transition-all duration-300 hover:-translate-y-0.5 hover:text-white ${glow}`}
+                  className={`flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-slate-400 transition-all duration-300 hover:-translate-y-1 hover:scale-110 ${glow}`}
                 >
                   <Icon className="h-4.5 w-4.5" />
                 </a>
