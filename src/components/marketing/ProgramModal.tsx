@@ -84,8 +84,12 @@ export function ProgramModal({ program, accentIndex, onClose }: { program: Progr
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.3, ease: SMOOTH_EASE }}
             className="fixed inset-0 z-[90] flex items-center justify-center p-4"
+            onClick={onClose}
           >
-            <div className="w-full max-w-lg max-h-[90vh] overflow-hidden rounded-2xl bg-brand-dark-card border border-white/10 shadow-2xl">
+            <div 
+              className="flex w-full max-w-lg max-h-[90vh] flex-col overflow-hidden rounded-2xl bg-brand-dark-card border border-white/10 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
               {/* Header with accent gradient */}
               <div style={{ background: `linear-gradient(135deg, ${palette.start} 0%, ${palette.end} 100%)` }} className="relative px-6 pb-6 pt-5">
                 {/* Close button */}
