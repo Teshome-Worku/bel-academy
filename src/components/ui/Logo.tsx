@@ -29,8 +29,7 @@ export function Logo({
           src={LOGO_PATH}
           alt={`${BRAND.name} logo`}
           fill
-          quality={100}
-          sizes="(max-width: 640px) 40px, 56px"
+          unoptimized
           className="object-contain scale-[1.15] transform-gpu"
           priority
         />

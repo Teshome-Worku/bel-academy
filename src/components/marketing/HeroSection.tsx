@@ -21,7 +21,7 @@ const fadeUp = {
 export function HeroSection() {
   return (
     <>
-      <section className="relative flex min-h-[98dvh] lg:min-h-[calc(100dvh-4.5rem)] flex-col overflow-hidden">
+      <section className="relative flex flex-col overflow-hidden lg:min-h-[calc(100dvh-4.5rem)]">
         <Image
           src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1920&q=80"
           alt="Students learning English at BEL Academy"
