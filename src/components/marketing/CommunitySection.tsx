@@ -38,7 +38,7 @@ const PLATFORMS: Platform[] = [
     bgGlass: "dark:hover:border-[#26A5E4]/30",
     Icon: TelegramIcon,
     cta: "Join Channel",
-    followers: "4,156",
+    followers: "4K",
   },
   {
     id: "facebook",
@@ -74,7 +74,7 @@ const PLATFORMS: Platform[] = [
     bgGlass: "dark:hover:border-[#FF0000]/30",
     Icon: YouTubeIcon,
     cta: "Subscribe",
-    followers: "87.9K+",
+    followers: "88K+",
   },
   {
     id: "instagram",
