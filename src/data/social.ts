@@ -44,7 +44,7 @@ export const socialLinks: SocialLink[] = [
     Icon: Camera,
     title: "Instagram",
     description: "Academy activities, learning tips, and student highlights.",
-    url: "https://www.instagram.com/oromo_english_bel_academy/",
+    url: "https://www.instagram.com/bel_academy1?igsh=MWM3bjgwdmUxOGx3OQ==",
   },
   {
     id: "youtube",
